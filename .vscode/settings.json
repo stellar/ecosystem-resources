@@ -7,4 +7,9 @@
     "cSpell.words": [
         "gamified"
     ],
+    "markdownlint.config": {
+        "MD033": {
+            "allowed_elements": ["details", "summary"]
+        }
+    },
 }

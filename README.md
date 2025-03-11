@@ -6,13 +6,16 @@ If you are interested in running a training, workshop, etc. for a collection of 
 
 Feel free to mix, match, and modify these resources however you need for your particular use.
 
-## Table of Contents <!-- omit in toc -->
+<details>
+<summary>Table of Contents</summary>
 
 - [KALE](#kale)
 - [KaleFail](#kalefail)
 - [Stellar Quest](#stellar-quest)
 - [Fast, Cheap, \& 0ut 0f Control (a.k.a. Soroban Quest)](#fast-cheap--0ut-0f-control-aka-soroban-quest)
 - [Guestbook](#guestbook)
+
+</details>
 
 ## KALE
 
