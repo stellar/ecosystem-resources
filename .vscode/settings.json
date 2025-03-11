@@ -1,0 +1,10 @@
+{
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "markdown.extension.italic.indicator": "_",
+    "markdown.extension.preview.autoShowPreviewToSide": true,
+    "markdown.extension.showActionButtons": true,
+    "markdown.extension.toc.omittedFromToc": {
+        "README.md": ["### Links", "### Targe Audience", "### Description", "## Table of Contents", "# Stellar Ecosystem Resources"]
+    }
+}
