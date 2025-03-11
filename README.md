@@ -27,7 +27,7 @@ KALE, a Stellar asset, can be acquired via a mining contract. One KALE can be fa
 - [KALE-sc Repository](https://github.com/kalepail/KALE-sc)
 - [Lore](https://kalepail.com/kale)
 - [Wasm Miner](https://github.com/kalepail/kale-site/tree/farm/wasm-miner)
-- [Discord Channel](https://discord.com/channels/761985725453303838/1304843790351204403)
+- [Discord Channel](https://discord.gg/jAwdFS3GE8)
 
 ## KaleFail
 
