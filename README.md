@@ -8,12 +8,12 @@ Feel free to mix, match, and modify these resources however you need for your pa
 
 ## Available Activations
 
-- [KALE](./KALE/README.md)
-- [KaleFail](./KaleFail/README.md)
-- [Stellar Quest](./Stellar-Quest/README.md)
-- [Fast, Cheap, \& 0ut 0f Control (a.k.a. Soroban Quest)](./fca00c/README.md)
-- [Guestbook](./Guestbook/README.md)
-- ["Connect Wallet" Without the Rage Quit](./connect-wallet/README.md)
+- [KALE](./kale)
+- [KaleFail](./kalefail)
+- [Stellar Quest](./stellar-quest)
+- [Fast, Cheap, \& 0ut 0f Control (a.k.a. Soroban Quest)](./fca00c)
+- [Guestbook](./guestbook)
+- ["Connect Wallet" Without the Rage Quit](./connect-wallet)
 
 ## How to Use this Repository
 
