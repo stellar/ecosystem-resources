@@ -11,9 +11,9 @@ Stellar Quest is a foundational learning experience for brand new developers com
 
 ## In this Directory
 
-| Item         | Link                                     |
-| ------------ | ---------------------------------------- |
-| Instructions | [`instructions.md`](./instructions.md)   |
+| Item         | Link                                   |
+| ------------ | -------------------------------------- |
+| Instructions | [`instructions.md`](./instructions.md) |
 
 ## Target Audience
 
