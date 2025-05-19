@@ -21,4 +21,5 @@ Inside this repository, you'll find directories for each individual activation. 
 
 1. A `README.md` file that will outline the use-case, target audience, resources, etc. for the activation at a high level.
 2. A `script.md` file (if applicable) that will contain a script that can be used to "give" the workshop in question (customize this, as-needed of course).
-3. A `slides` directory (if applicable) that will contain a presentation, exported in a number of different formats.
+3. An `instructions.md` file (if applicable) that can serve as "speaker notes" for the facilitator of the activation. These are often more outline-oriented, rather than a word-for-word script.
+4. A `slides` directory (if applicable) that will contain a presentation, exported in a number of different formats.
