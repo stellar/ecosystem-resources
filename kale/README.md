@@ -8,7 +8,7 @@ KALE, a Stellar asset, can be acquired via a mining contract. One KALE can be fa
 
 KALE can be used to demonstrate on-boarding to potential network users, and can also instruct developers concerning smart contract design choices.
 
-## Resources
+## Links
 
 - [Farm Kale](https://kalefarm.xyz/)
 - [KALE-sc Repository](https://github.com/kalepail/KALE-sc)

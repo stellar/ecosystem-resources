@@ -8,6 +8,6 @@ Guided developer experience in a pre-configured, user-friendly learning environm
 
 Stellar Quest is designed to help both beginners and advanced learners explore the Stellar network.
 
-## Resources
+## Links
 
 - [Play Soroban Quest now!](https://fastcheapandoutofcontrol.com/tutorial#quest-list)

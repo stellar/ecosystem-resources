@@ -10,7 +10,14 @@ Originally created for Consensus 2025 in Toronto, this workshop gives developers
 
 This workshop is intended for hackathon developers who are chomping at the bit to "just get building already!"
 
-## Resources
+## In this Directory
+
+| Item         | Link                                     |
+| ------------ | ---------------------------------------- |
+| Script       | [`script.md`](./script.md)               |
+| Presentation | [`slides/README.md`](./slides/README.md) |
+
+## Links
 
 - [Google Sheets Slideshow](https://docs.google.com/presentation/d/1rV7jxIssbFNM8Mc60BzDrylKifl9Hz0Cl4GsOUXJY0I/edit?usp=sharing)
 - Example project, written in three flavors:

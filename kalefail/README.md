@@ -8,7 +8,7 @@ KailFail is an attempt to riff on the popular KALEpail project in fun new ways. 
 
 KaleFail is designed to teach developers about interacting with Stellar assets through smart contract functions and dapp development.
 
-## Resources
+## Links
 
 - [KaleFail Dapp](https://kalefail.elliotfriend.com)
 - [Project Repository](https://github.com/elliotfriend/project-kalefail)

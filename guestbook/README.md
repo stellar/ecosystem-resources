@@ -8,7 +8,7 @@ This application is a decentralized application (dapp) that interacts with a sma
 
 This guestbook has many moving parts, so is best-suited for intermediate or experienced developers.
 
-## Resources
+## Links
 
 - [Play with the Guestbook dapp](https://ye-olde-guestbook.vercel.app)
 - [Read the tutorial](https://developers.stellar.org/docs/build/apps/guestbook)
