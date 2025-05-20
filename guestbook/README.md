@@ -16,6 +16,19 @@ The presentation requires some knowledge of how Stellar smart contracts work, si
 
 The same can be said about the frontend part of the presentation, it requires some frontend experience. Knowledge of Svelte is not required, but might be helpful.
 
+## Watch the Video
+
+<iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/Zl-w8e3iidU?si=9IZ-jLQxkvSxEGKF"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+></iframe>
+
 ## In this Directory
 
 | Item         | Link                                     |
@@ -29,3 +42,4 @@ The same can be said about the frontend part of the presentation, it requires so
 - [Documentation](https://developers.stellar.org/docs/build/apps/guestbook)
 - [Code](https://github.com/elliotfriend/ye-olde-guestbook)
 - [Presentation](https://docs.google.com/presentation/d/1FoY7_LjBVXV_sBXCd_DlBM2iHrP9P7a3xe3jFhoWF28/edit?usp=sharing)
+- [Recorded Activation](https://youtu.be/Zl-w8e3iidU)
