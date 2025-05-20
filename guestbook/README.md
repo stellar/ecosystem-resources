@@ -18,9 +18,9 @@ The same can be said about the frontend part of the presentation, it requires so
 
 ## In this Directory
 
-| Item | Link |
-| --- | --- |
-| Script | [`script.md`](./script.md) |
+| Item         | Link                                     |
+| ------------ | ---------------------------------------- |
+| Script       | [`script.md`](./script.md)               |
 | Presentation | [`slides/README.md`](./slides/README.md) |
 
 ## Links
