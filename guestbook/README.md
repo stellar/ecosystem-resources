@@ -30,7 +30,7 @@ The same can be said about the frontend part of the presentation, it requires so
 - [Documentation](https://developers.stellar.org/docs/build/apps/guestbook)
 - [Code](https://github.com/elliotfriend/ye-olde-guestbook)
 - [Presentation](https://docs.google.com/presentation/d/1FoY7_LjBVXV_sBXCd_DlBM2iHrP9P7a3xe3jFhoWF28/edit?usp=sharing)
-- [Recorded Activation](https://youtu.be/Zl-w8e3iidU)
+- [Recorded Activation][video]
 
 ## In this Directory
 
