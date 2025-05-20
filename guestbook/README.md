@@ -1,4 +1,12 @@
-# Guestbook
+# Guestbook <!-- omit in toc -->
+
+## Table of Contents <!-- omit in toc -->
+
+- [Description](#description)
+- [Target Audience](#target-audience)
+- [Links](#links)
+- [In this Directory](#in-this-directory)
+- [Watch the Video](#watch-the-video)
 
 ## Description
 
@@ -16,18 +24,13 @@ The presentation requires some knowledge of how Stellar smart contracts work, si
 
 The same can be said about the frontend part of the presentation, it requires some frontend experience. Knowledge of Svelte is not required, but might be helpful.
 
-## Watch the Video
+## Links
 
-<iframe
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/Zl-w8e3iidU?si=9IZ-jLQxkvSxEGKF"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen
-></iframe>
+- [Website](https://ye-olde-guestbook.vercel.app)
+- [Documentation](https://developers.stellar.org/docs/build/apps/guestbook)
+- [Code](https://github.com/elliotfriend/ye-olde-guestbook)
+- [Presentation](https://docs.google.com/presentation/d/1FoY7_LjBVXV_sBXCd_DlBM2iHrP9P7a3xe3jFhoWF28/edit?usp=sharing)
+- [Recorded Activation](https://youtu.be/Zl-w8e3iidU)
 
 ## In this Directory
 
@@ -36,10 +39,9 @@ The same can be said about the frontend part of the presentation, it requires so
 | Script       | [`script.md`](./script.md)               |
 | Presentation | [`slides/README.md`](./slides/README.md) |
 
-## Links
+## Watch the Video
 
-- [Website](https://ye-olde-guestbook.vercel.app)
-- [Documentation](https://developers.stellar.org/docs/build/apps/guestbook)
-- [Code](https://github.com/elliotfriend/ye-olde-guestbook)
-- [Presentation](https://docs.google.com/presentation/d/1FoY7_LjBVXV_sBXCd_DlBM2iHrP9P7a3xe3jFhoWF28/edit?usp=sharing)
-- [Recorded Activation](https://youtu.be/Zl-w8e3iidU)
+[![Guestbook Demo Dapp Walkthrough][thumbnail]][video]
+
+[video]: https://youtu.be/Zl-w8e3iidU
+[thumbnail]: https://i3.ytimg.com/vi/Zl-w8e3iidU/maxresdefault.jpg
