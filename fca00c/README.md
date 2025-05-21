@@ -1,4 +1,11 @@
-# Fast, Cheap, & 0ut 0f Control (a.k.a. Soroban Quest)
+# Fast, Cheap, & 0ut 0f Control (a.k.a. Soroban Quest) <!-- omit in toc -->
+
+## Table of Contents <!-- omit in toc -->
+
+- [Description](#description)
+- [Target Audience](#target-audience)
+- [Links](#links)
+- [In this Directory](#in-this-directory)
 
 ## Description
 
@@ -31,13 +38,13 @@ Instead of being web app based, we directly use the dev tools that you will use 
 
 Soroban Quest is designed for intermediate or beginner (with hands-on support) developers.
 
+## Links
+
+- [Updated Gameplay Repo](https://github.com/anataliocs/soroban-quest)
+- [~~Original Soroban Quest Repo~~](https://fastcheapandoutofcontrol.com/tutorial#quest-list)
+
 ## In this Directory
 
 | Item         | Link                                   |
 | ------------ | -------------------------------------- |
 | Instructions | [`instructions.md`](./instructions.md) |
-
-## Links
-
-- [Updated Gameplay Repo](https://github.com/anataliocs/soroban-quest)
-- [~~Original Soroban Quest Repo~~](https://fastcheapandoutofcontrol.com/tutorial#quest-list)
