@@ -49,7 +49,8 @@ KaleFail can be useful as an experience for users of smart wallets and passkeys.
 
 [![ElliotFriend's Embassy: KaleFail][thumbnail]][video]
 
-Presentation given for the Stellar Developer Meeting on 2025-02-20
+Presentation given for the [Stellar Ambassador Program][sap] on 2025-03-26
 
-[video]: https://www.youtube.com/watch?v=2XVt87tG5LI
-[thumbnail]: https://i3.ytimg.com/vi/2XVt87tG5LI/maxresdefault.jpg
+[video]: https://youtu.be/Qmpg_aQfKGE
+[thumbnail]: https://i3.ytimg.com/vi/Qmpg_aQfKGE/maxresdefault.jpg
+[sap]: https://stellarregionalambassadors.notion.site/HOME-df13de018c034c48935208d287657afc
