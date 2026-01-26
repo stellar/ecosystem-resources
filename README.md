@@ -8,9 +8,16 @@ This repository contains comprehensive guides, tutorials, and workshop materials
 
 | Topic | Description |
 |-------|-------------|
+| [Soroban Development](./soroban-development/) | Smart contract development with Rust SDK |
 | [Wallet Integration](./wallet-integration/) | Connect wallets to your dapp (Freighter, Stellar Wallets Kit, Smart Account Kit) |
 | [OpenZeppelin Tools](./openzeppelin/) | Audited contracts, Contract Wizard, Relayer, Monitor |
+| [DeFi Protocols](./defi/) | Lending, DEXs, vaults, and stablecoins |
+| [Tokens](./tokens/) | Stellar Assets vs Soroban Tokens guide |
 | [Data Indexing](./indexers/) | Indexing providers and solutions |
+| [Oracles](./oracles/) | Price feeds and external data |
+| [Security](./security/) | Security tools and best practices |
+| [Infrastructure](./infrastructure/) | Anchors, SEPs, disbursements |
+| [Learning Resources](./learning/) | Tutorials, examples, interactive platforms |
 | [Building with AI](./building-with-ai/) | AI-powered development tools |
 
 ## Start Here
@@ -72,6 +79,64 @@ AI-powered development tools (evolving):
 
 - [Overview](./building-with-ai/README.md) - Current AI tools and future directions
 
+### [Soroban Development](./soroban-development/)
+
+Smart contract development fundamentals:
+
+- Getting started with Soroban Rust SDK
+- Storage types (temporary/persistent/instance)
+- Testing strategies (unit vs integration)
+- Common pitfalls and best practices
+
+### [DeFi Protocols](./defi/)
+
+Major DeFi protocols on Stellar:
+
+- [Blend Protocol](./defi/README.md#blend-protocol) - Lending/borrowing
+- [Soroswap](./defi/README.md#soroswap) - DEX and aggregator
+- [Aquarius/AQUA](./defi/README.md#aquarius--aqua-network) - AMM and governance
+- [DeFindex](./defi/README.md#defindex) - Yield vaults
+- [Orbit CDP](./defi/README.md#orbit-cdp-protocol) - Stablecoins
+
+### [Tokens](./tokens/)
+
+Understanding token types on Stellar:
+
+- Stellar Assets (classic) - Recommended for most use cases
+- Stellar Asset Contracts (SAC) - Bridge to Soroban
+- Custom Soroban Tokens - For complex logic
+
+### [Oracles](./oracles/)
+
+External data for smart contracts:
+
+- [Reflector Network](./oracles/README.md#reflector-network) - Primary community oracle (SEP-40)
+- [DIA Oracle](./oracles/README.md#dia-oracle) - Cross-chain oracle
+
+### [Security](./security/)
+
+Security tools and best practices:
+
+- [Scout Soroban](./security/README.md#scout-soroban) - Vulnerability detector
+- [Soroban Audit Bank](./security/README.md#soroban-audit-bank) - Audit funding
+- Security checklist and common vulnerabilities
+
+### [Infrastructure](./infrastructure/)
+
+Enterprise infrastructure components:
+
+- Anchors and the Anchor Platform
+- SEP standards (SEP-6, SEP-24, SEP-31)
+- Stellar Disbursement Platform for bulk payments
+
+### [Learning Resources](./learning/)
+
+Educational content and examples:
+
+- [Soroban Examples](https://github.com/stellar/soroban-examples) - Official examples
+- Interactive platforms: Soroban Learn, useSoroban.app, Soroban Quest
+- Video tutorials and community guides
+
 ## Workshop Materials
 
 Interactive workshops and presentations for events and hackathons:
@@ -101,7 +166,12 @@ Interactive workshops and presentations for events and hackathons:
 | Contracts | OpenZeppelin Stellar | Custom |
 | Gasless Txs | OpenZeppelin Relayer | - |
 | API | Stellar RPC | Horizon (deprecated) |
-| Indexing | Mercury, Goldsky | OBSRVR |
+| Indexing | Mercury, Goldsky | OBSRVR, Space and Time |
+| Oracle | Reflector Network | DIA |
+| Security | Scout Soroban | - |
+| Tokens | Stellar Assets + SAC | Custom Soroban Tokens |
+| Lending | Blend Protocol | - |
+| DEX | Soroswap | Aquarius |
 
 ## Contributing
 

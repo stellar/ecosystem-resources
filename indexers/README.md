@@ -70,13 +70,13 @@ Roll your own indexing with SDF's tools.
 What data do you need?
   │
   ├─ Account balances, token holdings, basic tx history
-  │   └─► Portfolio API (OBSRVR, Alchemy, Allium)
+  │   └─► Portfolio API (OBSRVR)
   │
   ├─ Custom contract events, app-specific data
   │   └─► Custom ETL (Goldsky, Mercury, SubQuery)
   │
   ├─ Enterprise analytics, compliance, BI
-  │   └─► Analytics Platform (Space and Time, Allium, Hubble)
+  │   └─► Analytics Platform (Space and Time, Hubble)
   │
   └─ Full control, learning, edge cases
       └─► Build Your Own (Galexie, Ingest SDK)
@@ -104,7 +104,7 @@ Evaluate based on:
 
 ### For Enterprise
 
-Consider **Space and Time** for ZK-verified indexing, or **Allium** for comprehensive analytics.
+Consider **Space and Time** for ZK-verified indexing.
 
 ## Resources
 

@@ -28,30 +28,6 @@ Stellar-native provider offering RPC services and data APIs.
 - Contract events
 - Direct to your app or warehouse
 
-### Alchemy
-
-**Status:** 🔜 Coming H1 2026
-
-Most popular choice on Ethereum, expanding to Stellar.
-
-| Feature | Details |
-|---------|---------|
-| **Products** | Portfolio API, Enhanced APIs |
-| **Pricing** | TBD |
-| **Docs** | [alchemy.com](https://www.alchemy.com/) |
-
-### Allium
-
-**Status:** 🔜 Coming Q1 2026
-
-Multi-chain data platform with SQL interface.
-
-| Feature | Details |
-|---------|---------|
-| **Products** | Portfolio API, Custom ETL, Analytics |
-| **Pricing** | Enterprise |
-| **Docs** | [allium.so](https://www.allium.so/) |
-
 ### Horizon (Deprecated)
 
 **Status:** ⚠️ Deprecated
@@ -198,13 +174,13 @@ Big-data platforms for enterprise use cases.
 
 ### Space and Time
 
-**Status:** ✅ Available Now (Q4 2025 Launch)
+**Status:** ✅ Available Now
 
-ZK-verified indexing with Proof of SQL.
+ZK-verified indexing with Proof of SQL. Integrated with Stellar as of January 2026.
 
 | Feature | Details |
 |---------|---------|
-| **Products** | Verifiable queries, Enterprise analytics |
+| **Products** | Verifiable queries, Enterprise analytics, ZK verifier |
 | **Unique** | Zero-knowledge proofs for trustless data |
 | **Pricing** | Enterprise |
 | **Docs** | [spaceandtime.io](https://www.spaceandtime.io/) |
@@ -213,6 +189,7 @@ ZK-verified indexing with Proof of SQL.
 - Cryptographic proof that query results are correct
 - Trustless verification without re-running queries
 - Enterprise compliance requirements
+- Privacy-centric DeFi and payment apps
 
 ### Hubble
 
@@ -292,8 +269,6 @@ func ProcessLedger(ledger xdr.LedgerCloseMeta) error {
 | Provider | Type | Stellar Ready | Free Tier | Self-Host | Best For |
 |----------|------|---------------|-----------|-----------|----------|
 | OBSRVR | Portfolio | ✅ | ✅ | ❌ | Quick start |
-| Alchemy | Portfolio | 🔜 H1 2026 | TBD | ❌ | Scale |
-| Allium | All-in-one | 🔜 Q1 2026 | ❌ | ❌ | Enterprise |
 | Goldsky | ETL | ✅ | ❌ | ❌ | Custom data |
 | Mercury | ETL | ✅ | ✅ | ❌ | Soroban |
 | SubQuery | ETL | ✅ | ✅ | ✅ | Decentralized |
@@ -313,7 +288,7 @@ func ProcessLedger(ledger xdr.LedgerCloseMeta) error {
 **Recommended:** Goldsky Mirror or Mercury Retroshades
 
 ### Enterprise / Compliance
-**Recommended:** Space and Time or Allium
+**Recommended:** Space and Time
 
 ### Soroban-Heavy App
 **Recommended:** Mercury Retroshades
