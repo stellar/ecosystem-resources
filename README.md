@@ -17,15 +17,6 @@ Feel free to mix, match, and modify these resources however you need for your pa
 | [Stellar Quest](./stellar-quest/) | Interactive learning | Instructions |
 | [Soroban Quest](./fca00c/) | Smart contract challenges | Instructions |
 
-## How to Use this Repository
-
-Inside this repository, you'll find directories for each individual activation. In each activation's directory, you'll find:
-
-1. A `README.md` file that outlines the use-case, target audience, resources, etc. for the activation at a high level.
-2. A `script.md` file (if applicable) containing a script to "give" the workshop (customize as needed).
-3. An `instructions.md` file (if applicable) serving as "speaker notes" for the facilitator—often more outline-oriented rather than word-for-word.
-4. A `slides` directory (if applicable) containing presentations exported in different formats.
-
 ---
 
 ## Reference Guides
@@ -82,22 +73,6 @@ In addition to workshop materials, this repository includes reference guides on 
 - [Learning Resources](./learning/) - Examples, interactive platforms, tutorials
 
 ---
-
-## Current Recommendations (January 2026)
-
-| Category | Recommended | Alternative |
-|----------|-------------|-------------|
-| Wallet (best UX) | Smart Account Kit | Stellar Wallets Kit |
-| Wallet (simple) | Freighter | - |
-| Contracts | OpenZeppelin Stellar | Custom |
-| Gasless Txs | OpenZeppelin Relayer | - |
-| API | Stellar RPC | Horizon (deprecated) |
-| Indexing | Mercury, Goldsky | OBSRVR, Space and Time |
-| Oracle | Reflector Network | DIA |
-| Security | Scout Soroban | - |
-| Tokens | Stellar Assets + SAC | Custom Soroban Tokens |
-| Lending | Blend Protocol | - |
-| DEX | Soroswap | Aquarius |
 
 ## Official Resources
 
