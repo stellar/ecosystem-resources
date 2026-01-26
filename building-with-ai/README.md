@@ -25,16 +25,6 @@ Generate secure Stellar smart contracts using AI through the Model Context Proto
 **Example Prompt:**
 > "Create a fungible token called 'MyToken' with symbol 'MTK', 18 decimals, mintable and burnable, with role-based access control"
 
-### Stellar CLI AI Assistance
-
-The Stellar CLI is adding AI-powered features for contract development.
-
-**Current/Planned Features:**
-- Contract scaffolding
-- Error explanation
-- Code suggestions
-- Documentation lookup
-
 ### Context7 for Documentation
 
 Use Context7 to query up-to-date Stellar documentation in AI assistants.
@@ -43,32 +33,6 @@ Use Context7 to query up-to-date Stellar documentation in AI assistants.
 - Stellar SDK documentation
 - Soroban contract examples
 - Integration guides
-
-## Best Practices
-
-### 1. Verify Generated Code
-
-AI-generated contracts should always be:
-- Reviewed by a developer
-- Tested thoroughly
-- Audited for production use
-
-### 2. Use Established Patterns
-
-Prefer AI tools that generate code based on audited libraries like OpenZeppelin Stellar Contracts.
-
-### 3. Understand What You Deploy
-
-Don't deploy AI-generated code you don't understand. Use AI as a learning tool and starting point.
-
-## Coming Soon
-
-The AI tooling landscape for Stellar is evolving rapidly. Expected developments:
-
-- [ ] Enhanced Stellar CLI AI features
-- [ ] AI-powered contract auditing tools
-- [ ] Natural language contract interaction
-- [ ] Automated testing generation
 
 ## Resources
 
