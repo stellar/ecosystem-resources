@@ -88,3 +88,7 @@ Contributions welcome:
 1. Found outdated information? Open an issue
 2. Want to add a guide? Submit a PR
 3. Have workshop materials? Share them
+
+---
+
+> **Note:** This repository is not in scope for the Stellar Development Foundation bug bounty program. Vulnerabilities found in this repo are not eligible for rewards.
