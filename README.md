@@ -14,8 +14,8 @@ Feel free to mix, match, and modify these resources however you need for your pa
 | [Guestbook](./guestbook/) | Full dapp tutorial | Script, Slides |
 | [KALE](./kale/) | Mining dapp walkthrough | Script, Instructions |
 | [KaleFail](./kalefail/) | Trading post tutorial | Instructions |
-| [Stellar Quest](./stellar-quest/) | Interactive learning | Instructions |
-| [Soroban Quest](./fca00c/) | Smart contract challenges | Instructions |
+| [Stellar Quest](./stellar-quest/) | Interactive learning ⚠️ WIP | Instructions |
+| [Soroban Quest](./fca00c/) | Smart contract challenges ⚠️ WIP | Instructions |
 
 ---
 
@@ -38,6 +38,8 @@ In addition to workshop materials, this repository includes reference guides on 
 | [Infrastructure](./infrastructure/) | Anchors, SEPs, disbursements |
 | [Learning Resources](./learning/) | Tutorials, examples, interactive platforms |
 | [Building with AI](./building-with-ai/) | AI-powered development tools |
+| [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill) | AI skill for modern Stellar development |
+| [AI Guide — Mexico](./building-with-ai/mexico-hackathon.md) | Hack+ Alebrije CDMX 2026 developer guide |
 
 ### Wallet Integration
 
@@ -71,6 +73,11 @@ In addition to workshop materials, this repository includes reference guides on 
 - [Infrastructure](./infrastructure/) - Anchors, SEPs, Disbursement Platform
 - [Data Indexing](./indexers/) - Mercury, Goldsky, OBSRVR, Space and Time
 - [Learning Resources](./learning/) - Examples, interactive platforms, tutorials
+
+### AI Tools & Skills
+
+- [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill) - AI skill covering Soroban, Stellar SDK, RPC, wallets, ZK proofs, and ecosystem. Install via `/plugin install stellar-dev@stellar-dev-skill` in Claude Code.
+- [AI Guide — Mexico / Hack+ Alebrije CDMX 2026](./building-with-ai/mexico-hackathon.md) - Developer guide for the Mexico hackathon: free AI setup, anchor integrations (Etherfuse, AlfredPay, BlindPay), Soroban gotchas, and reference implementations. Mexico-specific but broadly useful.
 
 ---
 

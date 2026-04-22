@@ -1,5 +1,7 @@
 # Fast, Cheap, & 0ut 0f Control (a.k.a. Soroban Quest) <!-- omit in toc -->
 
+> **⚠️ Work in Progress:** Soroban Quest materials in this repository are currently being updated. Do not rely on these resources for event planning until this notice is removed.
+
 ## Table of Contents <!-- omit in toc -->
 
 - [Description](#description)
