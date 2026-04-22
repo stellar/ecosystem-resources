@@ -30,7 +30,7 @@ The official AI assistant for Stellar developer questions, maintained by the Ste
 A structured digest of the Stellar documentation formatted for feeding directly into LLMs. Covers Build, Learn, Tokens, Data, Tools, Networks, and Validators sections.
 
 - **URL:** [developers.stellar.org/llms.txt](https://developers.stellar.org/llms.txt)
-- **Use:** Paste into your AI assistant's context window for up-to-date Stellar knowledge without hallucination.
+- **Use:** Paste into your AI assistant's context window to provide up-to-date Stellar context and help reduce hallucinations.
 
 ### OpenZeppelin MCP Server
 
