@@ -172,6 +172,8 @@ A one-command install that drops an end-to-end Stellar development journey into 
 curl -fsSL https://raw.githubusercontent.com/kaankacar/stellar-build/main/install.sh | bash
 ```
 
+> Prefer to inspect before running? Download [`install.sh`](https://github.com/kaankacar/stellar-build/blob/main/install.sh), review it, then run `bash install.sh`.
+
 **Includes:**
 - Idea and validation skills grounded in the LumenLoop ecosystem catalog (728 projects) and Electric Capital developer data (~9,000 repos)
 - PRD, UX design, architecture, and story-driven development workflows
