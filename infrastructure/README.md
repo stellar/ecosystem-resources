@@ -24,6 +24,22 @@ SDF-maintained platform for building SEP-compliant anchor services.
 - Customer management
 - Transaction monitoring
 
+### Regional Starter Pack
+
+A SvelteKit demo application and portable TypeScript library for building fiat on/off ramps with locally denominated assets.
+
+| Feature | Details |
+|---------|---------|
+| **GitHub** | [ElliotFriend/regional-starter-pack](https://github.com/ElliotFriend/regional-starter-pack) |
+| **Stack** | SvelteKit demo + framework-agnostic TypeScript libraries |
+| **Anchors** | Etherfuse (Mexico/Brazil — MXN, BRL via SPEI/PIX), Stellar test anchor |
+
+**Features:**
+- Self-contained anchor clients designed to be copied into any TypeScript project (only `@stellar/stellar-sdk` as a peer dependency)
+- Composable SEP protocol library (SEP-1, 6, 10, 12, 24, 31, 38) — one independently usable file per SEP
+- Curated anchor quality criteria (locally denominated assets, local payment rails, competitive rates, documented APIs, deep liquidity), with regional honorable mentions for anchors that don't clear the bar
+- Working Testnet on-ramp simulations you can try end to end
+
 ## SEP Standards
 
 Stellar Ecosystem Proposals (SEPs) define standards for interoperability.
@@ -264,6 +280,7 @@ async function monitorTransaction(hash: string) {
 ## Resources
 
 - [Anchor Platform Docs](https://developers.stellar.org/docs/category/anchor-platform)
+- [Regional Starter Pack](https://github.com/ElliotFriend/regional-starter-pack)
 - [SDP Documentation](https://developers.stellar.org/docs/category/use-the-stellar-disbursement-platform)
 - [SEP Index](https://github.com/stellar/stellar-protocol/tree/master/ecosystem)
 - [Stellar Ramps Overview](https://stellar.org/use-cases/ramps)
