@@ -7,6 +7,7 @@
 | Item | Link |
 |------|------|
 | Mexico Hackathon Guide | [`mexico-hackathon.md`](./mexico-hackathon.md) |
+| Stellar AI Guide (regional monorepo) | [kaankacar/stellar-ai-guide](https://github.com/kaankacar/stellar-ai-guide) |
 | Stellar Skills Marketplace | [skills.stellar.org](https://skills.stellar.org/) |
 | Stellar Dev Skill | [stellar/stellar-dev-skill](https://github.com/stellar/stellar-dev-skill) |
 | LumenLoop Skills | [lumenloop/lumenloop-skills](https://github.com/lumenloop/lumenloop-skills) |
@@ -179,14 +180,18 @@ curl -fsSL https://raw.githubusercontent.com/kaankacar/stellar-build/main/instal
 
 **Repository:** [kaankacar/stellar-build](https://github.com/kaankacar/stellar-build)
 
-### Hack+ Alebrije CDMX 2026 — AI Guide (Mexico)
+### Stellar AI Guide — Regional Developer Guides
 
-A developer guide assembled for the Mexico City hackathon, covering free AI setup, regional anchor integrations, and Soroban gotchas.
+A monorepo of regional AI-assisted developer guides for Stellar hackathons and events. Country-agnostic docs live at the repo root (Claude Code guide, free AI setup, recommended AI tools, starter prompts); each country folder adds local dev setup, anchor integrations, and hackathon resources.
 
-**File:** [`mexico-hackathon.md`](./mexico-hackathon.md)  
-**Repository:** [kaankacar/stellar-ai-guide-mx](https://github.com/kaankacar/stellar-ai-guide-mx)
+**Repository:** [kaankacar/stellar-ai-guide](https://github.com/kaankacar/stellar-ai-guide)
 
-Primarily Mexico-focused (Etherfuse MXN rails, SPEI, peso corridors) but the AI setup, prompt templates, and Soroban debugging sections are broadly applicable.
+**Coverage:**
+- **Mexico** (`countries/mx`) — Etherfuse MXN rails, SPEI, AlfredPay, BlindPay; the source of the [Hack+ Alebrije CDMX 2026 guide](./mexico-hackathon.md) in this directory
+- **Brazil** (`countries/br`) — PIX rails, Etherfuse BRL/TESOURO, dedicated PIX guide
+- **New countries** — `countries/_template` provides the skeleton for contributing additional regions
+
+The country-agnostic AI setup, prompt templates, and Soroban debugging material is broadly applicable anywhere.
 
 ## Resources
 
@@ -203,6 +208,7 @@ Primarily Mexico-focused (Etherfuse MXN rails, SPEI, peso corridors) but the AI 
 - [x402 — HTTP Payments for AI Agents](https://developers.stellar.org/docs/build/apps/x402)
 - [OpenZeppelin MCP Server](https://mcp.openzeppelin.com/)
 - [OpenZeppelin Contract Wizard](https://wizard.openzeppelin.com/stellar)
+- [Stellar AI Guide — Regional Developer Guides](https://github.com/kaankacar/stellar-ai-guide)
 - [AI Guide — Mexico / Hack+ Alebrije CDMX 2026](./mexico-hackathon.md)
 
 **General:**

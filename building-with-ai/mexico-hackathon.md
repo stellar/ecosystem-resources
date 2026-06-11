@@ -1,6 +1,6 @@
 # Hack+ Alebrije CDMX 2026 — Developer Guide
 
-> **Source:** [kaankacar/stellar-ai-guide-mx](https://github.com/kaankacar/stellar-ai-guide-mx)  
+> **Source:** [kaankacar/stellar-ai-guide](https://github.com/kaankacar/stellar-ai-guide) (`countries/mx`) — formerly the standalone `stellar-ai-guide-mx` repo  
 > **Context:** Assembled by the SDF DevRel team for the Mexico City hackathon (Hack+ Alebrije | CDMX 2026). Mexico-specific in places (Etherfuse, SPEI, MXN rails), but the AI setup, prompt templates, and Soroban debugging sections are broadly applicable.
 
 Mexico has one of the most active SPEI networks in the world and a massive remittance corridor with the US. Stellar is built for exactly this. This guide helps every developer at the event move fast, regardless of their AI subscription status or Stellar experience level.
@@ -73,4 +73,4 @@ Built with Claude Code, each paired with a `BUILD_REPORT.md`:
 
 ---
 
-*See the full source at [kaankacar/stellar-ai-guide-mx](https://github.com/kaankacar/stellar-ai-guide-mx) for the complete guides with all links and code snippets.*
+*See the full source at [kaankacar/stellar-ai-guide](https://github.com/kaankacar/stellar-ai-guide) (`countries/mx`) for the complete guides with all links and code snippets. The monorepo also covers other regions (e.g. Brazil) with the same country-agnostic AI setup docs.*
