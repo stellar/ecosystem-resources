@@ -11,7 +11,7 @@
 
 ## Before the Event
 
-Get yourself up to speed by reading the repo's [README](https://github.com/kalepail/KALE-sc?tab=readme-ov-file#the-kalepail-project) (lore included!!)
+Get yourself up to speed by reading the repo's [README](https://github.com/kalepail/KALE-sc?tab=readme-ov-file#the-kalepail-project) (and of course the [lore](https://kalepail.com/kale)!!)
 
 Start farming KALE, so you can have some in advance. It will also help you understand the general process of how farming operates, too.
 
@@ -36,7 +36,7 @@ Prepare and plan out what you want to cover, teach, explore, and guide the users
 
 Have everyone go to the farming dapp and create a smart wallet by using the "Login" button
 
-- While they are doing that, you might explain the pieces of the project that are at play: smart wallets, passkeys, smart contracts, stellar assets, the fee-sponsoring relayer (if you want to point out the user will be paying no fees).
+- While they are doing that, you might explain the pieces of the project that are at play: smart wallets, passkeys, smart contracts, stellar assets, launchtube (if you want to point out the user will be paying no fees).
 - [This slide](https://docs.google.com/presentation/d/17sJw9JyPsfH-2hxalDLPF-mfGVeHw0Vhh2Qu016wZGk/edit#slide=id.g1f80220e506_0_1741) from the [Stellar 101](https://docs.google.com/document/d/1p8GDqJ4VXMFWxrHDXZ3C4F1mqysnk4WowZ3FMUWhB9w/edit?tab=t.rjh8xmipr48o#heading=h.1ymwgng5v1ov) resource has some inspiration on how you might phrase this.
 
 Walk them through the mining process, and demonstrate yourself while you're explaining the different pieces (plant, work, harvest, etc.)
