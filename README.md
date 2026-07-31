@@ -38,6 +38,7 @@ In addition to workshop materials, this repository includes reference guides on 
 | [Infrastructure](./infrastructure/) | Anchors, SEPs, disbursements |
 | [Learning Resources](./learning/) | Tutorials, examples, interactive platforms |
 | [Building with AI](./building-with-ai/) | AI-powered development tools |
+| [Raven MCP](https://raven.stellar.buzz) | Hosted MCP server: Stellar docs + live ecosystem data for AI agents |
 | [Stellar Skills Marketplace](https://skills.stellar.org/) | Browse all Stellar agent skills |
 | [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill) | AI skill for modern Stellar development |
 | [AI Guide — Mexico](./building-with-ai/mexico-hackathon.md) | Hack+ Alebrije CDMX 2026 developer guide |
@@ -77,6 +78,7 @@ In addition to workshop materials, this repository includes reference guides on 
 
 ### AI Tools & Skills
 
+- [Raven MCP](https://raven.stellar.buzz) - The official hosted MCP server for the Stellar ecosystem. Exposes `search` (Stellar docs + ecosystem discovery) and `execute` (queries against live ecosystem data) to any AI agent. Connect it directly: `claude mcp add --transport http stellar-raven "https://raven.stellar.buzz/mcp"`. Replaces the retired Stella assistant. See [Building with AI](./building-with-ai/README.md#raven--stellar-mcp-server-for-ai-agents).
 - [Stellar Skills Marketplace](https://skills.stellar.org/) - Official marketplace for browsing Stellar agent skills: Soroban, wallets, assets, RPC, x402 payments, ZK proofs, plus community skills (OpenZeppelin, DeFindex, Soroswap, Trustless Work).
 - [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill) - AI skill covering Soroban, Stellar SDK, RPC, wallets, ZK proofs, and ecosystem. Install via `/plugin install stellar-dev@stellar-dev` in Claude Code.
 - [LumenLoop Skills](https://github.com/lumenloop/lumenloop-skills) - Eight agent skills for ecosystem research (sector landscapes, project due diligence, SCF submission radar), powered by LumenLoop's free read-only MCP server. Works with any MCP client.
@@ -92,6 +94,7 @@ In addition to workshop materials, this repository includes reference guides on 
 - [Stellar Developer Discord](https://discord.gg/stellardev)
 - [Stellar Lab](https://lab.stellar.org/)
 - [Stellar Quest](https://quest.stellar.org/)
+- [Raven MCP](https://raven.stellar.buzz)
 
 ## Contributing
 
