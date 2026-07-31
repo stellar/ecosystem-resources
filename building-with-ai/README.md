@@ -27,15 +27,16 @@ AI-powered tools are increasingly available to help developers build on Stellar 
 A remote Model Context Protocol (MCP) server that gives AI agents unified access to Stellar documentation and live ecosystem data. Raven combines Stellar Docs search, LumenLoop ecosystem data, Stellar Light, and ecosystem skills into cross-referenced answers through two tools: `search` (find docs and ecosystem info) and `execute` (query live ecosystem data). It replaces Stella, the retired Stellar AI chat assistant.
 
 - **Server:** [raven.stellar.buzz](https://raven.stellar.buzz)
-- **Browser playground:** [raven.stellar.buzz/playground](https://raven.stellar.buzz/playground) — try it without any agent setup (sign-in required)
 - **Source:** [kalepail/stellar-raven](https://github.com/kalepail/stellar-raven)
 - **Docs:** [developers.stellar.org/docs/build/building-with-ai](https://developers.stellar.org/docs/build/building-with-ai) — connection instructions for Claude Code, Codex, VS Code, Cursor, Claude desktop, and other MCP clients
 
-**Connecting from Claude Code:**
+**Connecting from Claude Code** (the way to use Raven when building):
 ```bash
 claude mcp add --transport http stellar-raven "https://raven.stellar.buzz/mcp"
 # then sign in via OAuth when prompted
 ```
+
+> **Playground:** [raven.stellar.buzz/playground](https://raven.stellar.buzz/playground) (sign-in required) exists to *demo* what Raven can do — use it to see how it works, not as your development workflow. When building, connect the remote MCP server to your agent directly.
 
 Raven is a live hosted server — it complements (rather than replaces) the static `llms.txt` file and the installable Stellar Skills below; the three work well together.
 
