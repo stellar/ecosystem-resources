@@ -1,8 +1,6 @@
 # Stellar Quest <!-- omit in toc -->
 
-> **⚠️ Work in Progress:** Stellar Quest materials in this repository are currently being updated. Do not rely on these resources for event planning until this notice is removed.
-
-> Stellar Quest is designed to help both beginners and advanced learners explore the Stellar network.
+> Stellar Quest is live at [quest.stellar.org](https://quest.stellar.org)! It is designed to help both beginners and advanced learners explore the Stellar network.
 
 ## Table of Contents <!-- omit in toc -->
 

@@ -14,8 +14,8 @@ SDF-maintained platform for building SEP-compliant anchor services.
 
 | Feature | Details |
 |---------|---------|
-| **GitHub** | [stellar/java-stellar-anchor-sdk](https://github.com/stellar/java-stellar-anchor-sdk) |
-| **Docs** | [developers.stellar.org/docs/category/anchor-platform](https://developers.stellar.org/docs/category/anchor-platform) |
+| **GitHub** | [stellar/anchor-platform](https://github.com/stellar/anchor-platform) |
+| **Docs** | [developers.stellar.org/docs/platforms/anchor-platform](https://developers.stellar.org/docs/platforms/anchor-platform) |
 | **Language** | Java/Kotlin |
 
 **Features:**
@@ -26,18 +26,19 @@ SDF-maintained platform for building SEP-compliant anchor services.
 
 ### Regional Starter Pack
 
-A SvelteKit demo application and portable TypeScript library for building fiat on/off ramps with locally denominated assets.
+A SvelteKit demo application and portable TypeScript library for building fiat on/off ramps with locally denominated assets, live at [regionalstarterpack.com](https://www.regionalstarterpack.com).
 
 | Feature | Details |
 |---------|---------|
 | **GitHub** | [ElliotFriend/regional-starter-pack](https://github.com/ElliotFriend/regional-starter-pack) |
+| **Live app** | [www.regionalstarterpack.com](https://www.regionalstarterpack.com) — includes the [Anchor Readiness Scorecard](https://www.regionalstarterpack.com/anchors/scorecard) |
 | **Stack** | SvelteKit demo + framework-agnostic TypeScript libraries |
-| **Anchors** | Etherfuse (Mexico/Brazil — MXN, BRL via SPEI/PIX), Stellar test anchor |
+| **Anchors** | Etherfuse (Mexico/Brazil — MXN, BRL via SPEI/PIX), Manteca (Brazil/Argentina/Colombia — BRL, ARS, COP ↔ USDC via PIX/CVU/BRE-B), Koywe (Argentina/Mexico/Colombia — ARS, MXN, COP ↔ USDC), Stellar test anchor |
 
 **Features:**
 - Self-contained anchor clients designed to be copied into any TypeScript project (only `@stellar/stellar-sdk` as a peer dependency)
 - Composable SEP protocol library (SEP-1, 6, 10, 12, 24, 31, 38) — one independently usable file per SEP
-- Curated anchor quality criteria (locally denominated assets, local payment rails, competitive rates, documented APIs, deep liquidity), with regional honorable mentions for anchors that don't clear the bar
+- Two-lens anchor curation — a commercial bar (locally denominated assets, local payment rails, competitive rates, deep liquidity) and a developer bar (open self-service access, accurate docs, high-fidelity sandbox, agent-buildable) — with a live per-criterion scorecard, plus regional honorable mentions and in-vetting candidates
 - Working Testnet on-ramp simulations you can try end to end
 
 ## SEP Standards
@@ -128,8 +129,8 @@ Bulk payment infrastructure for enterprises.
 
 | Feature | Details |
 |---------|---------|
-| **GitHub** | [stellar/stellar-disbursement-platform](https://github.com/stellar/stellar-disbursement-platform) |
-| **Docs** | [developers.stellar.org/docs/category/use-the-stellar-disbursement-platform](https://developers.stellar.org/docs/category/use-the-stellar-disbursement-platform) |
+| **GitHub** | [stellar/stellar-disbursement-platform-backend](https://github.com/stellar/stellar-disbursement-platform-backend) |
+| **Docs** | [developers.stellar.org/docs/platforms/stellar-disbursement-platform](https://developers.stellar.org/docs/platforms/stellar-disbursement-platform) |
 
 ### Use Cases
 
@@ -170,8 +171,8 @@ Bulk payment infrastructure for enterprises.
 
 ```bash
 # Clone the repository
-git clone https://github.com/stellar/stellar-disbursement-platform
-cd stellar-disbursement-platform
+git clone https://github.com/stellar/stellar-disbursement-platform-backend
+cd stellar-disbursement-platform-backend
 
 # Run with Docker
 docker-compose up
@@ -194,7 +195,7 @@ Developer tools and transaction builder.
 
 | Feature | Details |
 |---------|---------|
-| **URL** | [laboratory.stellar.org](https://laboratory.stellar.org) |
+| **URL** | [lab.stellar.org](https://lab.stellar.org) |
 | **Features** | XDR viewer, transaction signing, account viewer |
 
 ### StellarChain
@@ -211,7 +212,7 @@ Alternative explorer with contract support.
 
 | Network | RPC URL | Horizon URL |
 |---------|---------|-------------|
-| **Mainnet** | `https://soroban.stellar.org` | `https://horizon.stellar.org` |
+| **Mainnet** | No SDF-hosted public RPC — pick one from the [RPC providers list](https://developers.stellar.org/docs/data/apis/rpc/providers) | `https://horizon.stellar.org` |
 | **Testnet** | `https://soroban-testnet.stellar.org` | `https://horizon-testnet.stellar.org` |
 
 ### Third-Party Providers
@@ -243,7 +244,7 @@ For production deployments:
 |-----------|------------|
 | **Stellar Core** | [stellar/stellar-core](https://github.com/stellar/stellar-core) |
 | **Horizon** | [stellar/go](https://github.com/stellar/go) |
-| **Soroban RPC** | [stellar/soroban-rpc](https://github.com/stellar/soroban-rpc) |
+| **Stellar RPC** | [stellar/stellar-rpc](https://github.com/stellar/stellar-rpc) |
 
 ## Monitoring & Observability
 
@@ -279,8 +280,8 @@ async function monitorTransaction(hash: string) {
 
 ## Resources
 
-- [Anchor Platform Docs](https://developers.stellar.org/docs/category/anchor-platform)
+- [Anchor Platform Docs](https://developers.stellar.org/docs/platforms/anchor-platform)
 - [Regional Starter Pack](https://github.com/ElliotFriend/regional-starter-pack)
-- [SDP Documentation](https://developers.stellar.org/docs/category/use-the-stellar-disbursement-platform)
+- [SDP Documentation](https://developers.stellar.org/docs/platforms/stellar-disbursement-platform)
 - [SEP Index](https://github.com/stellar/stellar-protocol/tree/master/ecosystem)
 - [Stellar Ramps Overview](https://stellar.org/use-cases/ramps)

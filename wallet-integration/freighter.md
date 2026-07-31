@@ -1,11 +1,11 @@
 # Freighter Wallet Integration
 
-Freighter is SDF's official browser extension wallet for Stellar. It's the simplest way to add wallet connectivity to your dapp.
+Freighter is SDF's official browser extension and mobile wallet for Stellar. It's the simplest way to add wallet connectivity to your dapp.
 
 ## Overview
 
-- **Type:** Browser extension wallet
-- **Platforms:** Chrome, Firefox, Brave
+- **Type:** Browser extension wallet + mobile app
+- **Platforms:** Chrome, Firefox, Brave (extension); iOS, Android (Freighter Mobile, connects to dapps via WalletConnect)
 - **Best for:** Quick integration, developer-focused apps
 - **Website:** [freighter.app](https://freighter.app)
 
@@ -23,8 +23,9 @@ npm install @stellar/freighter-api
 import { isConnected } from "@stellar/freighter-api";
 
 const checkFreighter = async () => {
-  const connected = await isConnected();
-  if (connected) {
+  // All freighter-api calls return objects, not bare values
+  const conn = await isConnected();
+  if (conn.isConnected) {
     console.log("Freighter is installed and connected");
   } else {
     console.log("Freighter is not installed");
@@ -36,26 +37,24 @@ const checkFreighter = async () => {
 
 ## Basic Usage
 
-### Connect and Get Public Key
+### Connect and Get Address
 
 ```typescript
-import { requestAccess, getPublicKey } from "@stellar/freighter-api";
+import { requestAccess } from "@stellar/freighter-api";
 
 const connectWallet = async () => {
-  try {
-    // Request access to Freighter
-    await requestAccess();
-
-    // Get the user's public key
-    const publicKey = await getPublicKey();
-    console.log("Connected:", publicKey);
-
-    return publicKey;
-  } catch (error) {
+  // Request access to Freighter — returns the address directly
+  const { address, error } = await requestAccess();
+  if (error) {
     console.error("Failed to connect:", error);
+    return;
   }
+  console.log("Connected:", address);
+  return address;
 };
 ```
+
+> **Note:** `getPublicKey()` was removed from freighter-api. Use `requestAccess()` (prompts the user) or `getAddress()` (silent, empty string if not authorized).
 
 ### Get Network Information
 
@@ -63,7 +62,7 @@ const connectWallet = async () => {
 import { getNetwork } from "@stellar/freighter-api";
 
 const checkNetwork = async () => {
-  const network = await getNetwork();
+  const { network, networkPassphrase } = await getNetwork();
   console.log("Current network:", network); // "TESTNET" or "PUBLIC"
 };
 ```
@@ -79,16 +78,17 @@ const signAndSubmit = async (transaction: StellarSdk.Transaction) => {
     // Convert transaction to XDR
     const xdr = transaction.toXDR();
 
-    // Sign with Freighter
-    const signedXdr = await signTransaction(xdr, {
+    // Sign with Freighter — returns an object, not a bare XDR string
+    const { signedTxXdr, error } = await signTransaction(xdr, {
       network: "TESTNET", // or "PUBLIC"
       networkPassphrase: StellarSdk.Networks.TESTNET,
     });
+    if (error) throw error;
 
     // Submit to network
     const server = new StellarSdk.Horizon.Server("https://horizon-testnet.stellar.org");
     const tx = StellarSdk.TransactionBuilder.fromXDR(
-      signedXdr,
+      signedTxXdr,
       StellarSdk.Networks.TESTNET
     );
 
@@ -108,7 +108,7 @@ const signAndSubmit = async (transaction: StellarSdk.Transaction) => {
 
 ```tsx
 import React, { useState } from "react";
-import { isConnected, requestAccess, getPublicKey } from "@stellar/freighter-api";
+import { isConnected, requestAccess } from "@stellar/freighter-api";
 
 export function ConnectWalletButton() {
   const [publicKey, setPublicKey] = useState<string | null>(null);
@@ -117,16 +117,16 @@ export function ConnectWalletButton() {
   const handleConnect = async () => {
     setLoading(true);
     try {
-      const connected = await isConnected();
-      if (!connected) {
+      const conn = await isConnected();
+      if (!conn.isConnected) {
         alert("Please install Freighter wallet extension");
         window.open("https://freighter.app", "_blank");
         return;
       }
 
-      await requestAccess();
-      const key = await getPublicKey();
-      setPublicKey(key);
+      const { address, error } = await requestAccess();
+      if (error) throw error;
+      setPublicKey(address);
     } catch (error) {
       console.error("Connection failed:", error);
     } finally {
@@ -154,7 +154,7 @@ export function ConnectWalletButton() {
 ## Soroban Contract Interaction
 
 ```typescript
-import { signTransaction } from "@stellar/freighter-api";
+import { getAddress, signTransaction } from "@stellar/freighter-api";
 import * as StellarSdk from "@stellar/stellar-sdk";
 
 const invokeContract = async (
@@ -162,10 +162,11 @@ const invokeContract = async (
   method: string,
   args: StellarSdk.xdr.ScVal[]
 ) => {
-  const publicKey = await getPublicKey();
-  const server = new StellarSdk.SorobanRpc.Server("https://soroban-testnet.stellar.org");
+  const { address } = await getAddress();
+  // SorobanRpc namespace was removed in stellar-sdk v13 — use rpc
+  const server = new StellarSdk.rpc.Server("https://soroban-testnet.stellar.org");
 
-  const account = await server.getAccount(publicKey);
+  const account = await server.getAccount(address);
 
   const contract = new StellarSdk.Contract(contractId);
 
@@ -180,19 +181,20 @@ const invokeContract = async (
   // Simulate first
   const simulated = await server.simulateTransaction(transaction);
 
-  if (StellarSdk.SorobanRpc.Api.isSimulationError(simulated)) {
+  if (StellarSdk.rpc.Api.isSimulationError(simulated)) {
     throw new Error(`Simulation failed: ${simulated.error}`);
   }
 
   // Prepare and sign
-  const prepared = StellarSdk.SorobanRpc.assembleTransaction(transaction, simulated);
-  const signedXdr = await signTransaction(prepared.toXDR(), {
+  const prepared = StellarSdk.rpc.assembleTransaction(transaction, simulated).build();
+  const { signedTxXdr, error } = await signTransaction(prepared.toXDR(), {
     network: "TESTNET",
     networkPassphrase: StellarSdk.Networks.TESTNET,
   });
+  if (error) throw error;
 
   const signedTx = StellarSdk.TransactionBuilder.fromXDR(
-    signedXdr,
+    signedTxXdr,
     StellarSdk.Networks.TESTNET
   );
 
@@ -211,8 +213,7 @@ const invokeContract = async (
 
 ## Limitations
 
-- Requires browser extension installation
-- Desktop browsers only (no mobile support)
+- Requires browser extension installation on desktop; a separate Freighter Mobile app (iOS/Android) connects to dapps via WalletConnect
 - Single wallet solution (consider Stellar Wallets Kit for multi-wallet support)
 
 ## Resources

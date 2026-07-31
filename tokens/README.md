@@ -80,12 +80,8 @@ pub fn get_sac_address(e: &Env, asset_code: &str, issuer: &Address) -> Address {
     // stellar contract id asset --asset MYTOKEN:GISSUER --network testnet
 }
 
-// Interact with SAC like any token contract
-mod token {
-    soroban_sdk::contractimport!(
-        file = "soroban_token_spec.wasm"
-    );
-}
+// Interact with SAC like any token contract — the token client ships in the SDK
+use soroban_sdk::token;
 
 pub fn transfer_asset(e: &Env, sac_address: Address, from: Address, to: Address, amount: i128) {
     let client = token::Client::new(&e, &sac_address);
@@ -135,14 +131,13 @@ pub trait TokenInterface {
 ### Using OpenZeppelin Contracts
 
 ```rust
+use soroban_sdk::{contract, contractimpl};
 use stellar_tokens::fungible::{Base, FungibleToken};
-use stellar_macros::default_impl;
 
 #[contract]
 pub struct MyToken;
 
-#[default_impl]
-#[contractimpl]
+#[contractimpl(contracttrait)]
 impl FungibleToken for MyToken {
     type ContractType = Base;
 }
@@ -167,7 +162,7 @@ Do you need a fungible token?
 
 Do you need an NFT?
   │
-  └─► Use Soroban NFT (SEP-50) via OpenZeppelin Contracts
+  └─► Use Soroban NFT (SEP-50, draft) via OpenZeppelin Contracts
 ```
 
 ## Comparison Table

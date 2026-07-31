@@ -2,14 +2,24 @@
 
 Stellar Wallets Kit provides unified multi-wallet support for Stellar dapps. It's the best choice when you want to support multiple wallet providers.
 
+> **v2 breaking change (February 2026):** version 2.0.0 was a full refactor. The kit is now a static class — `StellarWalletsKit.init()` replaces `new StellarWalletsKit(...)`, `authModal()` replaces `openModal()`, and `defaultModules()` replaces `allowAllModules()`. If you're copying older examples from the web, they will not work against current versions.
+
 ## Overview
 
 - **Type:** Multi-wallet abstraction library
-- **Supported Wallets:** Freighter, LOBSTR, xBull, Albedo, Rabet, Hana, Ledger, Trezor, WalletConnect
+- **Supported Wallets:** Freighter, LOBSTR, xBull, Albedo, Rabet, Hana, WalletConnect, Ledger, Trezor, HOT Wallet, Klever, OneKey, Bitget, Fordefi, Cactus Link, D'CENT
 - **Best for:** Apps that want to support user's preferred wallet
 - **GitHub:** [Creit-Tech/Stellar-Wallets-Kit](https://github.com/Creit-Tech/Stellar-Wallets-Kit)
 
 ## Installation
+
+The project now publishes primarily to JSR (note the hyphen in the scope):
+
+```bash
+npx jsr add @creit-tech/stellar-wallets-kit
+```
+
+The npm package also still works:
 
 ```bash
 npm install @creit.tech/stellar-wallets-kit
@@ -18,65 +28,42 @@ npm install @creit.tech/stellar-wallets-kit
 ## Basic Setup
 
 ```typescript
-import {
-  StellarWalletsKit,
-  WalletNetwork,
-  allowAllModules,
-  FREIGHTER_ID,
-  LOBSTR_ID,
-  XBULL_ID,
-} from "@creit.tech/stellar-wallets-kit";
+import { StellarWalletsKit } from "@creit-tech/stellar-wallets-kit/sdk";
+import { defaultModules } from "@creit-tech/stellar-wallets-kit/modules/utils";
 
-// Initialize the kit with desired modules
-const kit = new StellarWalletsKit({
-  network: WalletNetwork.TESTNET,
-  selectedWalletId: FREIGHTER_ID, // Default wallet
-  modules: allowAllModules(), // Or specify specific modules
+// One-time initialization (static — no instance to construct)
+StellarWalletsKit.init({
+  modules: defaultModules(),
 });
 ```
 
-## Selecting Specific Wallets
+To narrow the wallet set, pass specific module instances instead of `defaultModules()` — individual modules live under `@creit-tech/stellar-wallets-kit/modules/*`. There is also `sep43Modules()` for the SEP-43-compliant subset.
 
-If you only want to support certain wallets:
+The network is set with the stellar-sdk `Networks` values (the old `WalletNetwork` enum is gone):
 
 ```typescript
-import {
-  StellarWalletsKit,
-  WalletNetwork,
-  FreighterModule,
-  LobstrModule,
-  xBullModule,
-} from "@creit.tech/stellar-wallets-kit";
+import { Networks } from "@stellar/stellar-sdk";
 
-const kit = new StellarWalletsKit({
-  network: WalletNetwork.TESTNET,
-  selectedWalletId: FREIGHTER_ID,
-  modules: [
-    new FreighterModule(),
-    new LobstrModule(),
-    new xBullModule(),
-  ],
-});
+StellarWalletsKit.setNetwork(Networks.TESTNET);
 ```
 
 ## Connect and Get Address
 
+The built-in modal is Promise-based:
+
 ```typescript
 const connectWallet = async () => {
   try {
-    // Open modal for user to select wallet
-    await kit.openModal({
-      onWalletSelected: async (option) => {
-        kit.setWallet(option.id);
-        const { address } = await kit.getAddress();
-        console.log("Connected:", address);
-      },
-    });
+    // Opens the wallet-selection modal; resolves once the user connects
+    const { address } = await StellarWalletsKit.authModal();
+    console.log("Connected:", address);
   } catch (error) {
     console.error("Connection failed:", error);
   }
 };
 ```
+
+Alternatively, `StellarWalletsKit.createButton(container)` renders a ready-made connect button, or build your own UI and call `StellarWalletsKit.setWallet(id)` followed by `StellarWalletsKit.getAddress()`.
 
 ## Sign Transactions
 
@@ -85,9 +72,11 @@ import * as StellarSdk from "@stellar/stellar-sdk";
 
 const signAndSubmit = async (transaction: StellarSdk.Transaction) => {
   try {
-    // Sign with the selected wallet
-    const { signedTxXdr } = await kit.signTransaction(transaction.toXDR(), {
-      address: await kit.getAddress().then(r => r.address),
+    const { address } = await StellarWalletsKit.getAddress();
+
+    // Sign with the selected wallet (static method)
+    const { signedTxXdr } = await StellarWalletsKit.signTransaction(transaction.toXDR(), {
+      address,
       networkPassphrase: StellarSdk.Networks.TESTNET,
     });
 
@@ -106,20 +95,20 @@ const signAndSubmit = async (transaction: StellarSdk.Transaction) => {
 };
 ```
 
+v2.1+ also provides `signAndSubmitTransaction` and `fetchAddress` convenience methods.
+
 ## React Integration
 
-### Wallet Provider Context
+Because the kit is a static class in v2, React integration is a thin wrapper — no instance to pass through context:
 
 ```tsx
-import React, { createContext, useContext, useState, useCallback } from "react";
-import {
-  StellarWalletsKit,
-  WalletNetwork,
-  allowAllModules,
-} from "@creit.tech/stellar-wallets-kit";
+import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
+import { StellarWalletsKit } from "@creit-tech/stellar-wallets-kit/sdk";
+import { defaultModules } from "@creit-tech/stellar-wallets-kit/modules/utils";
+
+StellarWalletsKit.init({ modules: defaultModules() });
 
 interface WalletContextType {
-  kit: StellarWalletsKit;
   address: string | null;
   connect: () => Promise<void>;
   disconnect: () => void;
@@ -130,28 +119,17 @@ const WalletContext = createContext<WalletContextType | null>(null);
 export function WalletProvider({ children }: { children: React.ReactNode }) {
   const [address, setAddress] = useState<string | null>(null);
 
-  const kit = new StellarWalletsKit({
-    network: WalletNetwork.TESTNET,
-    selectedWalletId: "freighter",
-    modules: allowAllModules(),
-  });
-
   const connect = useCallback(async () => {
-    await kit.openModal({
-      onWalletSelected: async (option) => {
-        kit.setWallet(option.id);
-        const { address } = await kit.getAddress();
-        setAddress(address);
-      },
-    });
-  }, [kit]);
+    const { address } = await StellarWalletsKit.authModal();
+    setAddress(address);
+  }, []);
 
   const disconnect = useCallback(() => {
     setAddress(null);
   }, []);
 
   return (
-    <WalletContext.Provider value={{ kit, address, connect, disconnect }}>
+    <WalletContext.Provider value={{ address, connect, disconnect }}>
       {children}
     </WalletContext.Provider>
   );
@@ -194,83 +172,36 @@ export function WalletButton() {
 
 ## Supported Wallets
 
-| Wallet | ID | Type | Platforms |
-|--------|----|----- |-----------|
-| Freighter | `freighter` | Extension | Chrome, Firefox |
-| LOBSTR | `lobstr` | Extension/Mobile | Chrome, iOS, Android |
-| xBull | `xbull` | Extension | Chrome |
-| Albedo | `albedo` | Web-based | All browsers |
-| Rabet | `rabet` | Extension | Chrome |
-| Hana | `hana` | Extension | Chrome |
-| Ledger | `ledger` | Hardware | USB |
-| Trezor | `trezor` | Hardware | USB |
-| WalletConnect | `wallet_connect` | Protocol | Mobile wallets |
+| Wallet | Type | Platforms |
+|--------|------|-----------|
+| Freighter | Extension + Mobile | Chrome, Firefox; iOS/Android via app |
+| LOBSTR | Extension/Mobile | Chrome, iOS, Android |
+| xBull | Extension | Chrome |
+| Albedo | Web-based | All browsers |
+| Rabet | Extension | Chrome |
+| Hana | Extension | Chrome |
+| WalletConnect | Protocol | Mobile wallets |
+| Ledger | Hardware | USB |
+| Trezor | Hardware | USB |
+| HOT Wallet | Mobile/Telegram | Mobile |
+| Klever | Extension/Mobile | Chrome, mobile |
+| OneKey | Extension/Hardware | Chrome, USB |
+| Bitget | Extension/Mobile | Chrome, mobile |
+| Fordefi | Extension | Chrome |
+| Cactus Link | Extension | Chrome |
+| D'CENT | Hardware/Mobile | USB, mobile |
 
-## Custom Modal Styling
+## Modal Options
 
-The built-in modal can be customized:
-
-```typescript
-await kit.openModal({
-  onWalletSelected: async (option) => {
-    // Handle selection
-  },
-  modalTitle: "Connect Your Wallet",
-  notAvailableText: "Not installed",
-});
-```
-
-Or build your own UI:
-
-```typescript
-// Get list of available wallets
-const wallets = kit.getSupportedWallets();
-
-// Display in your custom UI
-wallets.forEach(wallet => {
-  console.log(wallet.id, wallet.name, wallet.isAvailable);
-});
-
-// Set wallet when user selects
-kit.setWallet("freighter");
-const { address } = await kit.getAddress();
-```
-
-## Hardware Wallet Support
-
-For Ledger and Trezor:
-
-```typescript
-import { LedgerModule, TrezorModule } from "@creit.tech/stellar-wallets-kit";
-
-const kit = new StellarWalletsKit({
-  network: WalletNetwork.TESTNET,
-  selectedWalletId: "ledger",
-  modules: [
-    new LedgerModule(),
-    new TrezorModule(),
-  ],
-});
-
-// Hardware wallets require USB connection
-const connectHardwareWallet = async () => {
-  try {
-    kit.setWallet("ledger");
-    const { address } = await kit.getAddress();
-    console.log("Ledger connected:", address);
-  } catch (error) {
-    console.error("Please connect your Ledger device");
-  }
-};
-```
+`authModal()` accepts options such as `showInstallLabel` and `hideUnsupportedWallets` (the v1 `modalTitle`/`notAvailableText` options are gone). For fully custom UIs, call `setWallet(id)` + `getAddress()` directly.
 
 ## Best Practices
 
-1. **Use `allowAllModules()`** for maximum compatibility, or specify only needed wallets
+1. **Use `defaultModules()`** for maximum compatibility, or pass only the modules you need
 2. **Persist wallet selection** in localStorage for returning users
 3. **Handle wallet unavailability** gracefully with fallback options
 4. **Test with multiple wallets** to ensure consistent behavior
-5. **Consider mobile users** - LOBSTR and WalletConnect work on mobile
+5. **Consider mobile users** - LOBSTR, WalletConnect, and Freighter Mobile work on mobile
 
 ## When to Use Stellar Wallets Kit
 

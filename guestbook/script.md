@@ -111,13 +111,13 @@ Let's get into the smart contract
 
 #### Overview
 
-The guestbook smart contract consists of five functions:
+The guestbook smart contract consists of five main functions (plus a constructor and an `upgrade` function):
 
 1. `write_message`: This function will allow a message to be written in the guestbook.
 2. `edit_message`: This function makes it possible for a user to edit an already existing message.
 3. `read_message`: Reading a message is as simple as querying the contract's persistent storage.
 4. `read_latest`: Call this function to show the latest message without knowing the message ID.
-5. `claim_donations`: This function allows users to make a donation.
+5. `claim_donations`: This function allows the contract admin to claim (withdraw) donations that were sent to the contract.
 
 [NEXT SLIDE]
 
@@ -313,13 +313,13 @@ The passkey-kit relies on a couple of external services, so access to these serv
 
 Launchtube is similar to a "paymaster" service, if you're familiar with account abstraction in EVM networks. Launchtube is needed by the passkey-kit package and is used to submit passkey-signed transactions to the network.
 
-Generate free testnet Launchtube JWT tokens with 100 XLM in credits: <https://testnet.launchtube.xyz/gen>
+> **Note (2026):** The hosted Launchtube service has been retired — it is [now legacy](https://github.com/stellar/launchtube), superseded by the [OpenZeppelin Relayer Channels service](https://docs.openzeppelin.com/relayer/1.3.x/guides/stellar-channels-guide), and current passkey-kit versions submit through a generic relayer instead. Generate free testnet Channels API keys at <https://channels.openzeppelin.com/testnet/gen>. If you present this workshop, check which submission service your demo code expects.
 
 ##### Mercury Zephyr
 
 Zephyr is a data indexer service that is used for reverse lookup of smart wallet contract addresses based on passkey IDs, so a user's smart wallet address can be easily retrieved at login.
 
-Mercury Zephyr's basic functionality can be used for free. Sign up here: <https://www.mercurydata.app> and see the documentation for setup instructions.
+Mercury Zephyr's basic functionality can be used for free. Sign up here: <https://mercurydata.app> and see the documentation for setup instructions.
 
 [NEXT SLIDE]
 

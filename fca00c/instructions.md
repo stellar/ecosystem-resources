@@ -26,7 +26,7 @@ You should be able to explain the above concepts and help participants with debu
 
 ### Complete the Following
 
-- [ ] Run through all 3 quests successfully
+- [ ] Run through all available quests successfully
 - [ ] Practice talking points on walking learners through the quests
 - [ ] Ensure every participant has:
   - An active Github account
@@ -39,7 +39,7 @@ You should be able to explain the above concepts and help participants with debu
 > [!NOTE]
 > Quest 1 vs Quest 2-6 have DIFFERENT Gameplay Loops
 
-Have everyone navigate to the game repository: <https://github.com/anataliocs/soroban-quest>
+Have everyone navigate to the game repository: <https://github.com/anataliocs/soroban-quest-stellaria-expansion>
 
 - Click on the "Open in Codespaces" link -> Click "Continue"
 - Have some content to go over during the loading process to keep the audience engaged (5-10min)
@@ -68,7 +68,7 @@ Have everyone navigate to the game repository: <https://github.com/anataliocs/so
 - Next, Click "Check your Answer" at the top of the README
   - Check your answer using sq check passing in the quest number e.g. `sq check 1`
   - Walk through the process to sign the XDR
-  - Walk through the submission process to submit the "Signed XDR" using `sq submit –xdr`
+  - Walk through the submission process to submit the "Signed XDR" using `sq submit --xdr`
 
 ### Gameplay for Quests 2-6
 

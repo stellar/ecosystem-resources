@@ -4,7 +4,7 @@ This guide covers oracle solutions for bringing off-chain data to Stellar/Soroba
 
 ## Overview
 
-Oracles provide external data (prices, events, etc.) to smart contracts. On Stellar, the primary oracle solution is Reflector Network, with additional options like DIA.
+Oracles provide external data (prices, events, etc.) to smart contracts. On Stellar, the primary oracle solution is Reflector Network, with additional options like DIA and Band Protocol.
 
 ## Why Use an Oracle?
 
@@ -62,21 +62,20 @@ Cross-chain oracle with extensive asset coverage.
 ### Reading Price Data (SEP-40)
 
 ```rust
-use soroban_sdk::{contract, contractimpl, Address, Env};
+use soroban_sdk::{contract, contractimpl, vec, Address, Env, IntoVal, Symbol};
 
 #[contract]
 pub struct MyContract;
 
 #[contractimpl]
 impl MyContract {
-    pub fn get_price(e: &Env, oracle: Address, asset: Address) -> i128 {
-        // Call oracle contract to get price
-        let price: i128 = e.invoke_contract(
+    pub fn get_price(e: &Env, oracle: Address, asset: Address) -> Option<PriceData> {
+        // Call oracle contract to get the most recent price (SEP-40)
+        e.invoke_contract(
             &oracle,
             &Symbol::new(e, "lastprice"),
             vec![&e, asset.into_val(e)],
-        );
-        price
+        )
     }
 }
 ```

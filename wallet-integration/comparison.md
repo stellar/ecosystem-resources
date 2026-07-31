@@ -6,12 +6,12 @@ A detailed comparison of wallet integration approaches for Stellar.
 
 | Feature | Freighter | Stellar Wallets Kit | Smart Account Kit |
 |---------|-----------|---------------------|-------------------|
-| **Installation Required** | Browser extension | None (library only) | None |
+| **Installation Required** | Browser extension or mobile app | None (library only) | None |
 | **User Authentication** | Extension popup | Wallet-specific | Passkey (biometric) |
-| **Mobile Support** | No | Partial (LOBSTR, WalletConnect) | Yes |
+| **Mobile Support** | Yes (Freighter Mobile app, via WalletConnect) | Partial (LOBSTR, WalletConnect) | Yes |
 | **Gasless Transactions** | No | No | Yes (via Relayer) |
-| **Multi-wallet Support** | Freighter only | 10+ wallets | Smart wallets only |
-| **Hardware Wallets** | No | Ledger, Trezor | No |
+| **Multi-wallet Support** | Freighter only | 15+ wallets | Smart wallets only |
+| **Hardware Wallets** | Ledger | Ledger, Trezor | No |
 | **Smart Wallet Features** | No | No | Yes (multisig, policies) |
 | **Setup Complexity** | Low | Medium | Medium |
 | **User Onboarding** | Must install extension | Choose from wallets | Create passkey |
@@ -86,7 +86,7 @@ User → Dapp → Passkey prompt → Submit to Relayer → Relayer pays fee
 |----------|---------------|---------------------|
 | Freighter | Yes | No |
 | Stellar Wallets Kit | Yes | No |
-| Smart Account Kit | Optional | Yes (via Relayer) |
+| Smart Account Kit | Optional | Optional (when a relayer is configured) |
 
 ## Use Case Recommendations
 
@@ -130,8 +130,8 @@ Requires users to create new smart wallets. Consider:
 - Running both in parallel during transition
 - Providing migration assistance
 
-### From Legacy Passkey Kit to Smart Account Kit
-Direct upgrade path. Smart Account Kit is the successor to passkey-kit with improved features.
+### From Passkey Kit to Smart Account Kit
+passkey-kit remains a maintained sibling SDK — migrate to Smart Account Kit when you need context rules and policy signers. The APIs and on-chain authorization models differ, so there is no drop-in upgrade path.
 
 ## Decision Flowchart
 
@@ -166,6 +166,6 @@ Are your users crypto-native?
 
 | Approach | Best For | Avoid When |
 |----------|----------|------------|
-| **Freighter** | Quick prototypes, developer tools | Mobile needed, broad user base |
+| **Freighter** | Quick prototypes, developer tools | Broad multi-wallet user base |
 | **Stellar Wallets Kit** | DeFi, existing crypto users | Non-crypto users, mobile-first |
 | **Smart Account Kit** | Consumer apps, best UX | Hardware wallet requirement |

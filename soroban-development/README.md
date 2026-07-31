@@ -14,11 +14,11 @@ Soroban is Stellar's smart contract platform. Contracts are written in Rust and 
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# Add WASM target
-rustup target add wasm32-unknown-unknown
+# Add WASM target (Rust 1.84+)
+rustup target add wasm32v1-none
 
 # Install Stellar CLI
-cargo install --locked stellar-cli --features opt
+cargo install --locked stellar-cli
 ```
 
 ### Create a New Project
@@ -32,14 +32,16 @@ cd my-contract
 
 ```
 my-contract/
-├── Cargo.toml
-├── src/
-│   └── lib.rs
+├── Cargo.toml          # workspace manifest (no top-level src/)
+├── Cargo.lock
+├── README.md
 └── contracts/
     └── hello_world/
         ├── Cargo.toml
+        ├── Makefile
         └── src/
-            └── lib.rs
+            ├── lib.rs
+            └── test.rs
 ```
 
 ## Basic Contract
@@ -65,9 +67,11 @@ Soroban has three storage types with different characteristics:
 
 | Type | Duration | Cost | Use Case |
 |------|----------|------|----------|
-| **Temporary** | ~24 hours | Cheapest | Cache, sessions |
-| **Persistent** | Until archived | Medium | User data, balances |
-| **Instance** | Contract lifetime | Higher | Config, admin settings |
+| **Temporary** | Until TTL expires (then deleted permanently, unrestorable) | Cheapest | Cache, sessions |
+| **Persistent** | Until TTL expires (archived, restorable) | Highest | User data, balances |
+| **Instance** | Tied to the contract instance's TTL | Highest (same tier as persistent) | Config, admin settings |
+
+TTLs are network parameters and can be extended with `extend_ttl` — there is no fixed duration.
 
 ### Temporary Storage
 
@@ -176,7 +180,7 @@ use soroban_sdk::{contract, contractimpl, Address, Env};
 
 mod token {
     soroban_sdk::contractimport!(
-        file = "../token/target/wasm32-unknown-unknown/release/token.wasm"
+        file = "../token/target/wasm32v1-none/release/token.wasm"
     );
 }
 
@@ -210,7 +214,7 @@ use soroban_sdk::Env;
 #[test]
 fn test_hello() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, HelloContract);
+    let contract_id = env.register(HelloContract, ());
     let client = HelloContractClient::new(&env, &contract_id);
 
     let result = client.hello(&symbol_short!("World"));
@@ -221,11 +225,11 @@ fn test_hello() {
 ### Running Tests
 
 ```bash
-# Native tests (fast)
+# Run tests (test utilities are enabled automatically for tests)
 cargo test
 
-# WASM tests (accurate)
-cargo test --features testutils
+# Build the deployable WASM
+stellar contract build
 ```
 
 ### Integration Tests
@@ -263,7 +267,7 @@ stellar keys fund alice --network testnet
 
 # Deploy
 stellar contract deploy \
-  --wasm target/wasm32-unknown-unknown/release/my_contract.wasm \
+  --wasm target/wasm32v1-none/release/my_contract.wasm \
   --source alice \
   --network testnet
 ```

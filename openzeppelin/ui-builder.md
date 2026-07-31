@@ -19,10 +19,10 @@ UI Builder generates React frontend components for interacting with your Stellar
 
 ## How It Works
 
-1. **Upload Contract** - Provide your contract's WASM or ABI
-2. **Configure UI** - Select which functions to expose
-3. **Generate** - Download React components
-4. **Integrate** - Add to your dapp
+1. **Select Network** - Pick the chain and network (Stellar testnet/mainnet)
+2. **Enter Contract Address** - The builder loads the contract interface automatically (manual ABI/spec input available as fallback)
+3. **Pick a Function & Customize** - Choose the contract function to build a form for and adjust fields
+4. **Export** - Download a complete, standalone React app
 
 ## Quick Start
 
@@ -32,244 +32,36 @@ Go to [builder.openzeppelin.com](https://builder.openzeppelin.com/)
 
 ### 2. Connect Your Contract
 
-Option A: Enter deployed contract address
+Enter your deployed contract address:
 ```
 Contract Address: CCONTRACTID...
 Network: Testnet
 ```
 
-Option B: Upload contract WASM/ABI
+The contract interface is retrieved automatically; if that fails, paste the ABI/spec manually.
 
-### 3. Select Functions
+### 3. Build the Form
 
-Choose which contract functions should have UI forms:
+Select a contract function (e.g. `transfer(to: Address, amount: i128)`) and customize the generated form fields.
 
-```
-☑ transfer(to: Address, amount: i128)
-☑ approve(spender: Address, amount: i128)
-☑ balance_of(owner: Address) -> i128
-☐ __constructor(...)  // Usually skip
-```
+### 4. Export
 
-### 4. Download Components
+Clicking **Export** downloads the form as a **complete standalone React app** — not a component zip. The project ships with Tailwind CSS + shadcn/ui styling, an `app.config.json` for runtime configuration, and the chain adapter bundled (`@openzeppelin/adapter-stellar` for Stellar), so it runs out of the box with your framework tooling of choice.
 
-Get a zip with:
-```
-generated-ui/
-├── components/
-│   ├── TransferForm.tsx
-│   ├── ApproveForm.tsx
-│   └── BalanceOf.tsx
-├── hooks/
-│   └── useContract.ts
-├── types/
-│   └── contract.ts
-└── README.md
-```
+## What the Export Contains
 
-## Generated Component Example
+The exported project is a full React app:
 
-### Transfer Form
+- Tailwind CSS + shadcn/ui components for the generated form
+- `public/app.config.json` — runtime configuration (contract address, network) editable without rebuilding
+- The chain adapter package (`@openzeppelin/adapter-stellar`) bundled for contract calls and wallet connection
+- Standard React project layout — install dependencies and run like any other app
 
-```tsx
-// components/TransferForm.tsx
-import React, { useState } from "react";
-import { useContract } from "../hooks/useContract";
-
-interface TransferFormProps {
-  onSuccess?: (hash: string) => void;
-  onError?: (error: Error) => void;
-}
-
-export function TransferForm({ onSuccess, onError }: TransferFormProps) {
-  const { contract, isConnected } = useContract();
-  const [to, setTo] = useState("");
-  const [amount, setAmount] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!contract) return;
-
-    setLoading(true);
-    try {
-      const result = await contract.transfer({
-        to,
-        amount: BigInt(amount),
-      });
-      onSuccess?.(result.hash);
-    } catch (error) {
-      onError?.(error as Error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (!isConnected) {
-    return <p>Please connect your wallet</p>;
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="transfer-form">
-      <div className="form-group">
-        <label htmlFor="to">Recipient Address</label>
-        <input
-          id="to"
-          type="text"
-          value={to}
-          onChange={(e) => setTo(e.target.value)}
-          placeholder="G... or C..."
-          required
-        />
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="amount">Amount</label>
-        <input
-          id="amount"
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder="0"
-          min="0"
-          required
-        />
-      </div>
-
-      <button type="submit" disabled={loading}>
-        {loading ? "Sending..." : "Transfer"}
-      </button>
-    </form>
-  );
-}
-```
-
-### Contract Hook
-
-```tsx
-// hooks/useContract.ts
-import { useState, useEffect } from "react";
-import * as StellarSdk from "@stellar/stellar-sdk";
-
-const CONTRACT_ID = "CCONTRACTID...";
-const RPC_URL = "https://soroban-testnet.stellar.org";
-
-export function useContract() {
-  const [contract, setContract] = useState<Contract | null>(null);
-  const [isConnected, setIsConnected] = useState(false);
-  const [address, setAddress] = useState<string | null>(null);
-
-  // ... wallet connection logic
-
-  return {
-    contract,
-    isConnected,
-    address,
-    connect,
-    disconnect,
-  };
-}
-```
-
-## Customization
-
-### Styling
-
-Generated components use CSS classes you can style:
-
-```css
-/* styles/contract-ui.css */
-.transfer-form {
-  max-width: 400px;
-  padding: 2rem;
-}
-
-.form-group {
-  margin-bottom: 1rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button[type="submit"] {
-  width: 100%;
-  padding: 1rem;
-  background: #0066cc;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-```
-
-### Component Libraries
-
-Adapt generated components for your UI library:
-
-**Tailwind CSS:**
-```tsx
-<input
-  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-  // ...
-/>
-```
-
-**shadcn/ui:**
-```tsx
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-
-<Input value={to} onChange={(e) => setTo(e.target.value)} />
-<Button type="submit" disabled={loading}>Transfer</Button>
-```
+Since the export is plain React + Tailwind, restyling and extending it (validation, business logic, routing) works the same as in any React codebase.
 
 ## Integration with Smart Account Kit
 
-Use with [Smart Account Kit](../wallet-integration/smart-account-kit.md) for gasless transactions:
-
-```tsx
-// hooks/useContract.ts
-import { SmartAccountKit } from "smart-account-kit";
-
-const kit = new SmartAccountKit({
-  rpcUrl: RPC_URL,
-  networkPassphrase: "Test SDF Network ; September 2015",
-  relayerUrl: process.env.NEXT_PUBLIC_RELAYER_URL,
-});
-
-export function useContract() {
-  const [address, setAddress] = useState<string | null>(null);
-
-  const connect = async () => {
-    const { address } = await kit.connectWallet();
-    setAddress(address);
-  };
-
-  const invokeContract = async (method: string, args: any) => {
-    // Build, sign with passkey, submit via relayer
-    const tx = await buildTransaction(method, args);
-    const signed = await kit.signTransaction(tx);
-    return kit.submitTransaction(signed);
-  };
-
-  return { address, connect, invokeContract };
-}
-```
+For gasless passkey flows, combine the exported app with [Smart Account Kit](../wallet-integration/smart-account-kit.md) — configure the kit with your relayer proxy URL and use its signing/submission methods in place of the default wallet wiring. See the Smart Account Kit guide for the current API surface.
 
 ## Best Practices
 

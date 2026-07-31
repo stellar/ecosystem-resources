@@ -36,7 +36,7 @@ Fastest path: NVIDIA Nemotron 3 Super via OpenRouter — 120B parameter model, 2
 - **AlfredPay** — MXN ↔ USDC via SPEI.
 - **BlindPay** — cross-border payments.
 
-Regional starter pack: [ElliotFriend/regional-starter-pack](https://github.com/ElliotFriend/regional-starter-pack) — SvelteKit app with a portable TypeScript anchor library covering SEP-1, 6, 10, 12, 24, 31, and 38.
+Regional starter pack: [ElliotFriend/regional-starter-pack](https://github.com/ElliotFriend/regional-starter-pack) — SvelteKit app (live at [regionalstarterpack.com](https://www.regionalstarterpack.com), with an [anchor-readiness scorecard](https://www.regionalstarterpack.com/anchors/scorecard)) and a portable TypeScript anchor library covering SEP-1, 6, 10, 12, 24, 31, and 38; curated anchors now include Etherfuse, Koywe, and Manteca.
 
 ### Critical Soroban Gotchas
 
@@ -69,7 +69,7 @@ Built with Claude Code, each paired with a `BUILD_REPORT.md`:
 
 - [Stellar Hackathon FAQ](https://github.com/briwylde08/stellar-hackathon-faq)
 - [Stellar DeFi Gotchas](https://github.com/kaankacar/stellar-defi-gotchas) — 400+ findings from 60 vibe-coding runs
-- [Stellar Ecosystem DB](https://github.com/lumenloop/stellar-ecosystem-db) — 646 Stellar projects, structured
+- [Stellar Ecosystem DB](https://github.com/lumenloop/stellar-ecosystem-db) — 800+ Stellar projects, structured
 
 ---
 

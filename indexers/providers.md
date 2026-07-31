@@ -16,7 +16,7 @@ Stellar-native provider offering RPC services and data APIs.
 |---------|---------|
 | **Products** | RPC, Gateway API, Flow (beta) |
 | **Pricing** | Free tier available |
-| **Docs** | [withobsrvr.com](https://www.withobsrvr.com/) |
+| **Docs** | [docs.withobsrvr.com](https://docs.withobsrvr.com/) |
 
 **Gateway API Features:**
 - Real-time data fetching
@@ -28,9 +28,9 @@ Stellar-native provider offering RPC services and data APIs.
 - Contract events
 - Direct to your app or warehouse
 
-### Horizon (Deprecated)
+### Horizon (Maintenance Mode)
 
-**Status:** ⚠️ Deprecated
+**Status:** ⚠️ Maintenance mode (nearing end-of-life; will eventually be deprecated in favor of Stellar RPC)
 
 Legacy Stellar API. Use for existing integrations only.
 
@@ -47,40 +47,42 @@ Stream and transform data to your own database.
 
 ### Goldsky
 
-**Status:** ✅ Available Now (Mirror only)
+**Status:** ✅ Available Now (Turbo pipelines)
 
 Popular Ethereum indexer with Stellar support.
 
 | Feature | Details |
 |---------|---------|
-| **Products** | Mirror (Pipelines) |
+| **Products** | Turbo (streaming pipelines) |
 | **Subgraphs** | Not available for Stellar |
 | **Pricing** | Usage-based |
 | **Docs** | [docs.goldsky.com/chains/stellar](https://docs.goldsky.com/chains/stellar) |
 
-**Mirror Features:**
+**Turbo Features:**
 - Extract, Transform, Load (ETL)
-- Stream to your database
+- Stream to your database with sub-second latency
 - SQL transformations
 
 ```yaml
-# Example Goldsky pipeline config
-source:
-  type: stellar
-  network: mainnet
+# Example Goldsky Turbo pipeline config
+name: my-stellar-transactions
+resource_size: s
 
-sink:
-  type: postgres
-  connection_string: ${DATABASE_URL}
+sources:
+  stellar_transactions:
+    type: dataset
+    dataset_name: stellar_mainnet.transactions
+    version: 1.2.0
+    start_at: latest
 
-transforms:
-  - sql: |
-      SELECT
-        ledger,
-        transaction_hash,
-        source_account
-      FROM transactions
-      WHERE successful = true
+sinks:
+  my_sink:
+    type: postgres
+    from: stellar_transactions
+    schema: public
+    table: stellar_transactions
+    secret_name: MY_POSTGRES_SECRET
+    primary_key: transaction_hash
 ```
 
 ### Mercury
@@ -176,7 +178,7 @@ Big-data platforms for enterprise use cases.
 
 **Status:** ✅ Available Now
 
-ZK-verified indexing with Proof of SQL. Integrated with Stellar as of January 2026.
+ZK-verified indexing with Proof of SQL. Integrated with Stellar as of October 2025.
 
 | Feature | Details |
 |---------|---------|
@@ -225,11 +227,8 @@ SDF-provided tools for custom indexing.
 | **Docs** | [developers.stellar.org/docs/data/indexers/build-your-own/galexie](https://developers.stellar.org/docs/data/indexers/build-your-own/galexie) |
 
 ```bash
-# Export ledgers to cloud storage
-galexie export \
-  --start-ledger 1000000 \
-  --end-ledger 2000000 \
-  --output s3://my-bucket/stellar-data/
+# Export ledgers to cloud storage (destination configured in config.toml: GCS or S3)
+stellar-galexie append --start 1000000 --end 2000000 --config-file config.toml
 ```
 
 ### Ingest SDK
@@ -269,7 +268,7 @@ func ProcessLedger(ledger xdr.LedgerCloseMeta) error {
 | Provider | Type | Stellar Ready | Free Tier | Self-Host | Best For |
 |----------|------|---------------|-----------|-----------|----------|
 | OBSRVR | Portfolio | ✅ | ✅ | ❌ | Quick start |
-| Goldsky | ETL | ✅ | ❌ | ❌ | Custom data |
+| Goldsky Turbo | ETL | ✅ | ❌ | ❌ | Custom data |
 | Mercury | ETL | ✅ | ✅ | ❌ | Soroban |
 | SubQuery | ETL | ✅ | ✅ | ✅ | Decentralized |
 | The Graph | ETL | ⚠️ Substreams | ✅ | ❌ | Decentralized |
@@ -285,7 +284,7 @@ func ProcessLedger(ledger xdr.LedgerCloseMeta) error {
 **Recommended:** Mercury (free tier) or OBSRVR
 
 ### Production Dapp
-**Recommended:** Goldsky Mirror or Mercury Retroshades
+**Recommended:** Goldsky Turbo or Mercury Retroshades
 
 ### Enterprise / Compliance
 **Recommended:** Space and Time
