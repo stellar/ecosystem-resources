@@ -7,6 +7,7 @@
 | Item | Link |
 |------|------|
 | Mexico Hackathon Guide | [`mexico-hackathon.md`](./mexico-hackathon.md) |
+| Raven — Stellar MCP Server | [raven.stellar.buzz](https://raven.stellar.buzz) |
 | Stellar AI Guide (regional monorepo) | [kaankacar/stellar-ai-guide](https://github.com/kaankacar/stellar-ai-guide) |
 | Stellar Skills Marketplace | [skills.stellar.org](https://skills.stellar.org/) |
 | Stellar Dev Skill | [stellar/stellar-dev-skill](https://github.com/stellar/stellar-dev-skill) |
@@ -21,13 +22,22 @@ AI-powered tools are increasingly available to help developers build on Stellar 
 
 ## Available Tools
 
-### Stella — Official Stellar AI Assistant
+### Raven — Stellar MCP Server for AI Agents
 
-The official AI assistant for Stellar developer questions, maintained by the Stellar Development Foundation.
+A remote Model Context Protocol (MCP) server that gives AI agents unified access to Stellar documentation and live ecosystem data. Raven combines Stellar Docs search, LumenLoop ecosystem data, Stellar Light, and ecosystem skills into cross-referenced answers through two tools: `search` (find docs and ecosystem info) and `execute` (query live ecosystem data). It replaces Stella, the retired Stellar AI chat assistant.
 
-- **Docs site:** Yellow chat icon on [developers.stellar.org](https://developers.stellar.org/)
-- **Direct link:** [developers.stellar.org/docs/build/building-with-ai](https://developers.stellar.org/docs/build/building-with-ai)
-- **Discord:** `#stella-help` channel on [Stellar Dev Discord](https://discord.gg/stellardev)
+- **Server:** [raven.stellar.buzz](https://raven.stellar.buzz)
+- **Browser playground:** [raven.stellar.buzz/playground](https://raven.stellar.buzz/playground) — try it without any agent setup (sign-in required)
+- **Source:** [kalepail/stellar-raven](https://github.com/kalepail/stellar-raven)
+- **Docs:** [developers.stellar.org/docs/build/building-with-ai](https://developers.stellar.org/docs/build/building-with-ai) — connection instructions for Claude Code, Codex, VS Code, Cursor, Claude desktop, and other MCP clients
+
+**Connecting from Claude Code:**
+```bash
+claude mcp add --transport http stellar-raven "https://raven.stellar.buzz/mcp"
+# then sign in via OAuth when prompted
+```
+
+Raven is a live hosted server — it complements (rather than replaces) the static `llms.txt` file and the installable Stellar Skills below; the three work well together.
 
 ### llms.txt — Machine-Readable Stellar Docs
 
@@ -196,7 +206,7 @@ The country-agnostic AI setup, prompt templates, and Soroban debugging material 
 ## Resources
 
 **Stellar-native AI tools:**
-- [Stella — Official AI Bot](https://developers.stellar.org/docs/build/building-with-ai)
+- [Raven — Stellar MCP Server for AI Agents](https://raven.stellar.buzz)
 - [llms.txt — Machine-Readable Stellar Docs](https://developers.stellar.org/llms.txt)
 - [Stellar Skills Marketplace](https://skills.stellar.org/)
 - [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill)
