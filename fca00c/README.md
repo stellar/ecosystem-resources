@@ -1,6 +1,6 @@
 # Fast, Cheap, & 0ut 0f Control (a.k.a. Soroban Quest) <!-- omit in toc -->
 
-> **⚠️ Work in Progress:** Soroban Quest materials in this repository are currently being updated. Do not rely on these resources for event planning until this notice is removed.
+> **Note:** Stellar Quest is now live at [quest.stellar.org](https://quest.stellar.org). The Codespaces-based gameplay repo below ([anataliocs/soroban-quest-stellaria-expansion](https://github.com/anataliocs/soroban-quest-stellaria-expansion)) is in alpha — check its README before planning a repo-based event.
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -42,8 +42,10 @@ Soroban Quest is designed for intermediate or beginner (with hands-on support) d
 
 ## Links
 
-- [Updated Gameplay Repo](https://github.com/anataliocs/soroban-quest)
-- [~~Original Soroban Quest Repo~~](https://fastcheapandoutofcontrol.com/tutorial#quest-list)
+- [Stellar Quest (live)](https://quest.stellar.org)
+- [Updated Gameplay Repo (alpha)](https://github.com/anataliocs/soroban-quest-stellaria-expansion)
+- [Original FCA00C Site](https://fastcheapandoutofcontrol.com/tutorial#quest-list)
+- [Original Soroban Quest Repo](https://github.com/stellar/soroban-quest)
 
 ## In this Directory
 

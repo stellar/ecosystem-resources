@@ -14,8 +14,8 @@ Feel free to mix, match, and modify these resources however you need for your pa
 | [Guestbook](./guestbook/) | Full dapp tutorial | Script, Slides |
 | [KALE](./kale/) | Mining dapp walkthrough | Script, Instructions |
 | [KaleFail](./kalefail/) | Trading post tutorial | Instructions |
-| [Stellar Quest](./stellar-quest/) | Interactive learning ⚠️ WIP | Instructions |
-| [Soroban Quest](./fca00c/) | Smart contract challenges ⚠️ WIP | Instructions |
+| [Stellar Quest](./stellar-quest/) | Interactive learning — live at [quest.stellar.org](https://quest.stellar.org) | Instructions |
+| [Soroban Quest](./fca00c/) | Smart contract challenges (gameplay repo in alpha) | Instructions |
 
 ---
 
@@ -78,9 +78,9 @@ In addition to workshop materials, this repository includes reference guides on 
 ### AI Tools & Skills
 
 - [Stellar Skills Marketplace](https://skills.stellar.org/) - Official marketplace for browsing Stellar agent skills: Soroban, wallets, assets, RPC, x402 payments, ZK proofs, plus community skills (OpenZeppelin, DeFindex, Soroswap, Trustless Work).
-- [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill) - AI skill covering Soroban, Stellar SDK, RPC, wallets, ZK proofs, and ecosystem. Install via `/plugin install stellar-dev@stellar-dev-skill` in Claude Code.
+- [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill) - AI skill covering Soroban, Stellar SDK, RPC, wallets, ZK proofs, and ecosystem. Install via `/plugin install stellar-dev@stellar-dev` in Claude Code.
 - [LumenLoop Skills](https://github.com/lumenloop/lumenloop-skills) - Eight agent skills for ecosystem research (sector landscapes, project due diligence, SCF submission radar), powered by LumenLoop's free read-only MCP server. Works with any MCP client.
-- [stellar-build](https://github.com/kaankacar/stellar-build) - One-command install of 42 skills covering the full journey from idea to mainnet deploy and SCF grant submission, with six DevRel-persona agents.
+- [stellar-build](https://github.com/kaankacar/stellar-build) - One-command install of 46 skills covering the full journey from idea to mainnet deploy and SCF grant submission, with six DevRel-persona agents.
 - [Stellar AI Guide](https://github.com/kaankacar/stellar-ai-guide) - Monorepo of regional AI developer guides (Mexico, Brazil, template for new countries): country-agnostic Claude Code setup, free AI tooling, and starter prompts, plus per-country anchor and payment-rail docs.
 - [AI Guide — Mexico / Hack+ Alebrije CDMX 2026](./building-with-ai/mexico-hackathon.md) - Developer guide for the Mexico hackathon: free AI setup, anchor integrations (Etherfuse, AlfredPay, BlindPay), Soroban gotchas, and reference implementations. Mexico-specific but broadly useful.
 

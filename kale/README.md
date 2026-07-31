@@ -34,7 +34,7 @@ For more advanced audiences, it might be a good exercise to say "ok, every time 
 
 - [Farm Kale](https://kalefarm.xyz/)
 - [KALE-sc Repository](https://github.com/kalepail/KALE-sc)
-- [Lore](https://kalepail.com/kale)
+- [Lore](https://github.com/kalepail/KALE-sc?tab=readme-ov-file#the-kalepail-project)
 - [Wasm Miner](https://github.com/kalepail/kale-site/tree/farm/wasm-miner)
 - [Discord Channel](https://discord.gg/jAwdFS3GE8)
 - [Recorded Activation][video]

@@ -4,45 +4,35 @@ This guide covers interactive learning platforms, example repositories, and educ
 
 ## Interactive Learning Platforms
 
-### Soroban Learn
-
-Online IDE for learning Rust and Soroban with guided courses.
-
-| Feature | Details |
-|---------|---------|
-| **Website** | [sorobanlearn.com](https://sorobanlearn.com) |
-| **Type** | Browser-based IDE |
-| **Features** | Courses, wallet integration, rewards |
-
-### useSoroban.app
-
-In-browser Soroban experimentation environment.
-
-| Feature | Details |
-|---------|---------|
-| **Website** | [usesoroban.app](https://usesoroban.app) |
-| **Type** | Quick testing environment |
-| **Features** | No setup required, instant feedback |
-
-### Soroban Quest
-
-Interactive Gitpod-based learning with hands-on challenges.
-
-| Feature | Details |
-|---------|---------|
-| **Website** | [quest.stellar.org](https://quest.stellar.org) |
-| **Type** | Guided tutorials |
-| **Features** | Step-by-step challenges, badges |
-
 ### Stellar Quest
 
-Interactive challenges for learning Stellar fundamentals.
+Gamified challenges for learning Stellar fundamentals — live at [quest.stellar.org](https://quest.stellar.org). Complete increasingly difficult quests, earn NFT badges. See the [Stellar Quest activation](../stellar-quest/) in this repo for running it at an event.
 
 | Feature | Details |
 |---------|---------|
 | **Website** | [quest.stellar.org](https://quest.stellar.org) |
 | **Type** | Challenge-based learning |
-| **Topics** | Transactions, assets, accounts |
+| **Topics** | Transactions, assets, accounts, Stellar dev tools |
+
+### Soroban Quest
+
+Interactive Gitpod-based smart contract challenges. See the [Soroban Quest activation](../fca00c/) in this repo.
+
+| Feature | Details |
+|---------|---------|
+| **Gameplay repo** | [anataliocs/soroban-quest-stellaria-expansion](https://github.com/anataliocs/soroban-quest-stellaria-expansion) |
+| **Type** | Guided tutorials |
+| **Features** | Step-by-step challenges, hands-on contract development |
+
+### Stellar Lab
+
+Browser-based playground for building, signing, and submitting transactions, exploring APIs, and inspecting XDR.
+
+| Feature | Details |
+|---------|---------|
+| **Website** | [lab.stellar.org](https://lab.stellar.org) |
+| **Type** | Interactive network playground |
+| **Features** | Transaction builder, API explorer, XDR viewer |
 
 ## Official Example Repositories
 
@@ -76,6 +66,8 @@ Full-stack crowdfunding application with Next.js frontend.
 | **GitHub** | [stellar/soroban-example-dapp](https://github.com/stellar/soroban-example-dapp) |
 | **Stack** | Rust + Next.js + Freighter |
 
+> **Note:** Archived January 2026 (read-only). Still useful reading, but unmaintained — for a current full-stack walkthrough use the [Guestbook dapp tutorial](https://developers.stellar.org/docs/build/apps).
+
 **Learn:**
 - Contract development
 - TypeScript bindings
@@ -107,19 +99,6 @@ Learning resources and example contracts.
 - Rock-paper-scissors game
 - Vault patterns
 - Dutch auctions
-
-### Soroban Contracts (icolomina)
-
-Governance and investment contract examples.
-
-| Feature | Details |
-|---------|---------|
-| **GitHub** | [icolomina/soroban-contracts](https://github.com/icolomina/soroban-contracts) |
-
-**Includes:**
-- Ballot voting
-- Investment contracts
-- Multisig patterns
 
 ### OZ Stellar NFT
 
@@ -174,10 +153,10 @@ Official tutorials and presentations.
 
 ### Beginner
 
-1. **Stellar Quest** - Learn Stellar basics
+1. **Stellar Quest** - Learn Stellar basics at quest.stellar.org
 2. **Soroban Examples** - Study Hello World
-3. **Soroban Learn** - Interactive Rust/Soroban
-4. **useSoroban.app** - Quick experiments
+3. **Stellar Lab** - Build and submit transactions interactively
+4. **Soroban Quest** - Hands-on contract challenges
 
 ### Intermediate
 

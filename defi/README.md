@@ -23,7 +23,7 @@ The most popular lending protocol on Stellar, enabling permissionless lending po
 - Permissionless pool creation
 - Variable interest rates
 - Multiple collateral types
-- Flash loan support
+- Flash loan support (v2)
 
 ## DEXs & AMMs
 
@@ -36,7 +36,7 @@ The first DEX and aggregator on Stellar/Soroban.
 | **Website** | [soroswap.finance](https://soroswap.finance) |
 | **Docs** | [docs.soroswap.finance](https://docs.soroswap.finance) |
 | **GitHub (Core)** | [soroswap/core](https://github.com/soroswap/core) |
-| **GitHub (Frontend)** | [soroswap/frontend](https://github.com/soroswap/frontend) |
+| **GitHub (Frontend)** | [soroswap/v2-frontend](https://github.com/soroswap/v2-frontend) |
 | **GitHub (Aggregator)** | [soroswap/aggregator](https://github.com/soroswap/aggregator) |
 
 **Features:**
@@ -53,7 +53,6 @@ Governance-driven liquidity layer with AMM functionality.
 |---------|---------|
 | **Website** | [aqua.network](https://aqua.network) |
 | **Docs** | [docs.aqua.network](https://docs.aqua.network) |
-| **GitHub** | [AquaToken/soroban-amm](https://github.com/AquaToken/soroban-amm) |
 | **Token** | AQUA (governance + rewards) |
 
 **Features:**
@@ -119,20 +118,27 @@ Collateralized stablecoin issuance supporting multiple currencies.
 
 ```typescript
 // Example: Query pool data
-import { BlendClient } from "@blend-capital/blend-sdk";
+import { Network, Pool, PoolEstimate } from "@blend-capital/blend-sdk";
 
-const client = new BlendClient(rpcUrl, networkPassphrase);
-const poolData = await client.getPoolData(poolAddress);
+const network: Network = { rpc: rpcUrl, passphrase: networkPassphrase };
+const pool = await Pool.load(network, poolId);
+const poolOracle = await pool.loadOracle();
+const poolEstimate = PoolEstimate.build(pool.reserves, poolOracle);
 ```
 
 ### Using Soroswap
 
 ```typescript
 // Example: Get swap quote
-import { SoroswapRouter } from "@soroswap/sdk";
+import { SoroswapSDK, TradeType } from "@soroswap/sdk";
 
-const router = new SoroswapRouter(rpcUrl);
-const quote = await router.getAmountsOut(amountIn, [tokenA, tokenB]);
+const client = new SoroswapSDK({ apiKey: process.env.SOROSWAP_API_KEY! });
+const quote = await client.quote({
+  assetIn: tokenA,
+  assetOut: tokenB,
+  amount: amountIn, // BigInt
+  tradeType: TradeType.EXACT_IN,
+});
 ```
 
 ## Resources

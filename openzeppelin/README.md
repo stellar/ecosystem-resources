@@ -18,7 +18,7 @@ OpenZeppelin Stellar includes:
 
 ## Why OpenZeppelin?
 
-- **Security-First:** All contracts are audited by OpenZeppelin's security team
+- **Security-First:** The library is audited; reports for each release are published in the repo's [audits/](https://github.com/OpenZeppelin/stellar-contracts/tree/main/audits) directory
 - **Battle-Tested:** Based on patterns proven across multiple blockchain ecosystems
 - **Standards-Compliant:** Implements SEP-41 (fungible), SEP-50 (NFT), SEP-56 (vault)
 - **Official Partnership:** Developed in collaboration with Stellar Development Foundation
@@ -27,15 +27,15 @@ OpenZeppelin Stellar includes:
 
 ### 1. Generate a Contract
 
-Visit [Contract Wizard](https://wizard.openzeppelin.com/stellar) to generate a fungible token, NFT, or stablecoin contract with your desired features.
+Visit [Contract Wizard](https://wizard.openzeppelin.com/stellar) to generate a fungible token, NFT, stablecoin, vault, or governor contract with your desired features.
 
 ### 2. Use the Contract Library
 
 ```toml
-# Cargo.toml
+# Cargo.toml — pin the audited crates.io releases (git deps track unaudited main)
 [dependencies]
-stellar-tokens = { git = "https://github.com/OpenZeppelin/stellar-contracts" }
-stellar-macros = { git = "https://github.com/OpenZeppelin/stellar-contracts" }
+stellar-tokens = "=0.7.2"
+stellar-macros = "=0.7.2"
 ```
 
 ### 3. Deploy with Gasless Transactions

@@ -83,6 +83,8 @@ I'm not going to talk about any of that today. Instead, let me **show** you how 
 - The Passkey Kit is a package that will make it SUPER simple to use those passkeys and smart wallets with VERY little effort
 - Launchtube enables gasless transactions for your users and simplifies getting their transactions onto the network. It's kinda like a paymaster/relayer-like service in the EVM world.
 
+> **Presenter's note (2026):** this script was written for Consensus 2025, when Launchtube was the live service. Launchtube has since been retired ([now legacy](https://github.com/stellar/launchtube)) and superseded by the [OpenZeppelin Relayer + Channels service](https://docs.openzeppelin.com/relayer/1.3.x/guides/stellar-channels-guide); current passkey-kit versions submit through a generic relayer. Wherever "Launchtube" appears below, substitute your relayer of choice and check what your demo code expects before presenting.
+
 **Transition:** Let's see how all these pieces fit together in real life [NEXT SLIDE]
 
 ### Dapp Demo Video
@@ -203,7 +205,7 @@ Now, I want to give you a chance to actually get building!
 
 - I'm intentionally keeping this short and sweet, so you can get a head start on your project.
 - Play with the demos we've put together.
-- Test out the tooling: passkey kit, launchtube, the Stellar CLI. Our developer docs cover the essentials to get started
+- Test out the tooling: passkey kit, the OpenZeppelin Relayer (Launchtube's successor for fee-sponsored submission), the Stellar CLI. Our developer docs cover the essentials to get started
 
 Other fun things you can explore:
 

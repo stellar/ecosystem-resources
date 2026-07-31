@@ -14,7 +14,7 @@ Vulnerability detector and linter for Soroban smart contracts by CoinFabrik.
 
 | Feature | Details |
 |---------|---------|
-| **GitHub** | [CoinFabrik/scout-soroban](https://github.com/CoinFabrik/scout-soroban) |
+| **GitHub** | [CoinFabrik/scout-audit](https://github.com/CoinFabrik/scout-audit) (unified tool; Soroban detectors documented in [CoinFabrik/scout-soroban](https://github.com/CoinFabrik/scout-soroban)) |
 | **Type** | Static analysis tool |
 | **Languages** | Rust (Soroban contracts) |
 
@@ -28,14 +28,14 @@ Vulnerability detector and linter for Soroban smart contracts by CoinFabrik.
 
 ```bash
 # Install via cargo
-cargo install scout-soroban
+cargo install cargo-scout-audit
 
-# Run on your project
-scout-soroban /path/to/contract
+# Run from your contract/workspace directory
+cargo scout-audit
 ```
 
 **VSCode Extension:**
-Search for "Scout Soroban" in the VSCode marketplace.
+Search for "Scout Audit" (publisher: CoinFabrik) in the VSCode marketplace.
 
 **Detected Vulnerabilities:**
 - Integer overflow/underflow

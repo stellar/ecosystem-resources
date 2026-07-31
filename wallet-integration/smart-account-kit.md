@@ -1,6 +1,8 @@
 # Smart Account Kit
 
-Smart Account Kit is the recommended solution for building modern Stellar dapps with the best user experience. It uses passkeys for authentication and smart wallets for on-chain accounts.
+Smart Account Kit is a passkey-based smart wallet SDK for building modern Stellar dapps. It uses passkeys for authentication and smart wallets for on-chain accounts, built on the audited OpenZeppelin smart-account contracts.
+
+> **Maturity note:** the kit is pre-1.0 (v0.4.x) and its API has had breaking changes between minor versions. Always cross-check snippets against the [repo README](https://github.com/kalepail/smart-account-kit) for your installed version.
 
 ## Overview
 
@@ -15,18 +17,18 @@ Smart Account Kit is the recommended solution for building modern Stellar dapps 
 |--------------------|-------------------|
 | Install browser extension | No installation needed |
 | Save seed phrase | Use FaceID/TouchID |
-| Buy crypto for fees | Gasless transactions |
+| Buy crypto for fees | Gasless transactions (via relayer) |
 | Desktop only | Works on any device |
 
 ## Key Features
 
 - **Passkey Authentication:** Use device biometrics (FaceID, TouchID, Windows Hello)
 - **Smart Wallets:** Contract-based accounts with programmable rules
-- **Gasless Transactions:** Via OpenZeppelin Relayer integration
+- **Gasless Transactions:** Optional relayer proxy for fee-sponsored submission
 - **Context Rules:** Fine-grained authorization scopes
-- **Policy Support:** Threshold multisig, spending limits
-- **Session Management:** Automatic credential persistence
-- **External Wallet Support:** Can integrate with Freighter, LOBSTR
+- **Policy Support:** Deployed policy contracts (multisig thresholds, spending limits)
+- **Session Management:** Silent session restore with configurable expiry (default 7 days)
+- **External Wallet Support:** `externalWallet` adapter option for classic wallets
 
 ## Installation
 
@@ -36,34 +38,36 @@ npm install smart-account-kit
 
 ## Basic Setup
 
+Four options are required: the RPC URL, network passphrase, the account contract's WASM hash, and the WebAuthn verifier contract address:
+
 ```typescript
-import { SmartAccountKit } from "smart-account-kit";
+import { SmartAccountKit, IndexedDBStorage } from "smart-account-kit";
 
 const kit = new SmartAccountKit({
   rpcUrl: "https://soroban-testnet.stellar.org",
   networkPassphrase: "Test SDF Network ; September 2015",
-  // OpenZeppelin Relayer for gasless transactions
-  relayerUrl: "https://your-relayer.example.com",
+  accountWasmHash: "YOUR_ACCOUNT_WASM_HASH",
+  webauthnVerifierAddress: "C...WEBAUTHN_VERIFIER",
+  storage: new IndexedDBStorage(),
+  relayerUrl: "https://your-relayer-proxy.example.com", // optional, enables gasless
 });
 ```
 
 ## User Signup (Create Smart Wallet)
 
+`createWallet(appName, userName, options?)` prompts the user to create a passkey and deploys the smart account:
+
 ```typescript
 const signup = async () => {
   try {
-    // This prompts user to create a passkey
-    const { address, passkeyId } = await kit.createWallet({
-      name: "My Dapp Account", // Shown in passkey prompt
-    });
+    const { contractId, credentialId } = await kit.createWallet(
+      "My App",              // shown in the passkey prompt
+      "user@example.com",    // user identifier
+      { autoSubmit: true }
+    );
 
-    console.log("Smart wallet created:", address);
-
-    // Store for later use
-    localStorage.setItem("walletAddress", address);
-    localStorage.setItem("passkeyId", passkeyId);
-
-    return { address, passkeyId };
+    console.log("Smart wallet created:", contractId);
+    return { contractId, credentialId };
   } catch (error) {
     console.error("Signup failed:", error);
   }
@@ -72,77 +76,47 @@ const signup = async () => {
 
 ## User Login (Connect Existing Wallet)
 
+`connectWallet()` performs a silent session restore when a valid session exists, and accepts `{ prompt, fresh, credentialId, contractId }` options for explicit re-authentication:
+
 ```typescript
 const login = async () => {
-  try {
-    // This prompts user to authenticate with their passkey
-    const { address } = await kit.connectWallet();
-
-    console.log("Logged in:", address);
-    localStorage.setItem("walletAddress", address);
-
-    return address;
-  } catch (error) {
-    console.error("Login failed:", error);
+  // Silent restore — falsy result when there is no session
+  const session = await kit.connectWallet();
+  if (!session) {
+    // Prompt the user's passkey explicitly
+    await kit.connectWallet({ prompt: true });
   }
 };
 ```
 
 ## Sign and Send Transactions
 
+The kit's submission methods return a `TransactionResult` discriminated on `success` — expected on-chain failures do not throw:
+
+```typescript
+// Sign and submit in one step
+const result = await kit.signAndSubmit(tx);
+if (result.success) {
+  console.log("Submitted:", result);
+} else {
+  console.error("On-chain failure:", result);
+}
+
+// Convenience helper for token transfers
+const transferResult = await kit.transfer(tokenAddress, recipient, amount);
+
+// Or sign separately, then execute
+const signed = await kit.sign(tx);
+const executed = await kit.executeAndSubmit(/* ... */);
+```
+
+For building Soroban transactions yourself, use the stellar-sdk `rpc` namespace (the old `SorobanRpc` namespace was removed in SDK v13):
+
 ```typescript
 import * as StellarSdk from "@stellar/stellar-sdk";
 
-const sendTransaction = async (transaction: StellarSdk.Transaction) => {
-  try {
-    // Sign with passkey
-    const signedTx = await kit.signTransaction(transaction);
-
-    // Submit via relayer (gasless)
-    const result = await kit.submitTransaction(signedTx);
-
-    console.log("Transaction submitted:", result.hash);
-    return result;
-  } catch (error) {
-    console.error("Transaction failed:", error);
-  }
-};
-```
-
-## Contract Invocation Example
-
-```typescript
-const invokeContract = async (
-  contractId: string,
-  method: string,
-  args: StellarSdk.xdr.ScVal[]
-) => {
-  const address = localStorage.getItem("walletAddress");
-  if (!address) throw new Error("Not logged in");
-
-  const server = new StellarSdk.SorobanRpc.Server(kit.rpcUrl);
-  const account = await server.getAccount(address);
-
-  const contract = new StellarSdk.Contract(contractId);
-
-  const transaction = new StellarSdk.TransactionBuilder(account, {
-    fee: "100",
-    networkPassphrase: kit.networkPassphrase,
-  })
-    .addOperation(contract.call(method, ...args))
-    .setTimeout(30)
-    .build();
-
-  // Simulate
-  const simulated = await server.simulateTransaction(transaction);
-  const prepared = StellarSdk.SorobanRpc.assembleTransaction(transaction, simulated);
-
-  // Sign with passkey and submit via relayer
-  const signedTx = await kit.signTransaction(prepared);
-  const result = await kit.submitTransaction(signedTx);
-
-  return result;
-};
+const server = new StellarSdk.rpc.Server("https://soroban-testnet.stellar.org");
+// build + simulate + assemble, then hand the transaction to kit.sign / kit.signAndSubmit
 ```
 
 ## React Integration
@@ -151,10 +125,19 @@ const invokeContract = async (
 
 ```tsx
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { SmartAccountKit } from "smart-account-kit";
+import { SmartAccountKit, IndexedDBStorage } from "smart-account-kit";
+
+const kit = new SmartAccountKit({
+  rpcUrl: "https://soroban-testnet.stellar.org",
+  networkPassphrase: "Test SDF Network ; September 2015",
+  accountWasmHash: process.env.NEXT_PUBLIC_ACCOUNT_WASM_HASH!,
+  webauthnVerifierAddress: process.env.NEXT_PUBLIC_WEBAUTHN_VERIFIER!,
+  storage: new IndexedDBStorage(),
+  relayerUrl: process.env.NEXT_PUBLIC_RELAYER_URL,
+});
 
 interface AuthContextType {
-  address: string | null;
+  contractId: string | null;
   isLoading: boolean;
   signup: () => Promise<void>;
   login: () => Promise<void>;
@@ -164,29 +147,23 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-const kit = new SmartAccountKit({
-  rpcUrl: "https://soroban-testnet.stellar.org",
-  networkPassphrase: "Test SDF Network ; September 2015",
-  relayerUrl: process.env.NEXT_PUBLIC_RELAYER_URL,
-});
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [address, setAddress] = useState<string | null>(null);
+  const [contractId, setContractId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check for existing session
-    const stored = localStorage.getItem("walletAddress");
-    if (stored) setAddress(stored);
-    setIsLoading(false);
+    // Silent session restore on mount
+    kit.connectWallet().then((session) => {
+      if (session) setContractId(session.contractId ?? null);
+      setIsLoading(false);
+    });
   }, []);
 
   const signup = async () => {
     setIsLoading(true);
     try {
-      const { address } = await kit.createWallet({ name: "My Dapp" });
-      localStorage.setItem("walletAddress", address);
-      setAddress(address);
+      const { contractId } = await kit.createWallet("My Dapp", "user");
+      setContractId(contractId);
     } finally {
       setIsLoading(false);
     }
@@ -195,21 +172,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async () => {
     setIsLoading(true);
     try {
-      const { address } = await kit.connectWallet();
-      localStorage.setItem("walletAddress", address);
-      setAddress(address);
+      const session = await kit.connectWallet({ prompt: true });
+      if (session) setContractId(session.contractId ?? null);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem("walletAddress");
-    setAddress(null);
-  };
+  const logout = () => setContractId(null);
 
   return (
-    <AuthContext.Provider value={{ address, isLoading, signup, login, logout, kit }}>
+    <AuthContext.Provider value={{ contractId, isLoading, signup, login, logout, kit }}>
       {children}
     </AuthContext.Provider>
   );
@@ -222,130 +195,53 @@ export const useAuth = () => {
 };
 ```
 
-### Auth Buttons Component
+## Gasless Transactions with a Relayer
 
-```tsx
-import { useAuth } from "./AuthProvider";
-
-export function AuthButtons() {
-  const { address, isLoading, signup, login, logout } = useAuth();
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (address) {
-    return (
-      <div className="auth-connected">
-        <span className="address">
-          {address.slice(0, 4)}...{address.slice(-4)}
-        </span>
-        <button onClick={logout}>Sign Out</button>
-      </div>
-    );
-  }
-
-  return (
-    <div className="auth-buttons">
-      <button onClick={signup} className="primary">
-        Create Account
-      </button>
-      <button onClick={login} className="secondary">
-        Sign In
-      </button>
-    </div>
-  );
-}
-```
-
-## Gasless Transactions with OpenZeppelin Relayer
-
-Smart Account Kit integrates with [OpenZeppelin Relayer](../openzeppelin/relayer.md) for gasless transactions:
+Set the optional `relayerUrl` to a **relayer proxy you host** — the SDK posts the transaction (`{func, auth}` or `{xdr}`) to your proxy, which holds the actual relayer credentials server-side (e.g. an [OpenZeppelin Relayer](../openzeppelin/relayer.md) instance or the hosted Channels service). There is no hosted OpenZeppelin endpoint to point the browser at directly, and no `relayerApiKey` option — secrets never belong in client code.
 
 ```typescript
 const kit = new SmartAccountKit({
-  rpcUrl: "https://soroban-testnet.stellar.org",
-  networkPassphrase: "Test SDF Network ; September 2015",
-  relayerUrl: "https://api.openzeppelin.com/relayer/stellar",
-  relayerApiKey: process.env.RELAYER_API_KEY,
+  // ...required options...
+  relayerUrl: "https://your-relayer-proxy.example.com",
 });
-
-// Transactions are automatically submitted via relayer
-// Users don't need to hold XLM for fees
-const result = await kit.submitTransaction(signedTx);
 ```
+
+Transactions can also bypass the relayer with `forceMethod: 'rpc'` when the user pays their own fees.
 
 ## Advanced Features
 
 ### Context Rules
 
-Define what operations a signer can perform:
+Define what operations a set of signers can perform:
 
 ```typescript
-// Allow a signer to only interact with specific contract
-await kit.addContextRule({
-  signer: signerPublicKey,
-  scope: {
-    contract: "CCONTRACTID...",
-    methods: ["transfer", "approve"],
-  },
-});
+// kit.rules.add(contextType, name, signers, policies, validUntil?)
+await kit.rules.add(contextType, "trading-scope", signers, policies);
 ```
 
-### Policy Signers
+### Policies
 
-Add additional signers with restrictions:
+Policies are deployed policy contracts (spending limits, thresholds) attached to a context rule:
 
 ```typescript
-// Add a policy signer with spending limit
-await kit.addPolicySigner({
-  signer: automationKeyPair.publicKey(),
-  policy: {
-    type: "spending_limit",
-    limit: "1000000000", // 100 XLM in stroops
-    period: "daily",
-  },
-});
+// kit.policies.add(contextRuleId, policyAddress, installParams)
+await kit.policies.add(contextRuleId, policyContractAddress, installParams);
 ```
 
 ### Session Management
 
-```typescript
-// Sessions persist across page reloads
-const session = await kit.getSession();
-if (session.isValid) {
-  console.log("Session active for:", session.address);
-}
-```
+Sessions restore silently via `connectWallet()`; stored credentials are available through `kit.credentials.getForWallet()`, and the expiry is set with the `sessionExpiryMs` config option (default 7 days).
 
-## Migration from Passkey Kit (Legacy)
+## Relationship to passkey-kit
 
-If you have an existing app using the legacy `passkey-kit`:
-
-```typescript
-// Old (passkey-kit) - DEPRECATED
-import { PasskeyKit } from "passkey-kit";
-const account = new PasskeyKit({ ... });
-await account.createWallet();
-
-// New (smart-account-kit) - RECOMMENDED
-import { SmartAccountKit } from "smart-account-kit";
-const kit = new SmartAccountKit({ ... });
-await kit.createWallet({ name: "My Dapp" });
-```
-
-Key differences:
-- Smart Account Kit has built-in relayer support
-- Better session management
-- Context rules for fine-grained permissions
-- Built on audited OpenZeppelin smart account contracts
+[passkey-kit](https://github.com/kalepail/passkey-kit) is a **maintained sibling SDK**, not a deprecated predecessor. The two use different on-chain authorization models — passkey-kit's flat `Signatures` map vs. smart-account-kit's context rules + auth digest (OpenZeppelin account) — so they are not drop-in compatible. Choose smart-account-kit when you need context rules, thresholds, and spending-limit policies; passkey-kit remains a solid, simpler option.
 
 ## Best Practices
 
-1. **Always provide a descriptive name** in `createWallet()` - users see this in their passkey manager
+1. **Always provide descriptive app/user names** in `createWallet()` - users see these in their passkey manager
 2. **Handle authentication errors gracefully** - users may cancel the passkey prompt
-3. **Use environment variables** for relayer credentials
-4. **Implement session persistence** for seamless returning user experience
+3. **Keep relayer credentials server-side** - the browser only ever talks to your proxy
+4. **Check `result.success`** - submission methods return discriminated results instead of throwing on expected failures
 5. **Test on multiple devices** - passkey behavior varies by platform
 
 ## When to Use Smart Account Kit
@@ -360,10 +256,12 @@ Key differences:
 **Consider alternatives when:**
 - Your users are crypto-native and prefer their existing wallets
 - You need to support existing Stellar accounts (use Stellar Wallets Kit)
+- You want the simpler flat-signer model (use passkey-kit)
 
 ## Resources
 
 - [Smart Account Kit GitHub](https://github.com/kalepail/smart-account-kit)
+- [passkey-kit GitHub](https://github.com/kalepail/passkey-kit)
 - [OpenZeppelin Smart Accounts](https://github.com/OpenZeppelin/stellar-contracts)
 - [OpenZeppelin Relayer](../openzeppelin/relayer.md)
 - [Stellar Passkey Tutorial](https://developers.stellar.org/docs/build/apps/guestbook)

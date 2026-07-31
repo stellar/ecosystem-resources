@@ -26,7 +26,7 @@ KaleFail can be useful as an experience for users of smart wallets and passkeys.
 
 ### Developer-Facing Audience
 
-- Makes use of passkey kit and launchtube
+- Makes use of passkey kit and a fee-sponsoring relayer (historically Launchtube, now legacy — see the [OpenZeppelin Relayer Channels service](https://docs.openzeppelin.com/relayer/1.3.x/guides/stellar-channels-guide))
 - Treats the pre-existing KALE project as a building-block (i.e. composable!)
 - Interacts with several different assets/tokens, all of which exemplify how a custom `Admin` address can be used for an asset's SAC.
 

@@ -8,7 +8,7 @@ Stellar offers multiple approaches to wallet integration, each suited for differ
 
 | Approach | Best For | User Experience | Complexity |
 |----------|----------|-----------------|------------|
-| [Freighter](./freighter.md) | Quick integration, browser extension users | Users install extension | Low |
+| [Freighter](./freighter.md) | Quick integration, SDF's official wallet | Browser extension or Freighter Mobile app | Low |
 | [Stellar Wallets Kit](./stellar-wallets-kit.md) | Multi-wallet support | Users choose their preferred wallet | Medium |
 | [Smart Account Kit](./smart-account-kit.md) | Modern dapps, best UX | Passkey-based, no extension needed | Medium |
 
@@ -41,6 +41,8 @@ For most new projects in 2026, we recommend **Smart Account Kit** for the best u
 - Gasless transactions via OpenZeppelin Relayer
 - Non-custodial smart wallets
 - Works on any device with biometric support
+
+Note that the kit is still pre-1.0 (v0.4.x) with occasional breaking changes between minor versions — pin your version and check the repo README when upgrading.
 
 ## Additional Resources
 

@@ -51,11 +51,19 @@ Create compliance-ready stablecoins:
 | **Burnable** | Token redemption |
 | **Pausable** | Circuit breaker |
 
+### 4. Vault (SEP-56)
+
+Tokenized vault for yield-bearing shares over an underlying asset, with optional fee and access-control wiring.
+
+### 5. Governor
+
+On-chain governance: proposal creation, voting, and timelock execution, built on the `stellar-governance` crate.
+
 ## How to Use
 
 ### Step 1: Select Contract Type
 
-Choose Fungible, Non-Fungible, or Stablecoin from the tabs.
+Choose Fungible, Non-Fungible, Stablecoin, Vault, or Governor from the tabs.
 
 ### Step 2: Configure Settings
 
@@ -90,16 +98,13 @@ For a mintable, burnable fungible token:
 
 ```rust
 // SPDX-License-Identifier: MIT
-// Compatible with OpenZeppelin Stellar Soroban Contracts ^0.4.1
+// Compatible with OpenZeppelin Stellar Soroban Contracts ^0.7.2
 #![no_std]
 
 use soroban_sdk::{contract, contractimpl, Address, Env, String};
-use stellar_access::ownable::Ownable;
-use stellar_macros::default_impl;
-use stellar_tokens::fungible::{
-    extensions::{Burnable, Mintable},
-    Base, FungibleToken,
-};
+use stellar_access::ownable::{self as ownable, Ownable};
+use stellar_macros::only_owner;
+use stellar_tokens::fungible::{burnable::FungibleBurnable, Base, FungibleToken};
 
 #[contract]
 pub struct MyToken;
@@ -107,31 +112,31 @@ pub struct MyToken;
 #[contractimpl]
 impl MyToken {
     pub fn __constructor(e: &Env, owner: Address) {
-        Ownable::set_owner(e, &owner);
         Base::set_metadata(
             e,
-            18,
+            7,
             String::from_str(e, "MyToken"),
             String::from_str(e, "MTK"),
         );
+        ownable::set_owner(e, &owner);
     }
 
-    pub fn mint(e: &Env, to: Address, amount: i128) {
-        Ownable::only_owner(e);
-        Mintable::mint(e, &to, amount);
-    }
-
-    pub fn burn(e: &Env, from: Address, amount: i128) {
-        from.require_auth();
-        Burnable::burn(e, &from, amount);
+    #[only_owner]
+    pub fn mint(e: &Env, account: Address, amount: i128) {
+        Base::mint(e, &account, amount);
     }
 }
 
-#[default_impl]
-#[contractimpl]
+#[contractimpl(contracttrait)]
 impl FungibleToken for MyToken {
     type ContractType = Base;
 }
+
+#[contractimpl(contracttrait)]
+impl FungibleBurnable for MyToken {}
+
+#[contractimpl(contracttrait)]
+impl Ownable for MyToken {}
 ```
 
 ## Deployment Guide
@@ -142,24 +147,16 @@ impl FungibleToken for MyToken {
 stellar contract build
 ```
 
-### 2. Deploy to Testnet
+### 2. Deploy to Testnet (constructor args included)
+
+The `__constructor` runs atomically during deploy — it cannot be invoked afterwards. Pass constructor arguments after the `--` separator:
 
 ```bash
 stellar contract deploy \
-  --wasm target/wasm32-unknown-unknown/release/my_token.wasm \
-  --source alice \
-  --network testnet
-```
-
-### 3. Initialize the Contract
-
-```bash
-stellar contract invoke \
-  --id <CONTRACT_ID> \
+  --wasm target/wasm32v1-none/release/my_token.wasm \
   --source alice \
   --network testnet \
   -- \
-  __constructor \
   --owner alice
 ```
 

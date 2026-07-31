@@ -26,7 +26,7 @@ AI-powered tools are increasingly available to help developers build on Stellar 
 The official AI assistant for Stellar developer questions, maintained by the Stellar Development Foundation.
 
 - **Docs site:** Yellow chat icon on [developers.stellar.org](https://developers.stellar.org/)
-- **Direct link:** [developers.stellar.org/docs/tools/developer-tools/ai-bot](https://developers.stellar.org/docs/tools/developer-tools/ai-bot)
+- **Direct link:** [developers.stellar.org/docs/build/building-with-ai](https://developers.stellar.org/docs/build/building-with-ai)
 - **Discord:** `#stella-help` channel on [Stellar Dev Discord](https://discord.gg/stellardev)
 
 ### llms.txt — Machine-Readable Stellar Docs
@@ -57,19 +57,17 @@ Generate secure Stellar smart contracts using AI through the Model Context Proto
 
 ### OpenZeppelin Skills (Claude Code)
 
-Claude Code plugin providing three skills for secure Stellar contract development.
+Claude Code plugin providing secure contract development skills across several chains (Solidity, Cairo, Stylus, Sui, Stellar); three are relevant to Stellar.
 
 **Install:**
 ```bash
 /plugin marketplace add OpenZeppelin/openzeppelin-skills
 ```
 
-**Skills included:**
+**Stellar-relevant skills:**
 - `setup-stellar-contracts` — scaffold an audited Soroban contract project
 - `upgrade-stellar-contracts` — migrate and upgrade existing contracts safely
-- `develop-secure-contracts` — guided secure development workflow
-
-Also auto-installs the OpenZeppelin MCP server for AI-assisted contract generation.
+- `develop-secure-contracts` — guided secure development workflow (cross-chain)
 
 **Repository:** [OpenZeppelin/openzeppelin-skills](https://github.com/OpenZeppelin/openzeppelin-skills)
 
@@ -94,9 +92,9 @@ Repurposes the HTTP 402 Payment Required status into a real payment mechanism po
 **How it works:**
 1. Agent hits a paywalled endpoint, receives a `402` with payment instructions
 2. Agent signs a Soroban auth entry and retries with the payment header
-3. Facilitator (OpenZeppelin Relayer) settles on-chain
+3. Facilitator (OpenZeppelin Relayer, or the Coinbase x402 facilitator on testnet) settles on-chain
 
-- **Docs:** [developers.stellar.org/docs/build/apps/x402](https://developers.stellar.org/docs/build/apps/x402)
+- **Docs:** [developers.stellar.org/docs/build/agentic-payments/x402](https://developers.stellar.org/docs/build/agentic-payments/x402)
 - **Official monorepo:** [stellar/x402-stellar](https://github.com/stellar/x402-stellar)
 - **Community demo:** [jamesbachini/x402-Stellar-Demo](https://github.com/jamesbachini/x402-Stellar-Demo)
 - **Supported wallets:** Freighter, Albedo, Hana, HOT, Klever, OneKey
@@ -136,7 +134,7 @@ An AI skill that gives assistants deep, current knowledge of the Stellar develop
 **Installing in Claude Code:**
 ```bash
 /plugin marketplace add stellar/stellar-dev-skill
-/plugin install stellar-dev@stellar-dev-skill
+/plugin install stellar-dev@stellar-dev
 ```
 
 **Other agents:**
@@ -165,7 +163,7 @@ Other MCP clients can connect directly to `https://mcp.lumenloop.com` and use th
 
 ### stellar-build — Full-Journey Skill Pack
 
-A one-command install that drops an end-to-end Stellar development journey into Claude Code and OpenAI Codex CLI: 42 skills covering idea discovery, planning, architecture, implementation, mainnet deployment, and Stellar Community Fund grant submission.
+A one-command install that drops an end-to-end Stellar development journey into Claude Code and OpenAI Codex CLI: 46 skills covering idea discovery, planning, architecture, implementation, mainnet deployment, and Stellar Community Fund grant submission.
 
 **Install:**
 ```bash
@@ -190,7 +188,7 @@ A monorepo of regional AI-assisted developer guides for Stellar hackathons and e
 
 **Coverage:**
 - **Mexico** (`countries/mx`) — Etherfuse MXN rails, SPEI, AlfredPay, BlindPay; the source of the [Hack+ Alebrije CDMX 2026 guide](./mexico-hackathon.md) in this directory
-- **Brazil** (`countries/br`) — PIX rails, Etherfuse BRL/TESOURO, dedicated PIX guide
+- **Brazil** (`countries/br`) — PIX rails, Etherfuse BRL/TESOURO, Manteca BRL/USDC, dedicated PIX guide
 - **New countries** — `countries/_template` provides the skeleton for contributing additional regions
 
 The country-agnostic AI setup, prompt templates, and Soroban debugging material is broadly applicable anywhere.
@@ -198,7 +196,7 @@ The country-agnostic AI setup, prompt templates, and Soroban debugging material 
 ## Resources
 
 **Stellar-native AI tools:**
-- [Stella — Official AI Bot](https://developers.stellar.org/docs/tools/developer-tools/ai-bot)
+- [Stella — Official AI Bot](https://developers.stellar.org/docs/build/building-with-ai)
 - [llms.txt — Machine-Readable Stellar Docs](https://developers.stellar.org/llms.txt)
 - [Stellar Skills Marketplace](https://skills.stellar.org/)
 - [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill)
@@ -207,7 +205,7 @@ The country-agnostic AI setup, prompt templates, and Soroban debugging material 
 - [OpenZeppelin Skills (Claude Code)](https://github.com/OpenZeppelin/openzeppelin-skills)
 - [Stellar MCP Server](https://github.com/kalepail/stellar-mcp-server)
 - [XDR MCP](https://github.com/stellar-experimental/mcp-stellar-xdr)
-- [x402 — HTTP Payments for AI Agents](https://developers.stellar.org/docs/build/apps/x402)
+- [x402 — HTTP Payments for AI Agents](https://developers.stellar.org/docs/build/agentic-payments/x402)
 - [OpenZeppelin MCP Server](https://mcp.openzeppelin.com/)
 - [OpenZeppelin Contract Wizard](https://wizard.openzeppelin.com/stellar)
 - [Stellar AI Guide — Regional Developer Guides](https://github.com/kaankacar/stellar-ai-guide)
@@ -219,6 +217,6 @@ The country-agnostic AI setup, prompt templates, and Soroban debugging material 
 
 ---
 
-*Last updated: June 2026*
+*Last updated: July 2026*
 
 *This guide will be expanded as new AI tools become available for Stellar development.*
