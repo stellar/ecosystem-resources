@@ -27,7 +27,7 @@ AI-powered tools are increasingly available to help developers build on Stellar 
 A remote Model Context Protocol (MCP) server that gives AI agents unified access to Stellar documentation and live ecosystem data. Raven combines Stellar Docs search, LumenLoop ecosystem data, Stellar Light, and ecosystem skills into cross-referenced answers through two tools: `search` (find docs and ecosystem info) and `execute` (query live ecosystem data). It replaces Stella, the retired Stellar AI chat assistant.
 
 - **Server:** [raven.stellar.buzz](https://raven.stellar.buzz)
-- **Source:** [kalepail/stellar-raven](https://github.com/kalepail/stellar-raven)
+- **Source:** [stellar-experimental/stellar-raven](https://github.com/stellar-experimental/stellar-raven)
 - **Docs:** [developers.stellar.org/docs/build/building-with-ai](https://developers.stellar.org/docs/build/building-with-ai) — connection instructions for Claude Code, Codex, VS Code, Cursor, Claude desktop, and other MCP clients
 
 **Connecting from Claude Code** (the way to use Raven when building):
@@ -124,12 +124,12 @@ Use Context7 to query up-to-date Stellar documentation in AI assistants.
 The official marketplace for browsing Stellar agent skills. Curated modules give AI agents (Claude Code, Cursor, OpenAI Codex) the right Stellar context before they write code.
 
 - **URL:** [skills.stellar.org](https://skills.stellar.org/)
-- **Covers:** Soroban smart contracts, frontend & wallets, Stellar Assets & SAC, RPC & Horizon APIs, agent payments (x402), ZK proofs, SEPs & ecosystem
-- **Community skills:** OpenZeppelin Contracts, DeFindex SDK, Soroswap SDK, Trustless Work Escrow
+- **Covers:** Soroban smart contracts, frontend & wallets, Stellar Assets & SAC, RPC & Horizon APIs, agent payments (x402 + MPP), ZK proofs, SEPs & ecosystem, cross-chain (CCTP, Axelar)
+- **Community skills:** contributed and maintained by their authors — OpenZeppelin Contracts, DeFindex SDK, Soroswap SDK, Trustless Work Escrow, Caatinga, and more; browse the full list on the site
 
 ### Stellar Dev Skill
 
-An AI skill that gives assistants deep, current knowledge of the Stellar development ecosystem.
+An AI skill that gives assistants deep, current knowledge of the Stellar development ecosystem. The eight sub-skills are each self-contained; the larger ones are a short `SKILL.md` router plus companion files that load only when the task calls for them, so your agent pulls in the frontend or ZK material without dragging in the rest.
 
 **Repository:** [stellar/stellar-dev-skill](https://github.com/stellar/stellar-dev-skill)
 
@@ -139,7 +139,9 @@ An AI skill that gives assistants deep, current knowledge of the Stellar develop
 - Stellar RPC (preferred) and Horizon (legacy)
 - Stellar Assets, SAC, trustlines
 - Wallets: Freighter, Stellar Wallets Kit, Smart Accounts
+- Agent payments: x402 and the Machine Payments Protocol (MPP)
 - ZK proofs, security patterns, common pitfalls
+- Cross-chain: Circle CCTP and Axelar GMP/ITS
 - DeFi protocols and ecosystem tools
 
 **Installing in Claude Code:**
@@ -228,6 +230,6 @@ The country-agnostic AI setup, prompt templates, and Soroban debugging material 
 
 ---
 
-*Last updated: July 2026*
+*Last updated: August 2026*
 
 *This guide will be expanded as new AI tools become available for Stellar development.*
