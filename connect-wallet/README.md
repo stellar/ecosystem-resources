@@ -17,7 +17,7 @@ This workshop is intended for hackathon developers who are chomping at the bit t
   - Svelte and Astro ([source code](https://github.com/kalepail/smart-stellar-demo)) — the hosted demo has been taken down
   - React ([live demo](https://smart-stellar-demo.vercel.app/)) ([source code](https://github.com/carstenjacobsen/smart-stellar-demo))
   - Vanilla JavaScript ([live demo](https://snapchain-demo.vercel.app)) ([source code](https://github.com/elliotfriend/snapchain-demo))
-- [Passkey Kit](https://github.com/kalepail/passkey-kit)
+- [Passkey Kit](https://github.com/stellar/passkey-kit)
 - [Launchtube](https://github.com/stellar/launchtube) — now legacy; superseded by the [OpenZeppelin Relayer Channels service](https://docs.openzeppelin.com/relayer/1.3.x/guides/stellar-channels-guide)
 - [DevContainer Template Repository](https://github.com/anataliocs/stellar-consensus2025-submission-template)
 - [**Hackathon Resources**](https://docs.google.com/document/d/1wexrk8t5tIfrpxxH3I_th9gg8V_ViZL811TyIA3dd7Q/edit?tab=t.0#heading=h.d8k8qz1gbwu7)

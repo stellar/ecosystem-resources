@@ -2,14 +2,14 @@
 
 Smart Account Kit is a passkey-based smart wallet SDK for building modern Stellar dapps. It uses passkeys for authentication and smart wallets for on-chain accounts, built on the audited OpenZeppelin smart-account contracts.
 
-> **Maturity note:** the kit is pre-1.0 (v0.4.x) and its API has had breaking changes between minor versions. Always cross-check snippets against the [repo README](https://github.com/kalepail/smart-account-kit) for your installed version.
+> **Maturity note:** the kit is pre-1.0 (v0.6.x) and its API has had breaking changes between minor versions. Always cross-check snippets against the [repo README](https://github.com/stellar/smart-account-kit) for your installed version.
 
 ## Overview
 
 - **Type:** Passkey-based smart wallet SDK
 - **User Experience:** No extensions, no seed phrases - just biometrics
 - **Best for:** Consumer-facing apps, modern dapps, gasless transactions
-- **GitHub:** [kalepail/smart-account-kit](https://github.com/kalepail/smart-account-kit)
+- **GitHub:** [stellar/smart-account-kit](https://github.com/stellar/smart-account-kit)
 
 ## Why Smart Account Kit?
 
@@ -234,7 +234,7 @@ Sessions restore silently via `connectWallet()`; stored credentials are availabl
 
 ## Relationship to passkey-kit
 
-[passkey-kit](https://github.com/kalepail/passkey-kit) is a **maintained sibling SDK**, not a deprecated predecessor. The two use different on-chain authorization models — passkey-kit's flat `Signatures` map vs. smart-account-kit's context rules + auth digest (OpenZeppelin account) — so they are not drop-in compatible. Choose smart-account-kit when you need context rules, thresholds, and spending-limit policies; passkey-kit remains a solid, simpler option.
+[passkey-kit](https://github.com/stellar/passkey-kit) is a **maintained sibling SDK**, not a deprecated predecessor. The two use different on-chain authorization models — passkey-kit's flat `Signatures` map vs. smart-account-kit's context rules + auth digest (OpenZeppelin account) — so they are not drop-in compatible. Choose smart-account-kit when you need context rules, thresholds, and spending-limit policies; passkey-kit remains a solid, simpler option.
 
 ## Best Practices
 
@@ -260,8 +260,8 @@ Sessions restore silently via `connectWallet()`; stored credentials are availabl
 
 ## Resources
 
-- [Smart Account Kit GitHub](https://github.com/kalepail/smart-account-kit)
-- [passkey-kit GitHub](https://github.com/kalepail/passkey-kit)
+- [Smart Account Kit GitHub](https://github.com/stellar/smart-account-kit)
+- [passkey-kit GitHub](https://github.com/stellar/passkey-kit)
 - [OpenZeppelin Smart Accounts](https://github.com/OpenZeppelin/stellar-contracts)
 - [OpenZeppelin Relayer](../openzeppelin/relayer.md)
 - [Stellar Passkey Tutorial](https://developers.stellar.org/docs/build/apps/guestbook)
