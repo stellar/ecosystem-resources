@@ -4,17 +4,17 @@ A detailed comparison of wallet integration approaches for Stellar.
 
 ## Feature Comparison
 
-| Feature | Freighter | Stellar Wallets Kit | Smart Account Kit |
-|---------|-----------|---------------------|-------------------|
-| **Installation Required** | Browser extension or mobile app | None (library only) | None |
-| **User Authentication** | Extension popup | Wallet-specific | Passkey (biometric) |
-| **Mobile Support** | Yes (Freighter Mobile app, via WalletConnect) | Partial (LOBSTR, WalletConnect) | Yes |
-| **Gasless Transactions** | No | No | Yes (via Relayer) |
-| **Multi-wallet Support** | Freighter only | 15+ wallets | Smart wallets only |
-| **Hardware Wallets** | Ledger | Ledger, Trezor | No |
-| **Smart Wallet Features** | No | No | Yes (multisig, policies) |
-| **Setup Complexity** | Low | Medium | Medium |
-| **User Onboarding** | Must install extension | Choose from wallets | Create passkey |
+| Feature | Freighter | Stellar Wallets Kit | Smart Account Kit | Cavos |
+|---------|-----------|---------------------|-------------------|-------|
+| **Installation Required** | Browser extension or mobile app | None (library only) | None | None |
+| **User Authentication** | Extension popup | Wallet-specific | Passkey (biometric) | Google or Apple |
+| **Mobile Support** | Yes (Freighter Mobile app, via WalletConnect) | Partial (LOBSTR, WalletConnect) | Yes | Yes (React Native) |
+| **Gasless Transactions** | No | No | Yes (via Relayer) | Yes (pass-through relayer) |
+| **Multi-wallet Support** | Freighter only | 15+ wallets | Smart wallets only | Embedded wallet only |
+| **Hardware Wallets** | Ledger | Ledger, Trezor | No | No |
+| **Smart Wallet Features** | No | No | Yes (multisig, policies) | Classic `G…` account (device-native) |
+| **Setup Complexity** | Low | Medium | Medium | Medium |
+| **User Onboarding** | Must install extension | Choose from wallets | Create passkey | Sign in with Google or Apple |
 
 ## Integration Complexity
 
@@ -39,29 +39,36 @@ Lines of code: ~50-100
 Dependencies: 1 (smart-account-kit) + Relayer setup
 ```
 
+### Cavos
+```
+Complexity: ⭐⭐ Medium
+Lines of code: ~50-100
+Dependencies: 1 (@cavos/kit)
+```
+
 ## User Experience Comparison
 
 ### New User Onboarding
 
-| Step | Freighter | Stellar Wallets Kit | Smart Account Kit |
-|------|-----------|---------------------|-------------------|
-| 1 | Install extension | Install extension OR use web wallet | Click "Sign Up" |
-| 2 | Create new wallet | Create new wallet | Scan fingerprint/face |
-| 3 | Save seed phrase | Save seed phrase | Done! |
-| 4 | Fund account | Fund account | (Optional) Fund later |
-| 5 | Connect to dapp | Connect to dapp | - |
+| Step | Freighter | Stellar Wallets Kit | Smart Account Kit | Cavos |
+|------|-----------|---------------------|-------------------|-------|
+| 1 | Install extension | Install extension OR use web wallet | Click "Sign Up" | Click "Sign in" |
+| 2 | Create new wallet | Create new wallet | Scan fingerprint/face | Google or Apple |
+| 3 | Save seed phrase | Save seed phrase | Done! | Done! |
+| 4 | Fund account | Fund account | (Optional) Fund later | - |
+| 5 | Connect to dapp | Connect to dapp | - | - |
 
-**Winner: Smart Account Kit** (2 steps vs 5)
+**Winner: Smart Account Kit or Cavos** (2 steps vs 5)
 
 ### Returning User Login
 
-| Step | Freighter | Stellar Wallets Kit | Smart Account Kit |
-|------|-----------|---------------------|-------------------|
-| 1 | Click "Connect" | Click "Connect" | Click "Sign In" |
-| 2 | Approve in extension | Select wallet | Scan fingerprint/face |
-| 3 | - | Approve in wallet | Done! |
+| Step | Freighter | Stellar Wallets Kit | Smart Account Kit | Cavos |
+|------|-----------|---------------------|-------------------|-------|
+| 1 | Click "Connect" | Click "Connect" | Click "Sign In" | Click "Sign in" |
+| 2 | Approve in extension | Select wallet | Scan fingerprint/face | Google or Apple (returning device is silent) |
+| 3 | - | Approve in wallet | Done! | Done! |
 
-**Winner: Smart Account Kit** (2 steps, no popups)
+**Winner: Smart Account Kit or Cavos** (2 steps, no wallet popups)
 
 ## Transaction Flow
 
@@ -80,6 +87,11 @@ User → Dapp → Selected wallet popup → User approves → Submit to network 
 User → Dapp → Passkey prompt → Submit to Relayer → Relayer pays fee
 ```
 
+### Cavos
+```
+User → Dapp → Google or Apple → Device key signs locally → Relayer may sponsor fee
+```
+
 ## Cost Comparison
 
 | Approach | User Pays Fees | Developer Pays Fees |
@@ -87,6 +99,7 @@ User → Dapp → Passkey prompt → Submit to Relayer → Relayer pays fee
 | Freighter | Yes | No |
 | Stellar Wallets Kit | Yes | No |
 | Smart Account Kit | Optional | Optional (when a relayer is configured) |
+| Cavos | Optional | Optional (pass-through relayer when configured) |
 
 ## Use Case Recommendations
 
@@ -97,7 +110,7 @@ User → Dapp → Passkey prompt → Submit to Relayer → Relayer pays fee
 - Users expect to pay their own fees
 
 ### Consumer Mobile App
-**Recommended:** Smart Account Kit
+**Recommended:** Smart Account Kit or Cavos
 - Users may not have crypto experience
 - Mobile-first experience needed
 - Gasless transactions reduce friction
@@ -115,7 +128,7 @@ User → Dapp → Passkey prompt → Submit to Relayer → Relayer pays fee
 - Flexibility for different user types
 
 ### Gaming / Social App
-**Recommended:** Smart Account Kit
+**Recommended:** Smart Account Kit or Cavos
 - Mass market audience
 - Users shouldn't need to understand crypto
 - Fast, seamless transactions
@@ -132,6 +145,9 @@ Requires users to create new smart wallets. Consider:
 
 ### From Passkey Kit to Smart Account Kit
 passkey-kit remains a maintained sibling SDK — migrate to Smart Account Kit when you need context rules and policy signers. The APIs and on-chain authorization models differ, so there is no drop-in upgrade path.
+
+### Adding Cavos
+Cavos provisions a new embedded classic account from Google or Apple login. It does not wrap existing extension wallets. Consider running it alongside an existing-wallet option during transition.
 
 ## Decision Flowchart
 
@@ -151,15 +167,19 @@ Are your users crypto-native?
   │                     │
   │                     └─ No → Stellar Wallets Kit
   │
-  └─ No → Is mobile support important?
+  └─ No → Should users sign in with Google or Apple?
             │
-            ├─ Yes → Smart Account Kit
+            ├─ Yes → Cavos
             │
-            └─ No → Do you want gasless transactions?
+            └─ No → Is mobile support important?
                       │
                       ├─ Yes → Smart Account Kit
                       │
-                      └─ No → Consider your UX priorities
+                      └─ No → Do you want gasless transactions?
+                                │
+                                ├─ Yes → Smart Account Kit
+                                │
+                                └─ No → Consider your UX priorities
 ```
 
 ## Summary
@@ -169,3 +189,4 @@ Are your users crypto-native?
 | **Freighter** | Quick prototypes, developer tools | Broad multi-wallet user base |
 | **Stellar Wallets Kit** | DeFi, existing crypto users | Non-crypto users, mobile-first |
 | **Smart Account Kit** | Consumer apps, best UX | Hardware wallet requirement |
+| **Cavos** | Embedded self-custodial SDK, Google/Apple login | Existing wallets or hardware wallets |
