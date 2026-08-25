@@ -11,7 +11,7 @@ Stellar offers multiple approaches to wallet integration, each suited for differ
 | [Freighter](./freighter.md) | Quick integration, SDF's official wallet | Browser extension or Freighter Mobile app | Low |
 | [Stellar Wallets Kit](./stellar-wallets-kit.md) | Multi-wallet support | Users choose their preferred wallet | Medium |
 | [Smart Account Kit](./smart-account-kit.md) | Modern dapps, best UX | Passkey-based, no extension needed | Medium |
-| [Cavos](./cavos.md) | Embedded self-custodial SDK | Google or Apple login; key stays on device | Medium |
+| [Cavos](./cavos.md) | Embedded self-custodial SDK | Google or Apple login; control key unwrapped locally | Medium |
 
 ## Quick Decision Guide
 
@@ -34,7 +34,7 @@ Stellar offers multiple approaches to wallet integration, each suited for differ
 **Choose Cavos if:**
 - You want an embedded self-custodial wallet (no extension, no seed phrase)
 - Users should sign in with Google or Apple
-- The signing key should stay on the device (Cavos cannot see it, sign, or move funds)
+- The Ed25519 control key is unwrapped locally on the device (Cavos cannot see it or move funds)
 - You are building with React or React Native
 - Optional pass-through gas sponsorship would help onboarding
 
@@ -52,7 +52,7 @@ For most new projects in 2026, we recommend **Smart Account Kit** for the best u
 
 Note that the kit is still pre-1.0 (v0.4.x) with occasional breaking changes between minor versions — pin your version and check the repo README when upgrading.
 
-If you want Google or Apple login with a device-native key that never leaves the device, see **Cavos**.
+If you want Google or Apple login with a device-native embedded wallet (the Stellar control key is unwrapped locally and Cavos cannot see it), see **Cavos**.
 
 ## Additional Resources
 

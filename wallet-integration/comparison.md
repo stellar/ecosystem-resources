@@ -43,7 +43,7 @@ Dependencies: 1 (smart-account-kit) + Relayer setup
 ```
 Complexity: ⭐⭐ Medium
 Lines of code: ~50-100
-Dependencies: 1 (@cavos/kit)
+Dependencies: 1 (@cavos/kit) on web; React Native also needs Expo native peers (expo-modules-core, expo-web-browser, expo-linking)
 ```
 
 ## User Experience Comparison
@@ -89,7 +89,7 @@ User → Dapp → Passkey prompt → Submit to Relayer → Relayer pays fee
 
 ### Cavos
 ```
-User → Dapp → Google or Apple → Device key signs locally → Relayer may sponsor fee
+User → Dapp → Google or Apple → Device P-256 key unwraps control key locally → Ed25519 control key signs → Relayer may sponsor fee
 ```
 
 ## Cost Comparison
