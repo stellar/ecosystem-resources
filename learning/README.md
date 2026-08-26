@@ -178,7 +178,7 @@ Official tutorials and presentations.
 
 | Platform | URL |
 |----------|-----|
-| **Discord** | [discord.gg/stellar](https://discord.gg/stellar) |
+| **Discord** | [discord.gg/stellardev](https://discord.gg/stellardev) |
 | **Stack Exchange** | [stellar.stackexchange.com](https://stellar.stackexchange.com) |
 | **GitHub Discussions** | [stellar/stellar-protocol/discussions](https://github.com/stellar/stellar-protocol/discussions) |
 
