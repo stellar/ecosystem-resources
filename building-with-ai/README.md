@@ -124,7 +124,7 @@ Use Context7 to query up-to-date Stellar documentation in AI assistants.
 The official marketplace for browsing Stellar agent skills. Curated modules give AI agents (Claude Code, Cursor, OpenAI Codex) the right Stellar context before they write code.
 
 - **URL:** [skills.stellar.org](https://skills.stellar.org/)
-- **Covers:** Soroban smart contracts, frontend & wallets, Stellar Assets & SAC, RPC & Horizon APIs, agent payments (x402 + MPP), ZK proofs, SEPs & ecosystem, cross-chain (CCTP, Axelar)
+- **Covers:** Soroban smart contracts, frontend & wallets, Stellar Assets & SAC, RPC & Horizon APIs, agent payments (x402 + MPP), ZK proofs, SEPs & ecosystem, cross-chain (CCTP, Axelar, LayerZero)
 - **Community skills:** contributed and maintained by their authors — OpenZeppelin Contracts, DeFindex SDK, Soroswap SDK, Trustless Work Escrow, Caatinga, and more; browse the full list on the site
 
 ### Stellar Dev Skill
@@ -141,7 +141,7 @@ An AI skill that gives assistants deep, current knowledge of the Stellar develop
 - Wallets: Freighter, Stellar Wallets Kit, Smart Accounts
 - Agent payments: x402 and the Machine Payments Protocol (MPP)
 - ZK proofs, security patterns, common pitfalls
-- Cross-chain: Circle CCTP and Axelar GMP/ITS
+- Cross-chain: Circle CCTP, Axelar GMP/ITS, and LayerZero OApp/OFT — including USDT0, native USDT on Stellar
 - DeFi protocols and ecosystem tools
 
 **Installing in Claude Code:**
@@ -230,6 +230,6 @@ The country-agnostic AI setup, prompt templates, and Soroban debugging material 
 
 ---
 
-*Last updated: August 2026*
+*Last updated: September 2026*
 
 *This guide will be expanded as new AI tools become available for Stellar development.*
