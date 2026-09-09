@@ -103,7 +103,15 @@ Repurposes the HTTP 402 Payment Required status into a real payment mechanism po
 **How it works:**
 1. Agent hits a paywalled endpoint, receives a `402` with payment instructions
 2. Agent signs a Soroban auth entry and retries with the payment header
-3. Facilitator (OpenZeppelin Relayer, or the Coinbase x402 facilitator on testnet) settles on-chain
+3. A facilitator verifies the payment and settles on-chain
+
+**Facilitator options:** x402 is permissionless. The protocol never requires an API key. Each operator sets its own auth.
+
+- **Build on Stellar Relayer** (OpenZeppelin x402 plugin) — testnet and mainnet; needs an OpenZeppelin Channels API key on both
+- **Coinbase x402 facilitator** — testnet only; no API key, fees sponsored
+- **Your own** — run a facilitator, or facilitate in your own process; that account pays the fees
+
+Call `GET <facilitator-url>/supported` to check that an operator serves your network before you go live.
 
 - **Docs:** [developers.stellar.org/docs/build/agentic-payments/x402](https://developers.stellar.org/docs/build/agentic-payments/x402)
 - **Official monorepo:** [stellar/x402-stellar](https://github.com/stellar/x402-stellar)
