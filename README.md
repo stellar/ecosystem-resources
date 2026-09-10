@@ -28,7 +28,7 @@ In addition to workshop materials, this repository includes reference guides on 
 | Topic | Description |
 |-------|-------------|
 | [Soroban Development](./soroban-development/) | Smart contract development with Rust SDK |
-| [Wallet Integration](./wallet-integration/) | Freighter, Stellar Wallets Kit, Smart Account Kit |
+| [Wallet Integration](./wallet-integration/) | Freighter, Stellar Wallets Kit, Smart Account Kit, Cavos |
 | [OpenZeppelin Tools](./openzeppelin/) | Audited contracts, Contract Wizard, Relayer, Monitor |
 | [DeFi Protocols](./defi/) | Lending, DEXs, vaults, and stablecoins |
 | [Tokens](./tokens/) | Stellar Assets vs Soroban Tokens |
@@ -49,6 +49,7 @@ In addition to workshop materials, this repository includes reference guides on 
 - [Freighter](./wallet-integration/freighter.md) - Browser extension wallet
 - [Stellar Wallets Kit](./wallet-integration/stellar-wallets-kit.md) - Multi-wallet SDK
 - [Smart Account Kit](./wallet-integration/smart-account-kit.md) - Passkey-based smart wallets
+- [Cavos](./wallet-integration/cavos.md) - Embedded self-custodial wallet SDK
 
 ### OpenZeppelin Stellar Suite
 
