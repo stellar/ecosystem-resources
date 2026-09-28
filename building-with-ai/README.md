@@ -116,7 +116,7 @@ Call `GET <facilitator-url>/supported` to check that an operator serves your net
 - **Docs:** [developers.stellar.org/docs/build/agentic-payments/x402](https://developers.stellar.org/docs/build/agentic-payments/x402)
 - **Official monorepo:** [stellar/x402-stellar](https://github.com/stellar/x402-stellar)
 - **Community demo:** [jamesbachini/x402-Stellar-Demo](https://github.com/jamesbachini/x402-Stellar-Demo)
-- **Supported wallets:** Freighter, Albedo, Hana, HOT, Klever, OneKey
+- **Supported wallets:** Freighter, Albedo, Hana, HOT, Klever, OneKey, [Scopuly](https://extension.scopuly.com/)
 
 ### Context7 for Documentation
 
