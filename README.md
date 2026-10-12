@@ -15,7 +15,6 @@ Feel free to mix, match, and modify these resources however you need for your pa
 | [KALE](./kale/) | Mining dapp walkthrough | Script, Instructions |
 | [KaleFail](./kalefail/) | Trading post tutorial | Instructions |
 | [Stellar Quest](./stellar-quest/) | Interactive learning — live at [quest.stellar.org](https://quest.stellar.org) | Instructions |
-| [Soroban Quest](./fca00c/) | Smart contract challenges (gameplay repo in alpha) | Instructions |
 
 ---
 

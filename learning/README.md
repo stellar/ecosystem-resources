@@ -14,16 +14,6 @@ Gamified challenges for learning Stellar fundamentals — live at [quest.stellar
 | **Type** | Challenge-based learning |
 | **Topics** | Transactions, assets, accounts, Stellar dev tools |
 
-### Soroban Quest
-
-Interactive Gitpod-based smart contract challenges. See the [Soroban Quest activation](../fca00c/) in this repo.
-
-| Feature | Details |
-|---------|---------|
-| **Gameplay repo** | [anataliocs/soroban-quest-stellaria-expansion](https://github.com/anataliocs/soroban-quest-stellaria-expansion) |
-| **Type** | Guided tutorials |
-| **Features** | Step-by-step challenges, hands-on contract development |
-
 ### Stellar Lab
 
 Browser-based playground for building, signing, and submitting transactions, exploring APIs, and inspecting XDR.
@@ -156,7 +146,6 @@ Official tutorials and presentations.
 1. **Stellar Quest** - Learn Stellar basics at quest.stellar.org
 2. **Soroban Examples** - Study Hello World
 3. **Stellar Lab** - Build and submit transactions interactively
-4. **Soroban Quest** - Hands-on contract challenges
 
 ### Intermediate
 
