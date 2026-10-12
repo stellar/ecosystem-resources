@@ -64,7 +64,7 @@ In addition to workshop materials, this repository includes reference guides on 
 | [Raven MCP](https://raven.stellar.org) | Hosted MCP server: Stellar docs + live ecosystem data for AI agents |
 | [Stellar Skills Marketplace](https://skills.stellar.org/) | Browse all Stellar agent skills |
 | [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill) | AI skill for modern Stellar development |
-| [Stellar AI Guide](https://github.com/kaankacar/stellar-ai-guide) | Regional AI developer guides: free AI setup, starter prompts, per-country anchors and rails |
+| [Stellar AI Guide](https://github.com/kaankacar/stellar-ai-guide) | Regional AI developer guides: free AI setup, recommended AI tools, starter prompts, per-country anchors and rails |
 
 ### Wallet Integration
 
