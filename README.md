@@ -64,7 +64,7 @@ In addition to workshop materials, this repository includes reference guides on 
 | [Raven MCP](https://raven.stellar.org) | Hosted MCP server: Stellar docs + live ecosystem data for AI agents |
 | [Stellar Skills Marketplace](https://skills.stellar.org/) | Browse all Stellar agent skills |
 | [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill) | AI skill for modern Stellar development |
-| [AI Guide — Mexico](./building-with-ai/mexico-hackathon.md) | Hack+ Alebrije CDMX 2026 developer guide |
+| [Stellar AI Guide](https://github.com/kaankacar/stellar-ai-guide) | Regional AI developer guides: free AI setup, recommended AI tools, starter prompts, per-country anchors and rails |
 
 ### Wallet Integration
 
@@ -111,8 +111,7 @@ In addition to workshop materials, this repository includes reference guides on 
 - [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill) - AI skill covering Soroban, Stellar SDK, RPC, wallets, agent payments, ZK proofs, cross-chain, and ecosystem. Install via `/plugin install stellar-dev@stellar-dev` in Claude Code.
 - [LumenLoop Skills](https://github.com/lumenloop/lumenloop-skills) - Eight agent skills for ecosystem research (sector landscapes, project due diligence, SCF submission radar), powered by LumenLoop's free read-only MCP server. Works with any MCP client.
 - [stellar-build](https://github.com/kaankacar/stellar-build) - One-command install of 46 skills covering the full journey from idea to mainnet deploy and SCF grant submission, with six DevRel-persona agents.
-- [Stellar AI Guide](https://github.com/kaankacar/stellar-ai-guide) - Monorepo of regional AI developer guides (Mexico, Brazil, template for new countries): country-agnostic Claude Code setup, free AI tooling, and starter prompts, plus per-country anchor and payment-rail docs.
-- [AI Guide — Mexico / Hack+ Alebrije CDMX 2026](./building-with-ai/mexico-hackathon.md) - Developer guide for the Mexico hackathon: free AI setup, anchor integrations (Etherfuse, AlfredPay, BlindPay), Soroban gotchas, and reference implementations. Mexico-specific but broadly useful.
+- [Stellar AI Guide](https://github.com/kaankacar/stellar-ai-guide) - Monorepo of regional AI developer guides (Mexico, Brazil, template for new countries): country-agnostic free AI tooling, recommended AI tools, and starter prompts, plus per-country dev setup, anchor, and payment-rail docs.
 
 ---
 
