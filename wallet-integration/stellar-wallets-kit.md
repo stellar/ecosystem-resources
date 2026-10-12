@@ -7,7 +7,7 @@ Stellar Wallets Kit provides unified multi-wallet support for Stellar dapps. It'
 ## Overview
 
 - **Type:** Multi-wallet abstraction library
-- **Supported Wallets:** Freighter, LOBSTR, xBull, Albedo, Rabet, Hana, WalletConnect, Ledger, Trezor, HOT Wallet, Klever, OneKey, Bitget, Fordefi, Cactus Link, D'CENT
+- **Supported Wallets:** Freighter, LOBSTR, xBull, Albedo, Rabet, Hana, Scopuly, WalletConnect, Ledger, Trezor, HOT Wallet, Klever, OneKey, Bitget, Fordefi, Cactus Link, D'CENT
 - **Best for:** Apps that want to support user's preferred wallet
 - **GitHub:** [Creit-Tech/Stellar-Wallets-Kit](https://github.com/Creit-Tech/Stellar-Wallets-Kit)
 
@@ -38,6 +38,8 @@ StellarWalletsKit.init({
 ```
 
 To narrow the wallet set, pass specific module instances instead of `defaultModules()` — individual modules live under `@creit-tech/stellar-wallets-kit/modules/*`. There is also `sep43Modules()` for the SEP-43-compliant subset.
+
+Scopuly's `ScopulyModule` is included in `defaultModules()` and uses the provider injected by the [Scopuly browser extension](https://extension.scopuly.com/) or Scopuly's in-app browser. The extension pairs with a Scopuly signer on iOS, Android, or macOS; signing requests require approval on that device. Scopuly can also connect through the separately configured `WalletConnectModule`. See the [Scopuly Provider API](https://extension.scopuly.com/docs/provider-api) for the direct provider interface.
 
 The network is set with the stellar-sdk `Networks` values (the old `WalletNetwork` enum is gone):
 
@@ -180,6 +182,7 @@ export function WalletButton() {
 | Albedo | Web-based | All browsers |
 | Rabet | Extension | Chrome |
 | Hana | Extension | Chrome |
+| Scopuly | Extension + In-app browser | Chrome, Brave, Edge, Opera, Firefox; paired signer on iOS, Android, macOS |
 | WalletConnect | Protocol | Mobile wallets |
 | Ledger | Hardware | USB |
 | Trezor | Hardware | USB |
@@ -201,7 +204,7 @@ export function WalletButton() {
 2. **Persist wallet selection** in localStorage for returning users
 3. **Handle wallet unavailability** gracefully with fallback options
 4. **Test with multiple wallets** to ensure consistent behavior
-5. **Consider mobile users** - LOBSTR, WalletConnect, and Freighter Mobile work on mobile
+5. **Consider mobile users** - LOBSTR, WalletConnect, Freighter Mobile, and Scopuly work on mobile
 
 ## When to Use Stellar Wallets Kit
 
