@@ -35,9 +35,9 @@ Four production paths connect Stellar to other chains today:
 
 ## Decimals: The Number One Pitfall
 
-All Stellar assets use **7 decimals**. The cross-chain protocols use **6** for the amount that crosses the chain.
+Classic Stellar assets and their SACs (USDT0, USDC) use **7 decimals**. A custom SEP-41 token can set any value, so read it with `decimals()` (or `stellar token decimals --id <TOKEN>`) before you convert amounts. The cross-chain protocols use **6** for the amount that crosses the chain.
 
-| Protocol | Stellar local decimals | Cross-chain decimals | What happens to the 7th decimal |
+| Protocol | Stellar local decimals (classic asset / SAC) | Cross-chain decimals | What happens to the 7th decimal |
 |----------|-----------------------|----------------------|----------------------------------|
 | USDT0 / LayerZero OFT | 7 | 6 (`shared_decimals`) | Removed as "dust" before send |
 | CCTP (Stellar → other chain) | 7 | 6 | Stays in the sender's account |
@@ -276,7 +276,13 @@ function contractStrkeyToBytes32(strkey: string): `0x${string}` {
 }
 
 // Hook data: 24 zero bytes | u32 version (0) | u32 length | recipient strkey (UTF-8)
+// Validate the recipient first: the source-chain burn can not be undone.
 function buildForwarderHookData(recipient: string): `0x${string}` {
+  const valid =
+    StrKey.isValidEd25519PublicKey(recipient) ||   // G… (56 chars)
+    StrKey.isValidContract(recipient) ||           // C… (56 chars)
+    StrKey.isValidMed25519PublicKey(recipient);    // M… (69 chars)
+  if (!valid) throw new Error(`Invalid recipient: ${recipient} (expected G…, C…, or M…)`);
   const bytes = Buffer.from(recipient, "utf8");
   const hook = Buffer.alloc(32 + bytes.length);
   hook.writeUInt32BE(0, 24);

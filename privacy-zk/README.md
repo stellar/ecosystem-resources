@@ -10,7 +10,7 @@ Stellar is a public ledger: every transaction is visible. Payroll, institutional
 |-------|-------------------|--------|
 | [Privacy Pools / Stellar Private Payments](#stellar-private-payments-spp) | Hidden sender, receiver, and amount inside a shielded pool | Developer preview, testnet only, unaudited |
 | [Confidential Tokens](#confidential-tokens) | Hidden balances and amounts, visible addresses | Developer preview, unaudited |
-| [On-chain ZK verifiers](#on-chain-zk-verifiers) | Verify Groth16 (RISC Zero, Circom) and UltraHonk (Noir) proofs in a contract | Open source, deployable |
+| [On-chain ZK verifiers](#on-chain-zk-verifiers) | Verify RISC Zero (Groth16) and UltraHonk (Noir) proofs in a contract | Open source, deployable |
 | [ZK host functions](#zk-host-functions) | BLS12-381, BN254, Poseidon/Poseidon2 inside Soroban | Live on mainnet (Protocols 22, 25, 26) |
 
 ### Quick Decision Guide
@@ -23,7 +23,7 @@ Stellar is a public ledger: every transaction is visible. Payroll, institutional
 - The parties are known, but amounts and balances must stay private
 
 **Use a ZK verifier if:**
-- You want to prove an off-chain computation (in Rust, Noir, or Circom) and check it on-chain
+- You want to prove an off-chain computation (in Rust or Noir) and check it on-chain
 
 **Use the host functions directly if:**
 - You are writing your own verifier, Merkle tree, commitment scheme, or nullifier logic
@@ -81,7 +81,7 @@ A verifier contract accepts a compact proof and confirms it is valid without re-
 
 ### RISC Zero (Groth16) Verifier
 
-Write the program in plain Rust, run it in the RISC Zero zkVM, and verify the Groth16 proof on Stellar. It also verifies Groth16 proofs from Circom circuits.
+Write the program in plain Rust, run it in the RISC Zero zkVM, and verify the Groth16 proof on Stellar. It verifies RISC Zero receipts only (seal, image ID, and journal digest), not generic Circom proofs. For Circom circuits, see the Groth16 verifier contract in [Stellar Private Payments](#stellar-private-payments-spp).
 
 - **Repo:** [NethermindEth/stellar-risc0-verifier](https://github.com/NethermindEth/stellar-risc0-verifier)
 - **Article:** [Verifying RISC Zero Execution in a Stellar Smart Contract](https://stellar.org/blog/developers/risc-zero-verifier)

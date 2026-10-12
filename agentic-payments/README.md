@@ -182,7 +182,7 @@ const mppx = Mppx.create({
       recipient: process.env.STELLAR_RECIPIENT, // G… with a USDC trustline
       currency: USDC_SAC_TESTNET,
       network: "stellar:testnet",
-      store: Store.memory(),                   // replay protection
+      store: Store.memory(),                   // replay protection (demo only, see note below)
     }),
   ],
 });
@@ -210,6 +210,8 @@ app.get("/my-service", async (req, res) => {
 
 app.listen(3001);
 ```
+
+> **Replay protection in production:** `Store.memory()` keeps used credentials in one process only. A restart or a second server instance forgets them and can accept a credential that was already claimed. For anything beyond a single-process demo, use a shared, durable store that all instances read and write atomically.
 
 **Client:**
 
