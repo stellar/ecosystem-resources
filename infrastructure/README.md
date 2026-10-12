@@ -33,12 +33,13 @@ A SvelteKit demo application and portable TypeScript library for building fiat o
 | **GitHub** | [ElliotFriend/regional-starter-pack](https://github.com/ElliotFriend/regional-starter-pack) |
 | **Live app** | [www.regionalstarterpack.com](https://www.regionalstarterpack.com) — includes the [Anchor Readiness Scorecard](https://www.regionalstarterpack.com/anchors/scorecard) |
 | **Stack** | SvelteKit demo + framework-agnostic TypeScript libraries |
-| **Anchors** | Etherfuse (Mexico/Brazil — MXN, BRL via SPEI/PIX), Manteca (Brazil/Argentina/Colombia — BRL, ARS, COP ↔ USDC via PIX/CVU/BRE-B), Koywe (Argentina/Mexico/Colombia — ARS, MXN, COP ↔ USDC), Stellar test anchor |
+| **Anchors** | Etherfuse (Mexico/Brazil — MXN, BRL via SPEI/PIX), Manteca (Brazil/Argentina/Colombia — BRL, ARS, COP ↔ USDC via PIX/CVU/BRE-B), Koywe (Argentina/Mexico/Colombia — ARS, MXN, COP ↔ USDC), Chipper (Ghana/Kenya — GHS, KES ↔ USDC via mobile money, M-Pesa, and bank), SeevCash (Ghana — GHS ↔ USDC via mobile money, SEP anchor); plus the Stellar test anchor and a TR Mock Anchor (Türkiye sandbox stand-in) as references |
 
 **Features:**
 - Self-contained anchor clients designed to be copied into any TypeScript project (only `@stellar/stellar-sdk` as a peer dependency)
 - Composable SEP protocol library (SEP-1, 6, 10, 12, 24, 31, 38) — one independently usable file per SEP
-- Two-lens anchor curation — a commercial bar (locally denominated assets, local payment rails, competitive rates, deep liquidity) and a developer bar (open self-service access, accurate docs, high-fidelity sandbox, agent-buildable) — with a live per-criterion scorecard, plus regional honorable mentions and in-vetting candidates
+- Two-lens anchor curation — a commercial bar (locally denominated assets, local payment rails, competitive rates, deep liquidity) and a developer bar (open self-service access, accurate docs, high-fidelity sandbox, agent-buildable, fee discoverability) — with a live per-criterion scorecard, plus regional honorable mentions and in-vetting candidates
+- API-key anchors run behind server proxy routes; SEP anchors (SeevCash, test anchor, TR Mock) run directly in the browser
 - Working Testnet on-ramp simulations you can try end to end
 
 ## SEP Standards

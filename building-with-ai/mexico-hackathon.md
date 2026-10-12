@@ -36,7 +36,7 @@ Fastest path: NVIDIA Nemotron 3 Super via OpenRouter — 120B parameter model, 2
 - **AlfredPay** — MXN ↔ USDC via SPEI.
 - **BlindPay** — cross-border payments.
 
-Regional starter pack: [ElliotFriend/regional-starter-pack](https://github.com/ElliotFriend/regional-starter-pack) — SvelteKit app (live at [regionalstarterpack.com](https://www.regionalstarterpack.com), with an [anchor-readiness scorecard](https://www.regionalstarterpack.com/anchors/scorecard)) and a portable TypeScript anchor library covering SEP-1, 6, 10, 12, 24, 31, and 38; curated anchors now include Etherfuse, Koywe, and Manteca.
+Regional starter pack: [ElliotFriend/regional-starter-pack](https://github.com/ElliotFriend/regional-starter-pack) — SvelteKit app (live at [regionalstarterpack.com](https://www.regionalstarterpack.com), with an [anchor-readiness scorecard](https://www.regionalstarterpack.com/anchors/scorecard)) and a portable TypeScript anchor library covering SEP-1, 6, 10, 12, 24, 31, and 38; curated anchors now include Etherfuse, Koywe, Manteca, Chipper, and SeevCash.
 
 ### Critical Soroban Gotchas
 

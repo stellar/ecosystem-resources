@@ -133,7 +133,7 @@ The official marketplace for browsing Stellar agent skills. Curated modules give
 
 - **URL:** [skills.stellar.org](https://skills.stellar.org/)
 - **Covers:** Soroban smart contracts, frontend & wallets, Stellar Assets & SAC, RPC & Horizon APIs, agent payments (x402 + MPP), ZK proofs, SEPs & ecosystem, cross-chain (CCTP, Axelar, LayerZero)
-- **Community skills:** contributed and maintained by their authors — OpenZeppelin Contracts, DeFindex SDK, Soroswap SDK, Trustless Work Escrow, Caatinga, and more; browse the full list on the site
+- **Community skills:** contributed and maintained by their authors — OpenZeppelin Contracts, DeFindex SDK, Soroswap SDK, SODAX, Trustless Work Escrow, Stellar Registry, Scopuly Wallet, Caatinga, and more; browse the full list on the site
 
 ### Stellar Dev Skill
 
@@ -161,6 +161,12 @@ An AI skill that gives assistants deep, current knowledge of the Stellar develop
 **Other agents:**
 ```bash
 npx skills add https://github.com/stellar/stellar-dev-skill
+```
+
+**OpenClaw** (copies every skill into the shared skills directory):
+```bash
+git clone https://github.com/stellar/stellar-dev-skill
+mkdir -p ~/.openclaw/skills && cp -R stellar-dev-skill/skills/* ~/.openclaw/skills/
 ```
 
 > **Note:** This skill is AI-generated and currently under manual review. Contributions and PRs are welcome.
