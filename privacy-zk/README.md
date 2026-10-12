@@ -81,7 +81,9 @@ A verifier contract accepts a compact proof and confirms it is valid without re-
 
 ### RISC Zero (Groth16) Verifier
 
-Write the program in plain Rust, run it in the RISC Zero zkVM, and verify the Groth16 proof on Stellar. It verifies RISC Zero receipts only (seal, image ID, and journal digest), not generic Circom proofs. For Circom circuits, see the Groth16 verifier contract in [Stellar Private Payments](#stellar-private-payments-spp).
+Write the program in plain Rust, run it in the RISC Zero zkVM, and verify the Groth16 proof on Stellar. It verifies RISC Zero receipts only (seal, image ID, and journal digest), not generic Circom proofs.
+
+**Circom (Groth16) proofs:** No general-purpose Circom verifier is listed in the Stellar docs today. Write a verifier for your own verification key with the [BN254 host functions](#bn254). The Groth16 verifier in [Stellar Private Payments](#stellar-private-payments-spp) is a working example, but it is built for SPP's circuits.
 
 - **Repo:** [NethermindEth/stellar-risc0-verifier](https://github.com/NethermindEth/stellar-risc0-verifier)
 - **Article:** [Verifying RISC Zero Execution in a Stellar Smart Contract](https://stellar.org/blog/developers/risc-zero-verifier)
