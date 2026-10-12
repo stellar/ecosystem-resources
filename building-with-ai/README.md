@@ -7,7 +7,7 @@
 | Item | Link |
 |------|------|
 | Mexico Hackathon Guide | [`mexico-hackathon.md`](./mexico-hackathon.md) |
-| Raven — Stellar MCP Server | [raven.stellar.buzz](https://raven.stellar.buzz) |
+| Raven — Stellar MCP Server | [raven.stellar.org](https://raven.stellar.org) |
 | Stellar AI Guide (regional monorepo) | [kaankacar/stellar-ai-guide](https://github.com/kaankacar/stellar-ai-guide) |
 | Stellar Skills Marketplace | [skills.stellar.org](https://skills.stellar.org/) |
 | Stellar Dev Skill | [stellar/stellar-dev-skill](https://github.com/stellar/stellar-dev-skill) |
@@ -17,6 +17,8 @@
 | Stellar MCP Server | [kalepail/stellar-mcp-server](https://github.com/kalepail/stellar-mcp-server) |
 | XDR MCP | [stellar-experimental/mcp-stellar-xdr](https://github.com/stellar-experimental/mcp-stellar-xdr) |
 | x402 Payments | [stellar/x402-stellar](https://github.com/stellar/x402-stellar) |
+| Agentic Payments guide (x402 + MPP) | [`../agentic-payments/`](../agentic-payments/README.md) |
+| Stellar CLI for Agents | [`../agentic-payments/stellar-cli-for-agents.md`](../agentic-payments/stellar-cli-for-agents.md) |
 
 AI-powered tools are increasingly available to help developers build on Stellar more efficiently. This guide covers the current landscape.
 
@@ -26,17 +28,17 @@ AI-powered tools are increasingly available to help developers build on Stellar 
 
 A remote Model Context Protocol (MCP) server that gives AI agents unified access to Stellar documentation and live ecosystem data. Raven combines Stellar Docs search, LumenLoop ecosystem data, Stellar Light, and ecosystem skills into cross-referenced answers through two tools: `search` (find docs and ecosystem info) and `execute` (query live ecosystem data). It replaces Stella, the retired Stellar AI chat assistant.
 
-- **Server:** [raven.stellar.buzz](https://raven.stellar.buzz)
+- **Server:** [raven.stellar.org](https://raven.stellar.org)
 - **Source:** [stellar-experimental/stellar-raven](https://github.com/stellar-experimental/stellar-raven)
 - **Docs:** [developers.stellar.org/docs/build/building-with-ai](https://developers.stellar.org/docs/build/building-with-ai) — connection instructions for Claude Code, Codex, VS Code, Cursor, Claude desktop, and other MCP clients
 
 **Connecting from Claude Code** (the way to use Raven when building):
 ```bash
-claude mcp add --transport http stellar-raven "https://raven.stellar.buzz/mcp"
+claude mcp add --transport http stellar-raven "https://raven.stellar.org/mcp"
 # then sign in via OAuth when prompted
 ```
 
-> **Playground:** [raven.stellar.buzz/playground](https://raven.stellar.buzz/playground) (sign-in required) exists to *demo* what Raven can do — use it to see how it works, not as your development workflow. When building, connect the remote MCP server to your agent directly.
+> **Playground:** [raven.stellar.org/playground](https://raven.stellar.org/playground) (sign-in required) exists to *demo* what Raven can do — use it to see how it works, not as your development workflow. When building, connect the remote MCP server to your agent directly.
 
 Raven is a live hosted server — it complements (rather than replaces) the static `llms.txt` file and the installable Stellar Skills below; the three work well together.
 
@@ -113,10 +115,18 @@ Repurposes the HTTP 402 Payment Required status into a real payment mechanism po
 
 Call `GET <facilitator-url>/supported` to check that an operator serves your network before you go live.
 
+- **Full guide (x402 + MPP with code):** [agentic-payments/](../agentic-payments/README.md)
 - **Docs:** [developers.stellar.org/docs/build/agentic-payments/x402](https://developers.stellar.org/docs/build/agentic-payments/x402)
 - **Official monorepo:** [stellar/x402-stellar](https://github.com/stellar/x402-stellar)
 - **Community demo:** [jamesbachini/x402-Stellar-Demo](https://github.com/jamesbachini/x402-Stellar-Demo)
 - **Supported wallets:** Freighter, Albedo, Hana, HOT, Klever, OneKey, [Scopuly](https://extension.scopuly.com/)
+
+### Stellar CLI for Agents
+
+The Stellar CLI (28.1.0+) works as a wallet your agent drives from the terminal. `stellar skill` loads the CLI's conventions into the agent's context. `stellar token approve` gives the agent a capped, expiring allowance that the network enforces. `--build-only` drafts transactions for a human to sign.
+
+- **Guide:** [agentic-payments/stellar-cli-for-agents.md](../agentic-payments/stellar-cli-for-agents.md)
+- **Docs:** [developers.stellar.org/docs/tools/cli/agent-cli](https://developers.stellar.org/docs/tools/cli/agent-cli)
 
 ### Context7 for Documentation
 
@@ -223,7 +233,7 @@ The country-agnostic AI setup, prompt templates, and Soroban debugging material 
 ## Resources
 
 **Stellar-native AI tools:**
-- [Raven — Stellar MCP Server for AI Agents](https://raven.stellar.buzz)
+- [Raven — Stellar MCP Server for AI Agents](https://raven.stellar.org)
 - [llms.txt — Machine-Readable Stellar Docs](https://developers.stellar.org/llms.txt)
 - [Stellar Skills Marketplace](https://skills.stellar.org/)
 - [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill)
@@ -244,6 +254,6 @@ The country-agnostic AI setup, prompt templates, and Soroban debugging material 
 
 ---
 
-*Last updated: September 2026*
+*Last updated: October 2026*
 
 *This guide will be expanded as new AI tools become available for Stellar development.*
