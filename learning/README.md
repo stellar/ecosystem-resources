@@ -34,6 +34,16 @@ Browser-based playground for building, signing, and submitting transactions, exp
 | **Type** | Interactive network playground |
 | **Features** | Transaction builder, API explorer, XDR viewer |
 
+### Online IDE: StellarIDE
+
+Write, compile, test, and deploy Soroban contracts in the browser, with no local setup. Good for a first contract or a hackathon laptop without Rust.
+
+| Feature | Details |
+|---------|---------|
+| **URL** | [stellaride.dev](https://stellaride.dev) |
+| **Source** | [Alouzious/StellarIDE](https://github.com/Alouzious/StellarIDE) (open source) |
+| **Features** | Rust editor, Wasm build, `cargo test`, one-click testnet deploy with Friendbot, AI assistant |
+
 ## Official Example Repositories
 
 ### Soroban Examples
@@ -181,6 +191,8 @@ Official tutorials and presentations.
 | **Discord** | [discord.gg/stellardev](https://discord.gg/stellardev) |
 | **Stack Exchange** | [stellar.stackexchange.com](https://stellar.stackexchange.com) |
 | **GitHub Discussions** | [stellar/stellar-protocol/discussions](https://github.com/stellar/stellar-protocol/discussions) |
+| **Developer Meeting** | Every Thursday, live on X, YouTube, and Twitch ([@buildonstellar](https://x.com/BuildOnStellar)) |
+| **Meeting notes and recordings** | [developers.stellar.org/meetings](https://developers.stellar.org/meetings) |
 
 ### Funding
 
@@ -188,3 +200,4 @@ Official tutorials and presentations.
 |---------|-----|
 | **Stellar Community Fund** | [communityfund.stellar.org](https://communityfund.stellar.org) |
 | **Soroban Audit Bank** | [stellar.org/grants-and-funding/soroban-audit-bank](https://stellar.org/grants-and-funding/soroban-audit-bank) |
+

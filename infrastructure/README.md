@@ -42,6 +42,27 @@ A SvelteKit demo application and portable TypeScript library for building fiat o
 - API-key anchors run behind server proxy routes; SEP anchors (SeevCash, test anchor, TR Mock) run directly in the browser
 - Working Testnet on-ramp simulations you can try end to end
 
+### Anchor Tools
+
+Tools to find, test, and validate anchors.
+
+| Tool | What it does |
+|------|--------------|
+| [Anchor Directory](https://anchors.stellar.org) | All anchors on Stellar, their currencies, and where they operate |
+| [Demo Wallet](https://demo-wallet.stellar.org) | Test anchor flows interactively: SEP-8 (regulated assets), SEP-24, SEP-31, against any home domain with a `stellar.toml` |
+| [Anchor Test Suite](https://github.com/stellar/stellar-anchor-tests) | Validate SEP-6, SEP-24, and SEP-31 transfer servers |
+| [Asset Sandbox](https://stellar.cheesecakelabs.com) | Experiment with asset issuance on testnet (SDF + Cheesecake Labs) |
+
+### MoneyGram Ramps
+
+Lets users of wallets and exchanges cash in (deposit) and cash out (withdraw) USDC on Stellar at MoneyGram locations.
+
+| Feature | Details |
+|---------|---------|
+| **Docs** | [MoneyGram Ramps integration guide](https://developer.moneygram.com/moneygram-developer/docs/integrate-moneygram-ramps) |
+| **Stellar docs** | [developers.stellar.org/docs/tools/ramps/moneygram](https://developers.stellar.org/docs/tools/ramps/moneygram) |
+| **Asset** | USDC on Stellar |
+
 ## SEP Standards
 
 Stellar Ecosystem Proposals (SEPs) define standards for interoperability.
@@ -206,6 +227,24 @@ Alternative explorer with contract support.
 | Feature | Details |
 |---------|---------|
 | **URL** | [stellarchain.io](https://stellarchain.io) |
+| **Networks** | Mainnet, Testnet, Futurenet |
+
+### More Explorers
+
+| Explorer | Notes |
+|----------|-------|
+| [Stellar Explorer](https://steexp.com) | Payments, accounts, and contracts on Mainnet, Testnet, and Futurenet |
+| [Soroscan](https://soroscan.io) | Transactions, accounts, assets, contracts, and ledgers, with a built-in AI assistant for on-chain questions. Newer, under active development. |
+| [Soroban Scan](https://sorobanscan.rumblefish.dev) | Soroban-first, independent of Horizon. Shows decoded Soroban data instead of raw XDR. Mainnet and Testnet. |
+
+## Network Status & Insights
+
+| Tool | What it does |
+|------|--------------|
+| [Stellar Dashboard](https://dashboard.stellar.org) | Testnet and Mainnet status: fee stats, recent operations, lumen supply |
+| [Status Page](https://status.stellar.org) | Incidents, maintenance, protocol upgrades, and **testnet resets**. Subscribe before a hackathon. |
+| [Obsrvr Radar](https://radar.withobsrvr.com) | Network nodes and a consensus visualization |
+| [StellarFee](https://stellarfee.expert) | Fee estimator and transaction simulator: resources used and expected fees |
 
 ## RPC Providers
 
@@ -246,6 +285,7 @@ For production deployments:
 | **Stellar Core** | [stellar/stellar-core](https://github.com/stellar/stellar-core) |
 | **Horizon** | [stellar/go](https://github.com/stellar/go) |
 | **Stellar RPC** | [stellar/stellar-rpc](https://github.com/stellar/stellar-rpc) |
+| **Stellar Archivist** | [stellar/rs-stellar-archivist](https://github.com/stellar/rs-stellar-archivist) — scan, repair, and mirror history archives |
 
 ## Monitoring & Observability
 
@@ -286,3 +326,8 @@ async function monitorTransaction(hash: string) {
 - [SDP Documentation](https://developers.stellar.org/docs/platforms/stellar-disbursement-platform)
 - [SEP Index](https://github.com/stellar/stellar-protocol/tree/master/ecosystem)
 - [Stellar Ramps Overview](https://stellar.org/use-cases/ramps)
+- [Anchor Directory](https://anchors.stellar.org)
+- [Demo Wallet](https://demo-wallet.stellar.org)
+- [MoneyGram Ramps](https://developer.moneygram.com/moneygram-developer/docs/integrate-moneygram-ramps)
+- [Stellar Status Page](https://status.stellar.org)
+- [Cross-chain bridges (USDT0, CCTP, Axelar)](../cross-chain/README.md)

@@ -19,6 +19,27 @@ Feel free to mix, match, and modify these resources however you need for your pa
 
 ---
 
+## Core Toolchain
+
+Install these before a hackathon. Everything here is documented at [developers.stellar.org/docs/tools](https://developers.stellar.org/docs/tools).
+
+| Tool | What it is for | Start here |
+|------|----------------|------------|
+| **soroban-sdk** (Rust) | The SDK every Soroban contract is built on | [Contract SDKs](https://developers.stellar.org/docs/tools/sdks/contract-sdks) |
+| **Stellar CLI** | Build, deploy, and invoke contracts; manage keys and networks | [Install the CLI](https://developers.stellar.org/docs/tools/cli/install-cli) |
+| **Scaffold Stellar** | Contracts plus a React front end: `stellar scaffold init` | [Scaffold Stellar](https://developers.stellar.org/docs/tools/scaffold-stellar) |
+| **Quickstart** (Docker) | A local Stellar network with RPC, Horizon, and a faucet | [Quickstart](https://developers.stellar.org/docs/tools/quickstart) |
+| **Stellar Lab** | Build, sign, simulate, and submit transactions; inspect XDR | [lab.stellar.org](https://lab.stellar.org) |
+| **Client SDKs** | Build and submit transactions from your app (JavaScript, Python, Go, and more) | [Client SDKs](https://developers.stellar.org/docs/tools/sdks/client-sdks) |
+| **Wallets** | Stellar Wallets Kit, Freighter, passkey smart accounts | [Wallet Integration](./wallet-integration/) |
+| **Stellar RPC** | Balances, history, events, and simulation (Horizon is legacy) | [RPC providers](https://developers.stellar.org/docs/data/apis/rpc/providers) |
+| **soroban-examples** | Official reference contracts to copy from | [stellar/soroban-examples](https://github.com/stellar/soroban-examples) |
+| **AI context** | Raven MCP, Stellar Skills, `llms.txt` | [Building with AI](./building-with-ai/) |
+
+**Integrate before you invent:** [OpenZeppelin Stellar Contracts](./openzeppelin/), [passkey smart accounts](./wallet-integration/smart-account-kit.md), [OpenZeppelin Relayer](./openzeppelin/relayer.md) for fee-sponsored transactions, and [Reflector oracles](./oracles/) for SEP-40 price feeds.
+
+---
+
 ## Reference Guides
 
 In addition to workshop materials, this repository includes reference guides on key Stellar development topics.
@@ -35,10 +56,13 @@ In addition to workshop materials, this repository includes reference guides on 
 | [Data Indexing](./indexers/) | Indexing providers and solutions |
 | [Oracles](./oracles/) | Price feeds and external data |
 | [Security](./security/) | Security tools and best practices |
-| [Infrastructure](./infrastructure/) | Anchors, SEPs, disbursements |
+| [Infrastructure](./infrastructure/) | Anchors, SEPs, disbursements, explorers, network status |
+| [Cross-Chain](./cross-chain/) | USDT0 + LayerZero OFT, Circle CCTP, Axelar |
+| [Agentic Payments](./agentic-payments/) | x402, MPP, Stellar CLI for Agents |
+| [Privacy & ZK](./privacy-zk/) | Private payments, confidential tokens, ZK verifiers |
 | [Learning Resources](./learning/) | Tutorials, examples, interactive platforms |
 | [Building with AI](./building-with-ai/) | AI-powered development tools |
-| [Raven MCP](https://raven.stellar.buzz) | Hosted MCP server: Stellar docs + live ecosystem data for AI agents |
+| [Raven MCP](https://raven.stellar.org) | Hosted MCP server: Stellar docs + live ecosystem data for AI agents |
 | [Stellar Skills Marketplace](https://skills.stellar.org/) | Browse all Stellar agent skills |
 | [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill) | AI skill for modern Stellar development |
 | [AI Guide — Mexico](./building-with-ai/mexico-hackathon.md) | Hack+ Alebrije CDMX 2026 developer guide |
@@ -71,14 +95,19 @@ In addition to workshop materials, this repository includes reference guides on 
 - [Soroban Development](./soroban-development/) - Rust SDK, storage types, testing, common pitfalls
 - [Tokens](./tokens/) - Stellar Assets, SAC, custom Soroban tokens
 - [Oracles](./oracles/) - Reflector Network, DIA Oracle
-- [Security](./security/) - Scout Soroban, Audit Bank, best practices
-- [Infrastructure](./infrastructure/) - Anchors, SEPs, Disbursement Platform, Regional Starter Pack
+- [Security](./security/) - Scout Soroban, Almanax, Certora Sunbeam, Soroban Security Portal, Audit Bank, best practices
+- [Infrastructure](./infrastructure/) - Anchors, anchor tools, MoneyGram Ramps, SEPs, Disbursement Platform, Regional Starter Pack, explorers, network status
+- [Cross-Chain](./cross-chain/) - USDT0 over LayerZero, build your own OFT/OApp, Circle CCTP, Axelar GMP/ITS
+- [Agentic Payments](./agentic-payments/) - x402, MPP charge and session, [Stellar CLI for Agents](./agentic-payments/stellar-cli-for-agents.md)
+- [Privacy & ZK](./privacy-zk/) - Stellar Private Payments, Confidential Tokens, RISC Zero and UltraHonk verifiers, BN254 and Poseidon
 - [Data Indexing](./indexers/) - Mercury, Goldsky, OBSRVR, Space and Time
 - [Learning Resources](./learning/) - Examples, interactive platforms, tutorials
 
 ### AI Tools & Skills
 
-- [Raven MCP](https://raven.stellar.buzz) - The official hosted MCP server for the Stellar ecosystem. Exposes `search` (Stellar docs + ecosystem discovery) and `execute` (queries against live ecosystem data) to any AI agent. Connect it directly: `claude mcp add --transport http stellar-raven "https://raven.stellar.buzz/mcp"`. Replaces the retired Stella assistant. See [Building with AI](./building-with-ai/README.md#raven--stellar-mcp-server-for-ai-agents).
+- [Raven MCP](https://raven.stellar.org) - The official hosted MCP server for the Stellar ecosystem. Exposes `search` (Stellar docs + ecosystem discovery) and `execute` (queries against live ecosystem data) to any AI agent. Connect it directly: `claude mcp add --transport http stellar-raven "https://raven.stellar.org/mcp"`. Replaces the retired Stella assistant. See [Building with AI](./building-with-ai/README.md#raven--stellar-mcp-server-for-ai-agents).
+- [llms.txt](https://developers.stellar.org/llms.txt) - Machine-readable map of the Stellar docs. Paste it into any AI tool.
+- [Stellar CLI for Agents](./agentic-payments/stellar-cli-for-agents.md) - Give your agent a wallet: balances, transfers, on-chain allowances, and human-approved drafts with the Stellar CLI.
 - [Stellar Skills Marketplace](https://skills.stellar.org/) - Official marketplace for browsing Stellar agent skills: Soroban, wallets, assets, RPC, agent payments (x402 + MPP), ZK proofs, cross-chain, plus community skills (OpenZeppelin, DeFindex, Soroswap, SODAX, Trustless Work, Stellar Registry, Scopuly, Caatinga, and more).
 - [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill) - AI skill covering Soroban, Stellar SDK, RPC, wallets, agent payments, ZK proofs, cross-chain, and ecosystem. Install via `/plugin install stellar-dev@stellar-dev` in Claude Code.
 - [LumenLoop Skills](https://github.com/lumenloop/lumenloop-skills) - Eight agent skills for ecosystem research (sector landscapes, project due diligence, SCF submission radar), powered by LumenLoop's free read-only MCP server. Works with any MCP client.
@@ -91,10 +120,17 @@ In addition to workshop materials, this repository includes reference guides on 
 ## Official Resources
 
 - [Stellar Developer Docs](https://developers.stellar.org/)
+- [Tools and SDKs](https://developers.stellar.org/docs/tools)
+- [Building with AI](https://developers.stellar.org/docs/build/building-with-ai)
+- [llms.txt (docs for AI tools)](https://developers.stellar.org/llms.txt)
 - [Stellar Developer Discord](https://discord.gg/stellardev)
+- [Stellar Developer Meeting](https://developers.stellar.org/meetings) - every Thursday, live on X, YouTube, and Twitch
 - [Stellar Lab](https://lab.stellar.org/)
 - [Stellar Quest](https://quest.stellar.org/)
-- [Raven MCP](https://raven.stellar.buzz)
+- [Raven MCP](https://raven.stellar.org)
+- [Stellar Skills](https://skills.stellar.org/)
+- [Network Status](https://status.stellar.org)
+- [Ecosystem directory and RFPs (Stellar Light)](https://stellarlight.xyz)
 
 ## Contributing
 

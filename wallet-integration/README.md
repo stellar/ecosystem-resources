@@ -44,6 +44,19 @@ For most new projects in 2026, we recommend **Smart Account Kit** for the best u
 
 Note that the kit is still pre-1.0 (v0.4.x) with occasional breaking changes between minor versions — pin your version and check the repo README when upgrading.
 
+## More Wallet and Onboarding Options
+
+| Option | Type | Notes |
+|--------|------|-------|
+| [Scopuly](https://extension.scopuly.com/) | Wallet + extension | Pairs a browser extension with a mobile/desktop signer. Supports x402. Works through Stellar Wallets Kit. |
+| [Blux](https://blux.cc/) | Wallet infrastructure | Sign in with email, social accounts, or passkeys, or connect an existing Stellar wallet. React and vanilla JS SDKs with ready-made modals. [Docs](https://docs.blux.cc/) |
+| [Privy](https://docs.privy.io/wallets/overview/chains) | Embedded wallets | Create Stellar wallets inside your app. [Guide](https://docs.privy.io/wallets/wallets/create/create-a-wallet) |
+| [Dfns](https://www.dfns.co/) | Wallet-as-a-service | Balances, history, transfers, and signing via API. [Stellar docs](https://docs.dfns.co/d/api-docs/wallets/broadcast-transaction/stellar) |
+| [NEAR Intents](https://docs.near.org/chain-abstraction/intents/overview) | Intents protocol | Users or agents state an outcome (for example, a swap) and solvers compete to fill it |
+| [Account Viewer](https://accountviewer.stellar.org) | Minimal wallet | Check an XLM balance and send simple payments. [Source](https://github.com/stellar/account-viewer-v2) is a good reference. |
+
+**Paying for your users:** The [Stellar Wallet Sponsorship Calculator](https://docs.google.com/spreadsheets/d/1LgVMFRggdjBAxSpI4nxucUmbZIsnUbMPT8RJQ_rJ5k4/edit?gid=1771515065#gid=1771515065) estimates the XLM you need to sponsor account creation, fees, and trustlines.
+
 ## Additional Resources
 
 - [Official Stellar Developer Docs](https://developers.stellar.org/docs/build/apps)

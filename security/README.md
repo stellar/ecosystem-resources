@@ -54,6 +54,33 @@ Security-audited contract examples demonstrating secure patterns.
 | **GitHub** | [CoinFabrik/scout-soroban-examples](https://github.com/CoinFabrik/scout-soroban-examples) |
 | **Use Case** | Learning secure patterns, reference implementations |
 
+### Almanax
+
+An AI security engineer. It uses LLMs to find complex vulnerabilities in smart contracts and regular code, and plugs into CI/CD to flag issues before production.
+
+| Feature | Details |
+|---------|---------|
+| **Website** | [almanax.ai](https://www.almanax.ai) |
+| **Type** | AI-assisted code review |
+
+### Certora Sunbeam
+
+Formal verification for Soroban contracts. Sunbeam checks the compiled Wasm bytecode, not only the Rust source, so you do not need to trust the compiler. You write correctness properties in a small spec language embedded in Rust.
+
+| Feature | Details |
+|---------|---------|
+| **Docs** | [Certora Sunbeam](https://docs.certora.com/en/latest/docs/sunbeam/index.html) |
+| **Type** | Formal verification |
+
+### Soroban Security Portal
+
+A community database of Soroban audit reports and vulnerability findings, with semantic search. Built by Inferara. Use it to learn what auditors found in projects like yours.
+
+| Feature | Details |
+|---------|---------|
+| **Website** | [sorobansecurity.com](https://sorobansecurity.com) |
+| **Type** | Audit and vulnerability database |
+
 ## Audit Programs
 
 ### Soroban Audit Bank
@@ -179,3 +206,6 @@ pub fn withdraw(e: &Env, user: Address, amount: i128) {
 - [CoinFabrik Security Blog](https://www.coinfabrik.com/blog/scouting-for-vulnerabilities-in-stellar-smart-contracts/)
 - [OpenZeppelin Stellar Contracts](https://github.com/OpenZeppelin/stellar-contracts) (audited)
 - [Soroban Audit Bank](https://stellar.org/grants-and-funding/soroban-audit-bank)
+- [Almanax](https://www.almanax.ai)
+- [Certora Sunbeam](https://docs.certora.com/en/latest/docs/sunbeam/index.html)
+- [Soroban Security Portal](https://sorobansecurity.com)
