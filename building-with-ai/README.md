@@ -6,7 +6,6 @@
 
 | Item | Link |
 |------|------|
-| Mexico Hackathon Guide | [`mexico-hackathon.md`](./mexico-hackathon.md) |
 | Raven — Stellar MCP Server | [raven.stellar.org](https://raven.stellar.org) |
 | Stellar AI Guide (regional monorepo) | [kaankacar/stellar-ai-guide](https://github.com/kaankacar/stellar-ai-guide) |
 | Stellar Skills Marketplace | [skills.stellar.org](https://skills.stellar.org/) |
@@ -219,12 +218,12 @@ curl -fsSL https://raw.githubusercontent.com/kaankacar/stellar-build/main/instal
 
 ### Stellar AI Guide — Regional Developer Guides
 
-A monorepo of regional AI-assisted developer guides for Stellar hackathons and events. Country-agnostic docs live at the repo root (Claude Code guide, free AI setup, recommended AI tools, starter prompts); each country folder adds local dev setup, anchor integrations, and hackathon resources.
+A monorepo of regional AI-assisted developer guides for Stellar hackathons and events. Country-agnostic docs live at the repo root (free AI setup, recommended AI tools, starter prompts with a CLAUDE.md template); each country folder adds local dev setup, anchor integrations, and hackathon resources.
 
 **Repository:** [kaankacar/stellar-ai-guide](https://github.com/kaankacar/stellar-ai-guide)
 
 **Coverage:**
-- **Mexico** (`countries/mx`) — Etherfuse MXN rails, SPEI, AlfredPay, BlindPay; the source of the [Hack+ Alebrije CDMX 2026 guide](./mexico-hackathon.md) in this directory
+- **Mexico** (`countries/mx`) — Etherfuse MXN/CETES rails, SPEI, AlfredPay, BlindPay
 - **Brazil** (`countries/br`) — PIX rails, Etherfuse BRL/TESOURO, Manteca BRL/USDC, dedicated PIX guide
 - **New countries** — `countries/_template` provides the skeleton for contributing additional regions
 
@@ -246,7 +245,6 @@ The country-agnostic AI setup, prompt templates, and Soroban debugging material 
 - [OpenZeppelin MCP Server](https://mcp.openzeppelin.com/)
 - [OpenZeppelin Contract Wizard](https://wizard.openzeppelin.com/stellar)
 - [Stellar AI Guide — Regional Developer Guides](https://github.com/kaankacar/stellar-ai-guide)
-- [AI Guide — Mexico / Hack+ Alebrije CDMX 2026](./mexico-hackathon.md)
 
 **General:**
 - [Stellar Developer Docs](https://developers.stellar.org/)
