@@ -14,6 +14,8 @@ The Guestbook demo application is a complete dapp showcasing multiple Stellar fe
 
 The presentation walks through some of the fundamental features of the guestbook like the smart contract, bindings, passkey kit and frontend. The purpose of the presentation is to give a high level overview of how the basic features of the dapp are built and work. For a more in-depth explanation, the documentation is recommended.
 
+> **Note:** The [documentation](https://developers.stellar.org/docs/build/apps/guestbook) has since been updated. The smart wallet is now built with [Smart Account Kit](https://github.com/stellar/smart-account-kit) and the [OpenZeppelin Smart Account](https://docs.openzeppelin.com/stellar-contracts/accounts/smart-account) contracts, and its transactions are submitted by the [OpenZeppelin Relayer](https://docs.openzeppelin.com/relayer/guides/stellar-channels-guide) running the Stellar Channels plugin. The script, slides, and video still show the earlier passkey-kit, Launchtube, and Mercury Zephyr setup. Follow the documentation for the current passkey code.
+
 ## Target Audience
 
 **Intermediate** or **Experienced**
@@ -29,6 +31,7 @@ The same can be said about the frontend part of the presentation, it requires so
 - [Website](https://ye-olde-guestbook.vercel.app)
 - [Documentation](https://developers.stellar.org/docs/build/apps/guestbook)
 - [Code](https://github.com/elliotfriend/ye-olde-guestbook)
+- [Starter Template](https://github.com/ElliotFriend/stellar-template-sveltekit-passkeys)
 - [Presentation](https://docs.google.com/presentation/d/1FoY7_LjBVXV_sBXCd_DlBM2iHrP9P7a3xe3jFhoWF28/edit?usp=sharing)
 - [Recorded Activation][video]
 

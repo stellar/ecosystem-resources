@@ -51,6 +51,8 @@ Hi! My name is Carsten Jacobsen, I'm a Developer Advocate at Stellar Development
 
 In this presentation we will take a closer look at the guestbook demo dapp, which you can find in our documentation under the Build tab.
 
+> **Presenter's note:** this script follows the earlier version of the tutorial, built on passkey-kit, Launchtube, and Mercury Zephyr. The [documentation](https://developers.stellar.org/docs/build/apps/guestbook) now uses [Smart Account Kit](https://github.com/stellar/smart-account-kit), [OpenZeppelin Smart Account](https://docs.openzeppelin.com/stellar-contracts/accounts/smart-account) contracts, and the [OpenZeppelin Relayer](https://docs.openzeppelin.com/relayer/guides/stellar-channels-guide) (Stellar Channels plugin). Check the docs before you present the passkey sections.
+
 [NEXT SLIDE]
 
 ### Outline
@@ -313,13 +315,15 @@ The passkey-kit relies on a couple of external services, so access to these serv
 
 Launchtube is similar to a "paymaster" service, if you're familiar with account abstraction in EVM networks. Launchtube is needed by the passkey-kit package and is used to submit passkey-signed transactions to the network.
 
-> **Note (2026):** The hosted Launchtube service has been retired — it is [now legacy](https://github.com/stellar/launchtube), superseded by the [OpenZeppelin Relayer Channels service](https://docs.openzeppelin.com/relayer/1.3.x/guides/stellar-channels-guide), and current passkey-kit versions submit through a generic relayer instead. Generate free testnet Channels API keys at <https://channels.openzeppelin.com/testnet/gen>. If you present this workshop, check which submission service your demo code expects.
+> **Note (2026):** The hosted Launchtube service has been retired. The [`stellar/launchtube`](https://github.com/stellar/launchtube) repository is archived. The guestbook tutorial now submits transactions through the [OpenZeppelin Relayer](https://docs.openzeppelin.com/relayer/guides/stellar-channels-guide) running the Stellar Channels plugin, via a server-side `/api/send` route that keeps the API key out of the browser. Generate a free Testnet API key at <https://channels.openzeppelin.com/testnet/gen>.
 
 ##### Mercury Zephyr
 
 Zephyr is a data indexer service that is used for reverse lookup of smart wallet contract addresses based on passkey IDs, so a user's smart wallet address can be easily retrieved at login.
 
 Mercury Zephyr's basic functionality can be used for free. Sign up here: <https://mercurydata.app> and see the documentation for setup instructions.
+
+> **Note (2026):** The current guestbook tutorial needs no Zephyr setup. Smart Account Kit ships an indexer client for this lookup. It defaults to Mercury's hosted `smart-account-indexer` on Testnet and Mainnet, and its read endpoints are public, so there is no account to create. See [Passkeys Prerequisites](https://developers.stellar.org/docs/build/apps/guestbook/passkeys-prerequisites).
 
 [NEXT SLIDE]
 
