@@ -35,9 +35,9 @@ Four production paths connect Stellar to other chains today:
 
 ## Decimals: The Number One Pitfall
 
-All Stellar assets use **7 decimals**. The cross-chain protocols use **6** for the amount that crosses the chain.
+Classic Stellar assets and their SACs (USDT0, USDC) use **7 decimals**. A custom SEP-41 token can set any value, so read it with `decimals()` (or `stellar token decimals --id <TOKEN>`) before you convert amounts. The cross-chain protocols use **6** for the amount that crosses the chain.
 
-| Protocol | Stellar local decimals | Cross-chain decimals | What happens to the 7th decimal |
+| Protocol | Stellar local decimals (classic asset / SAC) | Cross-chain decimals | What happens to the 7th decimal |
 |----------|-----------------------|----------------------|----------------------------------|
 | USDT0 / LayerZero OFT | 7 | 6 (`shared_decimals`) | Removed as "dust" before send |
 | CCTP (Stellar → other chain) | 7 | 6 | Stays in the sender's account |
@@ -177,7 +177,8 @@ stellar contract deploy --wasm target/wasm32v1-none/release/sac_manager.wasm \
 stellar contract invoke --id <TOKEN_ADDRESS> --network testnet --source my-account -- \
   set_admin --new_admin <SAC_MANAGER_ADDRESS>
 
-# 3. Deploy the OFT (shared_decimals 6 for a 7-decimal Stellar token)
+# 3. Deploy the OFT. shared_decimals must be <= the token's decimals (6 is typical for a 7-decimal SAC).
+#    Check first: stellar token decimals --id <TOKEN_ADDRESS> --network testnet
 stellar contract deploy --wasm target/wasm32v1-none/release/my_oft.wasm \
   --network testnet --source my-account -- \
   --token <TOKEN_ADDRESS> --shared_decimals 6 \
@@ -205,7 +206,7 @@ Sending is always quote first, then send:
 let send_param = SendParam {
     dst_eid: 30101,                  // destination EID (30101 = Ethereum mainnet)
     to: recipient_bytes32,
-    amount_ld: 1_000_000_000,        // local (7) decimals
+    amount_ld: 1_000_000_000,        // local decimals of your token (100 tokens at 7 decimals)
     min_amount_ld: 990_000_000,      // slippage protection
     extra_options: Bytes::new(&env),
     compose_msg: Bytes::new(&env),   // optional: call a composer on the destination
@@ -238,7 +239,7 @@ npm install @layerzerolabs/lz-v2-stellar-sdk @layerzerolabs/oft-stellar-types \
 - **Never send to or from the issuer.** Tokens sent to the issuer are destroyed. Test with a separate holder account.
 - **G-address recipients** need an active account (1 XLM) and a trustline when the token is a SAC. C-address recipients do not. If `lz_receive` fails for this reason, the delivery can be retried after the account is ready.
 - **`set_peer` CLI bug:** Stellar CLI v25.1.0 can silently set the peer to `None` for `Option<BytesN<32>>` arguments. Read the peer back, or use the JS SDK workaround in the [OApp guide](https://docs.layerzero.network/v2/developers/stellar/oapp/overview).
-- **Dust:** With `shared_decimals = 6`, an amount of `1,000,015` becomes `1,000,010`.
+- **Dust:** Anything below `10^(local_decimals - shared_decimals)` is removed before send. For a 7-decimal token with `shared_decimals = 6`, `1,000,015` becomes `1,000,010`. For an 18-decimal token with `shared_decimals = 6`, the rate is `10^12`.
 
 ---
 
@@ -276,7 +277,13 @@ function contractStrkeyToBytes32(strkey: string): `0x${string}` {
 }
 
 // Hook data: 24 zero bytes | u32 version (0) | u32 length | recipient strkey (UTF-8)
+// Validate the recipient first: the source-chain burn can not be undone.
 function buildForwarderHookData(recipient: string): `0x${string}` {
+  const valid =
+    StrKey.isValidEd25519PublicKey(recipient) ||   // G… (56 chars)
+    StrKey.isValidContract(recipient) ||           // C… (56 chars)
+    StrKey.isValidMed25519PublicKey(recipient);    // M… (69 chars)
+  if (!valid) throw new Error(`Invalid recipient: ${recipient} (expected G…, C…, or M…)`);
   const bytes = Buffer.from(recipient, "utf8");
   const hook = Buffer.alloc(32 + bytes.length);
   hook.writeUInt32BE(0, 24);
