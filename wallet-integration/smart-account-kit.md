@@ -234,7 +234,7 @@ Sessions restore silently via `connectWallet()`; stored credentials are availabl
 
 ## Relationship to passkey-kit
 
-[passkey-kit](https://github.com/stellar/passkey-kit) is a **maintained sibling SDK**, not a deprecated predecessor. The two use different on-chain authorization models — passkey-kit's flat `Signatures` map vs. smart-account-kit's context rules + auth digest (OpenZeppelin account) — so they are not drop-in compatible. Choose smart-account-kit when you need context rules, thresholds, and spending-limit policies; passkey-kit remains a solid, simpler option.
+[passkey-kit](https://github.com/stellar/passkey-kit) is a **maintained sibling SDK**, not a deprecated predecessor. The two use different on-chain authorization models — passkey-kit's flat `Signatures` map vs. smart-account-kit's context rules + auth digest (OpenZeppelin account) — so they are not drop-in compatible. Choose smart-account-kit when you need context rules, thresholds, and spending-limit policies; passkey-kit remains a simpler option. Note that the passkey-kit repository states its wallet contract and SDKs have not been independently audited, so review them yourself before they guard real value.
 
 ## Best Practices
 
@@ -264,4 +264,5 @@ Sessions restore silently via `connectWallet()`; stored credentials are availabl
 - [passkey-kit GitHub](https://github.com/stellar/passkey-kit)
 - [OpenZeppelin Smart Accounts](https://github.com/OpenZeppelin/stellar-contracts)
 - [OpenZeppelin Relayer](../openzeppelin/relayer.md)
-- [Stellar Passkey Tutorial](https://developers.stellar.org/docs/build/apps/guestbook)
+- [Guestbook Tutorial](https://developers.stellar.org/docs/build/apps/guestbook) - Full dapp built with Smart Account Kit and the OpenZeppelin Relayer
+- [Smart Wallets Guide](https://developers.stellar.org/docs/build/guides/contract-accounts/smart-wallets) - How Smart Account Kit and passkey-kit differ
