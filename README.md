@@ -93,7 +93,7 @@ In addition to workshop materials, this repository includes reference guides on 
 
 - [Soroban Development](./soroban-development/) - Rust SDK, storage types, testing, common pitfalls
 - [Tokens](./tokens/) - Stellar Assets, SAC, custom Soroban tokens
-- [Oracles](./oracles/) - Reflector Network, DIA Oracle
+- [Oracles](./oracles/) - Reflector Network, DIA Oracle, RedStone
 - [Security](./security/) - Scout Soroban, Almanax, Certora Sunbeam, Soroban Security Portal, Audit Bank, best practices
 - [Infrastructure](./infrastructure/) - Anchors, anchor tools, MoneyGram Ramps, SEPs, Disbursement Platform, Regional Starter Pack, explorers, network status
 - [Cross-Chain](./cross-chain/) - USDT0 over LayerZero, build your own OFT/OApp, Circle CCTP, Axelar GMP/ITS

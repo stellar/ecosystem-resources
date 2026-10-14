@@ -231,6 +231,18 @@ SDF-provided tools for custom indexing.
 stellar-galexie append --start 1000000 --end 2000000 --config-file config.toml
 ```
 
+**Reading the data lake directly:** Galexie stores each batch as a Zstandard-compressed `LedgerCloseMetaBatch` XDR file, as specified by [SEP-54](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0054.md). Most apps should use the Ingest SDK or Stellar RPC instead. For bulk backfills or non-Go apps, the public Stellar data lake needs no credentials:
+
+```bash
+# Pubnet data store (AWS Open Data). Testnet: v1.1/stellar/ledgers/testnet/<reset-date>
+# Download ledger 50000000 and print it as JSON
+curl -s https://aws-public-blockchain.s3.amazonaws.com/v1.1/stellar/ledgers/pubnet/FD054DFF--49984000-50047999/FD050F7F--50000000.xdr.zst \
+  | zstd -dc \
+  | stellar xdr decode --type LedgerCloseMetaBatch --input single --output json-formatted
+```
+
+Object key naming, `.config.json`, and object metadata: [Data Lake Storage Format](https://developers.stellar.org/docs/data/indexers/build-your-own/galexie/data-lake-format).
+
 ### Ingest SDK
 
 **Purpose:** Programmatic ledger processing in Go

@@ -4,7 +4,7 @@ This guide covers oracle solutions for bringing off-chain data to Stellar/Soroba
 
 ## Overview
 
-Oracles provide external data (prices, events, etc.) to smart contracts. On Stellar, the primary oracle solution is Reflector Network, with additional options like DIA and Band Protocol.
+Oracles provide external data (prices, events, etc.) to smart contracts. On Stellar, the primary oracle solution is Reflector Network, with additional options like DIA, Band Protocol, and RedStone.
 
 ## Why Use an Oracle?
 
@@ -56,6 +56,29 @@ Cross-chain oracle with extensive asset coverage.
 - Custom feed configuration
 - Cross-chain compatibility
 - Enterprise support
+
+### RedStone
+
+Modular push oracle focused on real-world assets, yield-bearing tokens, and stablecoins.
+
+| Feature | Details |
+|---------|---------|
+| **Website** | [redstone.finance](https://www.redstone.finance) |
+| **Docs** | [RedStone Stellar documentation](https://docs.redstone.finance/docs/technical-reference/non-evm-chains/stellar/) |
+| **Standard** | SEP-40 compatible |
+| **Feeds** | [RedStone app](https://app.redstone.finance/push-feeds?networks=stellar&testnets=true) (Mainnet and Testnet) |
+
+**Features:**
+- Push model: relayers write signed, multi-source aggregated prices on-chain
+- Updates on deviation (0.01% to 0.5%, by asset) or at least once per heartbeat (typically 12 or 24 hours)
+- Freshness enforced at read time, so consuming contracts do not need their own staleness checks
+- One SEP-40 contract (`lastprice`, `price`, `prices`) for the supported Stellar assets
+- Dedicated per-asset price feed contracts (MultiFeed), including BTC and ETH
+- Audited by Veridise and Zenith; open source [stellar-connector](https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/stellar-connector) with a TypeScript client, plus the [RedStone Rust SDK](https://github.com/redstone-finance/rust-sdk)
+
+**Integrations:**
+- Blend
+- Templar
 
 ## Using Oracles in Contracts
 
@@ -111,4 +134,5 @@ pub struct PriceData {
 - [SEP-40: Oracle Standard](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0040.md)
 - [Reflector Network](https://reflector.network)
 - [DIA Documentation](https://docs.diadata.org/)
+- [RedStone Stellar Documentation](https://docs.redstone.finance/docs/technical-reference/non-evm-chains/stellar/)
 - [Stellar Oracle Providers](https://developers.stellar.org/docs/data/oracles/oracle-providers)
