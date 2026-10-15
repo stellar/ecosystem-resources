@@ -87,6 +87,25 @@ Yield aggregation and vault infrastructure by PaltaLabs.
 - Blend protocol integration
 - Strategy composition
 
+### Spectra Finance
+
+Fixed-rate yield markets. Spectra splits a yield-bearing asset into a Principal Token (PT) and a Yield Token (YT). Stellar markets accept XLM and USDC directly: the app swaps them into the market asset first.
+
+| Feature | Details |
+|---------|---------|
+| **App** | [app.spectra.finance](https://app.spectra.finance/fixed-rate?network=stellar) |
+| **Docs** | [Spectra on Stellar](https://docs.spectra.finance/docs/stellar) |
+| **Developer docs** | [Build with Spectra on Stellar](https://dev.spectra.finance/docs/stellar) |
+| **Contracts** | [Deployed contracts (Stellar mainnet)](https://dev.spectra.finance/docs/technical-reference/deployed-contracts#stellar-mainnet) |
+| **Use Case** | Lock a fixed rate, trade future yield |
+
+**Features:**
+- Core v2 on Soroban: Registry, PT Factory, Router, and Limit Order Engine
+- Limit orders for PT and YT at maker-set implied rates
+- Blend wrapper turns Blend positions into vault shares
+- PT bridge between Stellar and EVM networks
+- Deterministic zero-coupon-bond oracle for PT prices
+
 ## Stablecoins & CDPs
 
 ### Orbit CDP Protocol
