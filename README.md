@@ -88,6 +88,7 @@ In addition to workshop materials, this repository includes reference guides on 
 - [Soroswap](./defi/README.md#soroswap) - DEX and aggregator
 - [Aquarius/AQUA](./defi/README.md#aquarius--aqua-network) - AMM and governance
 - [DeFindex](./defi/README.md#defindex) - Yield vaults
+- [Spectra Finance](./defi/README.md#spectra-finance) - Fixed-rate yield markets
 - [Orbit CDP](./defi/README.md#orbit-cdp-protocol) - Stablecoins
 - [Trustless Work](./defi/README.md#trustless-work) - Escrow-as-a-Service
 
@@ -95,7 +96,7 @@ In addition to workshop materials, this repository includes reference guides on 
 
 - [Soroban Development](./soroban-development/) - Rust SDK, storage types, testing, common pitfalls
 - [Tokens](./tokens/) - Stellar Assets, SAC, custom Soroban tokens
-- [Oracles](./oracles/) - Reflector Network, DIA Oracle, RedStone
+- [Oracles](./oracles/) - Reflector Network, DIA Oracle, RedStone, Chainlink
 - [Security](./security/) - Scout Soroban, Almanax, Certora Sunbeam, Komet, Soroban Security Portal, Audit Bank, best practices
 - [Infrastructure](./infrastructure/) - Anchors, anchor tools, MoneyGram Ramps, SEPs, Disbursement Platform, Regional Starter Pack, explorers, network status
 - [Cross-Chain](./cross-chain/) - USDT0 over LayerZero, build your own OFT/OApp, Circle CCTP, Axelar GMP/ITS
