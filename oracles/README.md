@@ -95,7 +95,7 @@ Chainlink Data Feeds and Data Streams are live on Stellar (October 2026). Data F
 **Features:**
 - Not SEP-40. Call `latest_round(data_id, decimals)` or `get_round(data_id, round_id, decimals)` on the proxy.
 - Answers are stored at 18 decimals. Pass `18` unless Chainlink approved a lower precision for the feed.
-- Data Streams is a pull model: your contract verifies signed reports with the Chainlink Verifier contract. It needs an allowlisted account.
+- Data Streams is a pull model: your contract verifies signed reports with the Chainlink Verifier contract. You need an account allowlisted in the Data Streams Access Controller. Contact Chainlink to get one.
 
 Read BTC/USD on testnet without a transaction:
 
