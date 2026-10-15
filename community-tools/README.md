@@ -89,7 +89,7 @@ The SDK reads transactions from Horizon.
 
 ### Stellar Unity Developer Kit
 
-A Unity package (`com.scryingstone.stellar-sdk`, Unity 2022.3+) for Soroban games:
+A Unity package (`com.scryingstone.stellar-sdk`, Unity 6000.0+) for Soroban games:
 
 - An RPC client for the standard Stellar RPC methods
 - `CallContractFunction` runs the full simulate, sign, send, and poll flow
