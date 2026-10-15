@@ -82,7 +82,7 @@ Modular push oracle focused on real-world assets, yield-bearing tokens, and stab
 
 ### Chainlink
 
-Chainlink Data Feeds and Data Streams are live on Stellar (October 2026). Data Feeds use one proxy contract for every feed. You pick a feed by its 32-byte `data_id`.
+Chainlink Data Feeds and Data Streams are live on Stellar (October 2026). Data Feeds use one shared proxy contract per network, not one contract per feed. You pick a feed by passing its 32-byte `data_id` to that proxy.
 
 | Feature | Details |
 |---------|---------|
