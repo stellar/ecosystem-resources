@@ -156,6 +156,8 @@ Pioneer of decentralized indexing.
 
 Note: Subgraphs and Token API not available for Stellar.
 
+To run the stack yourself, StreamingFast maintains [firehose-stellar](https://github.com/streamingfast/firehose-stellar) and [substreams-stellar](https://github.com/streamingfast/substreams-stellar).
+
 ### OnFinality
 
 **Status:** ✅ Available Now

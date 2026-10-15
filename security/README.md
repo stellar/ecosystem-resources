@@ -72,6 +72,21 @@ Formal verification for Soroban contracts. Sunbeam checks the compiled Wasm byte
 | **Docs** | [Certora Sunbeam](https://docs.certora.com/en/latest/docs/sunbeam/index.html) |
 | **Type** | Formal verification |
 
+### Komet
+
+Fuzzing and formal verification for Soroban contracts, by Runtime Verification. You write property tests in Rust as contract methods with a `test_` prefix. `komet test` fuzzes them. `komet prove run` proves them for all inputs.
+
+```bash
+bash <(curl https://kframework.org/install)   # installs kup
+kup install komet
+```
+
+| Feature | Details |
+|---------|---------|
+| **Docs** | [docs.runtimeverification.com/komet](https://docs.runtimeverification.com/komet) |
+| **GitHub** | [runtimeverification/komet](https://github.com/runtimeverification/komet) |
+| **Type** | Fuzzing and formal verification |
+
 ### Soroban Security Portal
 
 A community database of Soroban audit reports and vulnerability findings, with semantic search. Built by Inferara. Use it to learn what auditors found in projects like yours.

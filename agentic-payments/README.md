@@ -64,6 +64,7 @@ The receiving account (`payTo` / `recipient`) also needs a USDC trustline.
 | **Built on Stellar** (OpenZeppelin Relayer + x402 plugin) | Testnet + Mainnet | `https://channels.openzeppelin.com/x402/testnet` and `https://channels.openzeppelin.com/x402` | Yes: [testnet key](https://channels.openzeppelin.com/testnet/gen) (no login), [mainnet key](https://channels.openzeppelin.com/gen) (GitHub login) | Free, sponsored fees, ~5 s settlement. Most production-ready option. |
 | **Coinbase x402 facilitator** | Testnet only | `https://www.x402.org/facilitator` | No | Sponsored fees |
 | **Self-hosted** | Any | Your own | Your choice | [OpenZeppelin x402 facilitator plugin](https://github.com/OpenZeppelin/relayer-plugin-x402-facilitator) |
+| **Rail402** (community) | Testnet hosted, self-host for others | `https://testnet.rail402.dev` | No | Apache-2.0. Sponsored fees. Supports `exact` and `upto` schemes. Adds a Bazaar discovery catalog, an MCP server, and a CLI. See [docs.rail402.dev](https://docs.rail402.dev). |
 | **Vellar** (community) | Testnet only | See [docs.vellar.xyz](https://docs.vellar.xyz) | | Not audited. Adds a discovery catalog agents can query. |
 
 A facilitator sees the payment before the network does. Picking one is a trust decision. Call `GET <facilitator-url>/supported` to check that it serves your network.

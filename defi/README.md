@@ -104,6 +104,23 @@ Collateralized stablecoin issuance supporting multiple currencies.
 - Pegkeeper automation
 - Blend protocol integration
 
+## Escrow
+
+### Trustless Work
+
+Escrow-as-a-Service on Soroban. You define an escrow as JSON (roles, milestones, amounts), and Trustless Work deploys the contract. Funds stay in the contract until the approver approves the milestones. Supports single-release and multi-release escrows, plus dispute resolution.
+
+| Feature | Details |
+|---------|---------|
+| **Docs** | [docs.trustlesswork.com](https://docs.trustlesswork.com/trustless-work) |
+| **REST API** | [API introduction](https://docs.trustlesswork.com/trustless-work/api-rest/introduction) (needs an API key) |
+| **React SDK** | `npm install @trustless-work/escrow` · [React SDK](https://docs.trustlesswork.com/trustless-work/escrow-react-sdk/introduction) · [Escrow Blocks](https://docs.trustlesswork.com/trustless-work/escrow-blocks-sdk/introduction) (ready-made UI) |
+| **Tools** | [Backoffice dApp](https://dapp.trustlesswork.com) · [Demo](https://demo.trustlesswork.com) · [Escrow Viewer](https://viewer.trustlesswork.com) |
+| **Contracts** | [Trustless-Work/trustlesswork-smart-contract-stellar](https://github.com/Trustless-Work/trustlesswork-smart-contract-stellar) |
+| **Use Case** | Freelance and marketplace payments, milestone grants, deposits |
+
+> **Hackathon tip:** Use the Escrow Blocks to get a working escrow UI fast. Then spend your time on the product around it.
+
 ## Major Stablecoins on Stellar
 
 | Stablecoin | Issuer | Currency |
