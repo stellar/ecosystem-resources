@@ -50,7 +50,7 @@ In addition to workshop materials, this repository includes reference guides on 
 | [Soroban Development](./soroban-development/) | Smart contract development with Rust SDK |
 | [Wallet Integration](./wallet-integration/) | Freighter, Stellar Wallets Kit, Smart Account Kit |
 | [OpenZeppelin Tools](./openzeppelin/) | Audited contracts, Contract Wizard, Relayer, Monitor |
-| [DeFi Protocols](./defi/) | Lending, DEXs, vaults, and stablecoins |
+| [DeFi Protocols](./defi/) | Lending, DEXs, vaults, stablecoins, and escrow |
 | [Tokens](./tokens/) | Stellar Assets vs Soroban Tokens |
 | [Data Indexing](./indexers/) | Indexing providers and solutions |
 | [Oracles](./oracles/) | Price feeds and external data |
@@ -59,6 +59,7 @@ In addition to workshop materials, this repository includes reference guides on 
 | [Cross-Chain](./cross-chain/) | USDT0 + LayerZero OFT, Circle CCTP, Axelar |
 | [Agentic Payments](./agentic-payments/) | x402, MPP, Stellar CLI for Agents |
 | [Privacy & ZK](./privacy-zk/) | Private payments, confidential tokens, ZK verifiers |
+| [Community Tools](./community-tools/) | SCF-funded dev tools: Rust helpers, resource reports, Solidity, Unity |
 | [Learning Resources](./learning/) | Tutorials, examples, interactive platforms |
 | [Building with AI](./building-with-ai/) | AI-powered development tools |
 | [Raven MCP](https://raven.stellar.org) | Hosted MCP server: Stellar docs + live ecosystem data for AI agents |
@@ -88,18 +89,20 @@ In addition to workshop materials, this repository includes reference guides on 
 - [Aquarius/AQUA](./defi/README.md#aquarius--aqua-network) - AMM and governance
 - [DeFindex](./defi/README.md#defindex) - Yield vaults
 - [Orbit CDP](./defi/README.md#orbit-cdp-protocol) - Stablecoins
+- [Trustless Work](./defi/README.md#trustless-work) - Escrow-as-a-Service
 
 ### Additional Topics
 
 - [Soroban Development](./soroban-development/) - Rust SDK, storage types, testing, common pitfalls
 - [Tokens](./tokens/) - Stellar Assets, SAC, custom Soroban tokens
 - [Oracles](./oracles/) - Reflector Network, DIA Oracle, RedStone
-- [Security](./security/) - Scout Soroban, Almanax, Certora Sunbeam, Soroban Security Portal, Audit Bank, best practices
+- [Security](./security/) - Scout Soroban, Almanax, Certora Sunbeam, Komet, Soroban Security Portal, Audit Bank, best practices
 - [Infrastructure](./infrastructure/) - Anchors, anchor tools, MoneyGram Ramps, SEPs, Disbursement Platform, Regional Starter Pack, explorers, network status
 - [Cross-Chain](./cross-chain/) - USDT0 over LayerZero, build your own OFT/OApp, Circle CCTP, Axelar GMP/ITS
-- [Agentic Payments](./agentic-payments/) - x402, MPP charge and session, [Stellar CLI for Agents](./agentic-payments/stellar-cli-for-agents.md)
-- [Privacy & ZK](./privacy-zk/) - Stellar Private Payments, Confidential Tokens, RISC Zero and UltraHonk verifiers, BN254 and Poseidon
+- [Agentic Payments](./agentic-payments/) - x402 (facilitators incl. Rail402), MPP charge and session, [Stellar CLI for Agents](./agentic-payments/stellar-cli-for-agents.md)
+- [Privacy & ZK](./privacy-zk/) - Stellar Private Payments, Confidential Tokens, RISC Zero and UltraHonk verifiers, BN254 and Poseidon, Moonlight
 - [Data Indexing](./indexers/) - Mercury, Goldsky, OBSRVR, Space and Time
+- [Community Tools](./community-tools/) - soroban-sdk-tools, Stellar Resource Usage, Transaction Visualizer, Solang, Unity kit, Tansu
 - [Learning Resources](./learning/) - Examples, interactive platforms, tutorials
 
 ### AI Tools & Skills

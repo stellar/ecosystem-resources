@@ -135,6 +135,20 @@ Want a ready-made Poseidon hash? Use [stellar/rs-soroban-poseidon](https://githu
 
 ---
 
+## Community Projects
+
+### Moonlight
+
+Moonlight is a privacy layer built on Soroban. It does not use ZK proofs. A **Privacy Channel** contract holds an asset and tracks balances as UTXOs. Off-chain **Privacy Providers** (for example, a wallet or a bank) submit the transactions. A **Quorum Auth** contract, run by a council multisig, lists the approved providers. Users pick a provider for each transaction.
+
+- **Contracts:** [Moonlight-Protocol/soroban-core](https://github.com/Moonlight-Protocol/soroban-core)
+- **Run it locally:** [Moonlight-Protocol/local-dev](https://github.com/Moonlight-Protocol/local-dev) (Docker)
+- **Docs:** [Moonlight docs](https://moonlight-10.gitbook.io/moonlight-docs)
+
+Check the audit status before you hold real assets.
+
+---
+
 ## Hackathon Project Ideas
 
 - Private payroll or grant payouts on top of SPP
