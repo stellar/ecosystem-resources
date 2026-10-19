@@ -85,6 +85,7 @@ In addition to workshop materials, this repository includes reference guides on 
 ### DeFi Protocols
 
 - [Blend Protocol](./defi/README.md#blend-protocol) - Lending/borrowing
+- [XOXNO Lending](./defi/README.md#xoxno-lending) - Lending/borrowing with TypeScript and Rust SDKs
 - [Soroswap](./defi/README.md#soroswap) - DEX and aggregator
 - [Aquarius/AQUA](./defi/README.md#aquarius--aqua-network) - AMM and governance
 - [DeFindex](./defi/README.md#defindex) - Yield vaults
