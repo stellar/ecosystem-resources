@@ -32,8 +32,11 @@ A money market on Soroban, live on mainnet. It uses a Hub and Spoke model: a hub
 | Feature | Details |
 |---------|---------|
 | **Docs** | [XOXNO Lending docs](https://xoxno.com/docs/stellar-lending/overview) |
+| **Integrator API** | REST, no API key: `https://api.xoxno.com` (mainnet), `https://testnet-api.xoxno.com` (testnet) · [Integrator API guide](https://xoxno.com/docs/stellar-lending/dev/integrator-api) · [Swagger UI](https://api.xoxno.com/) |
+| **Swap API** | Quotes and ready-to-sign XDR: `https://stellar-swap.xoxno.com` · [OpenAPI spec](https://stellar-swap.xoxno.com/api-docs/openapi.json) |
 | **TypeScript SDK** | `npm install @xoxno/sdk-js @stellar/stellar-sdk` · [App integration guide](https://xoxno.com/docs/stellar-lending/dev/wallet-integration) |
 | **Rust SDK** | `xoxno-contract-sdk` on [crates.io](https://crates.io/crates/xoxno-contract-sdk) · [Contract SDK guide](https://xoxno.com/docs/stellar-lending/dev/contract-sdk) |
+| **AI skill** | [xoxno-lending SKILL.md](https://github.com/XOXNO/rs-lending-xlm/blob/main/skills/xoxno-lending/SKILL.md) · [llms.txt](https://xoxno.com/llms.txt) |
 | **Contracts** | [XOXNO/rs-lending-xlm](https://github.com/XOXNO/rs-lending-xlm) (PolyForm Noncommercial license) |
 | **Use Case** | Lending, borrowing, leverage, flash loans |
 
@@ -42,6 +45,7 @@ A money market on Soroban, live on mainnet. It uses a Hub and Spoke model: a hub
 - Leverage (`multiply`), collateral and debt swaps, and flash loans
 - Migrate a position from Blend
 - `@xoxno/sdk-js/stellar-lending` builds unsigned transactions for any Stellar wallet; `/stellar-lending/read` reads markets, APYs, and positions from the XOXNO API
+- The Integrator API returns display-ready JSON for assets and positions. The full API also has hubs, spokes, reserves, liquidations, and history routes.
 - `xoxno-contract-sdk` calls the protocol from your Soroban contract. Its `testutils` feature deploys the full protocol in tests (`LendingFixture`).
 
 The protocol contracts use a noncommercial license: commercial use needs an agreement with XOXNO. The SDKs are MIT and ISC. No audit is listed yet. Check the audit status before you hold real assets.
@@ -207,6 +211,13 @@ import { createStellarLendingReadClient } from "@xoxno/sdk-js/stellar-lending/re
 const lending = createStellarLendingReadClient({ baseUrl: "https://api.xoxno.com" });
 const assets = await lending.assets({ usage: "collateral" });
 const positions = await lending.positions(owner);
+```
+
+Or call the Integrator API directly:
+
+```bash
+curl "https://api.xoxno.com/stellar-lending/v1/assets?usage=borrow"
+curl "https://api.xoxno.com/stellar-lending/v1/users/<G-or-C-address>/positions"
 ```
 
 ## Resources
