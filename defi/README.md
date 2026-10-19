@@ -208,6 +208,7 @@ const quote = await client.quote({
 // Example: Read collateral markets and a wallet's positions
 import { createStellarLendingReadClient } from "@xoxno/sdk-js/stellar-lending/read";
 
+const owner = "G..."; // the wallet's public key (G... or C... address)
 const lending = createStellarLendingReadClient({ baseUrl: "https://api.xoxno.com" });
 const assets = await lending.assets({ usage: "collateral" });
 const positions = await lending.positions(owner);
