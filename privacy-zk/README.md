@@ -9,7 +9,7 @@ Stellar is a public ledger: every transaction is visible. Payroll, institutional
 | Layer | What it gives you | Status |
 |-------|-------------------|--------|
 | [Privacy Pools / Stellar Private Payments](#stellar-private-payments-spp) | Hidden sender, receiver, and amount inside a shielded pool | Developer preview, testnet only, unaudited |
-| [Confidential Tokens](#confidential-tokens) | Hidden balances and amounts, visible addresses | Developer preview, unaudited |
+| [Confidential Tokens](#confidential-tokens) | Hidden balances and amounts, visible addresses | Released in OpenZeppelin v0.8.0 and audited; proofs not yet zero-knowledge |
 | [On-chain ZK verifiers](#on-chain-zk-verifiers) | Verify RISC Zero (Groth16) and UltraHonk (Noir) proofs in a contract | Open source, deployable |
 | [ZK host functions](#zk-host-functions) | BLS12-381, BN254, Poseidon/Poseidon2 inside Soroban | Live on mainnet (Protocols 22, 25, 26) |
 
@@ -20,7 +20,7 @@ Stellar is a public ledger: every transaction is visible. Payroll, institutional
 - You need compliance hooks (allow/deny lists through an Association Set Provider)
 
 **Use Confidential Tokens if:**
-- The parties are known, but amounts and balances must stay private
+- The parties are known, and you want to hide amounts and balances. Proofs are not yet zero-knowledge, so read the [warning](#confidential-tokens) before you rely on that privacy
 
 **Use a ZK verifier if:**
 - You want to prove an off-chain computation (in Rust or Noir) and check it on-chain
@@ -28,7 +28,7 @@ Stellar is a public ledger: every transaction is visible. Payroll, institutional
 **Use the host functions directly if:**
 - You are writing your own verifier, Merkle tree, commitment scheme, or nullifier logic
 
-> **Hackathon tip:** The privacy previews are testnet-only and unaudited. Demo on testnet and say so in your pitch. Do not hold real assets in them.
+> **Hackathon tip:** Stellar Private Payments is a testnet-only, unaudited preview, and Confidential Token proofs are not yet zero-knowledge. Demo on testnet and say so in your pitch. Do not hold real assets in them.
 
 ---
 
@@ -63,12 +63,16 @@ Proofs are generated in the browser with WebAssembly. User secrets never leave t
 
 Confidential Tokens hide balances and transfer amounts. Sender and receiver addresses stay public, so the flow stays auditable.
 
-The [Confidential Token Association](https://www.confidentialtoken.org) (members include SDF, Nethermind, OpenZeppelin, and Zama) is developing an open standard for encryption-based confidentiality that works with existing token interfaces. The Stellar implementation is in progress.
+The [Confidential Token Association](https://www.confidentialtoken.org) (members include SDF, Nethermind, OpenZeppelin, and Zama) is developing an open standard for encryption-based confidentiality that works with existing token interfaces. OpenZeppelin's implementation for Stellar shipped in [`stellar-contracts` v0.8.0](https://github.com/OpenZeppelin/stellar-contracts/releases/tag/v0.8.0) as the `stellar-confidential` crate.
+
+> **Warning:** OpenZeppelin's [v0.8.0 audit](https://github.com/OpenZeppelin/stellar-contracts/blob/v0.8.0/audits/Stellar%20Contracts%20Library%20v0.8.0%20Audit.pdf) covers the contracts and circuits. The verifier accepts only non-zero-knowledge UltraHonk proofs, so proofs do not guarantee that balances and amounts stay private. Zero-knowledge verification is in progress. Read the [zero-knowledge setting](https://github.com/OpenZeppelin/stellar-contracts/blob/v0.8.0/packages/confidential/README.md#zero-knowledge-setting) notes before you use real assets.
 
 | Resource | Link |
 |----------|------|
-| **OpenZeppelin implementation** | [stellar-contracts/packages/confidential](https://github.com/OpenZeppelin/stellar-contracts/tree/main/packages/confidential) |
-| **Demo** | [Live demo](https://stellar-confidential-token-demo.billowing-moon-0c6f.workers.dev/) · [source](https://github.com/brozorec/stellar-confidential-token-demo) |
+| **OpenZeppelin implementation** | [packages/confidential](https://github.com/OpenZeppelin/stellar-contracts/tree/v0.8.0/packages/confidential) · [crates.io](https://crates.io/crates/stellar-confidential/0.8.0) |
+| **Docs** | [OpenZeppelin Confidential Token docs](https://docs.openzeppelin.com/stellar-contracts/tokens/confidential/confidential) |
+| **Testnet deployment guide** | [examples/confidential](https://github.com/OpenZeppelin/stellar-contracts/tree/v0.8.0/examples/confidential) |
+| **Demo** (built on the earlier developer preview) | [Live demo](https://stellar-confidential-token-demo.billowing-moon-0c6f.workers.dev/) · [source](https://github.com/brozorec/stellar-confidential-token-demo) |
 | **Blog** | [Developer Preview: Confidential Tokens on Stellar](https://stellar.org/blog/developers/developer-preview-confidential-tokens-on-stellar) |
 | **Stream** | [Developer Preview with OpenZeppelin](https://youtu.be/nfbr3KuYqPE) |
 | **Talk** | [Confidential Tokens at Meridian 2025](https://www.youtube.com/watch?v=6NnDqVQYOHM) |
@@ -92,6 +96,8 @@ Write the program in plain Rust, run it in the RISC Zero zkVM, and verify the Gr
 ### UltraHonk Verifier (Noir)
 
 Verifies circuits written in Aztec's Noir language with the Barretenberg backend.
+
+> **Warning:** The Nethermind verifier accepts only non-ZK UltraHonk proofs. Its [README](https://github.com/NethermindEth/rs-soroban-ultrahonk/tree/main/crates/ultrahonk-soroban-verifier) says a proof gives no witness-hiding guarantee, so a private circuit input is not secret. Do not use it for privacy-sensitive circuits until ZK verification ships ([PR #38](https://github.com/NethermindEth/rs-soroban-ultrahonk/pull/38)). For hidden inputs today, use a Groth16 stack such as Circom.
 
 - [NethermindEth/rs-soroban-ultrahonk](https://github.com/NethermindEth/rs-soroban-ultrahonk)
 - [indextree/ultrahonk_soroban_contract](https://github.com/indextree/ultrahonk_soroban_contract)
