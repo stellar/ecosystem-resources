@@ -20,7 +20,7 @@ Stellar is a public ledger: every transaction is visible. Payroll, institutional
 - You need compliance hooks (allow/deny lists through an Association Set Provider)
 
 **Use Confidential Tokens if:**
-- The parties are known, but amounts and balances must stay private
+- The parties are known, and you want to hide amounts and balances. Proofs are not yet zero-knowledge, so read the [warning](#confidential-tokens) before you rely on that privacy
 
 **Use a ZK verifier if:**
 - You want to prove an off-chain computation (in Rust or Noir) and check it on-chain
@@ -69,7 +69,7 @@ The [Confidential Token Association](https://www.confidentialtoken.org) (members
 
 | Resource | Link |
 |----------|------|
-| **OpenZeppelin implementation** | [packages/confidential](https://github.com/OpenZeppelin/stellar-contracts/tree/v0.8.0/packages/confidential) · [crates.io](https://crates.io/crates/stellar-confidential) |
+| **OpenZeppelin implementation** | [packages/confidential](https://github.com/OpenZeppelin/stellar-contracts/tree/v0.8.0/packages/confidential) · [crates.io](https://crates.io/crates/stellar-confidential/0.8.0) |
 | **Docs** | [OpenZeppelin Confidential Token docs](https://docs.openzeppelin.com/stellar-contracts/tokens/confidential/confidential) |
 | **Testnet deployment guide** | [examples/confidential](https://github.com/OpenZeppelin/stellar-contracts/tree/v0.8.0/examples/confidential) |
 | **Demo** (built on the earlier developer preview) | [Live demo](https://stellar-confidential-token-demo.billowing-moon-0c6f.workers.dev/) · [source](https://github.com/brozorec/stellar-confidential-token-demo) |
