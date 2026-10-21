@@ -25,7 +25,7 @@ stellar-governance = "=0.7.3"
 stellar-fee-abstraction = "=0.7.3"
 ```
 
-> **Security:** 0.7.3 fixes [GHSA-jpg9-m7w4-c7wc](https://github.com/OpenZeppelin/stellar-contracts/security/advisories/GHSA-jpg9-m7w4-c7wc) in `stellar-accounts`. Do not pin 0.7.2 or older. v0.8.0 is also out, but it has breaking changes, and the examples on this page and the Contract Wizard still use the 0.7 API.
+> **Security:** 0.7.3 fixes [GHSA-jpg9-m7w4-c7wc](https://github.com/OpenZeppelin/stellar-contracts/security/advisories/GHSA-jpg9-m7w4-c7wc) in `stellar-accounts`. Do not pin 0.7.2 or older. A new pin protects only new or upgraded contracts: if you deployed a smart account with 0.7.2 or older, upgrade or redeploy it. An account is protected only when the accounts it delegates to are also upgraded. v0.8.0 is also out, but it has breaking changes, and the examples on this page and the Contract Wizard still use the 0.7 API.
 
 ## Repository Structure
 

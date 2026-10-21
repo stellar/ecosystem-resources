@@ -56,7 +56,7 @@ Use [OpenZeppelin Monitor](./monitor.md) to track contract events and transactio
 ### Advanced Tokens
 - **RWA Token** (ERC-3643 style) - Real-world asset tokenization with compliance
 - **Token Vault** (SEP-56 compatible) - Yield-bearing vault shares
-- **Confidential Token** (v0.8.0+) - Private balances and amounts. See [Privacy & ZK](../privacy-zk/README.md#confidential-tokens)
+- **Confidential Token** (v0.8.0+) - Hidden balances and amounts. Proofs are not yet zero-knowledge, so privacy is not guaranteed. Read the warning in [Privacy & ZK](../privacy-zk/README.md#confidential-tokens) first
 
 ### Infrastructure
 - **Smart Accounts** - Programmable wallets with policies
