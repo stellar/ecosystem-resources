@@ -16,14 +16,16 @@ Add to your `Cargo.toml`:
 ```toml
 # Pin the audited crates.io releases (git deps track unaudited main)
 [dependencies]
-stellar-tokens = "=0.7.2"
-stellar-macros = "=0.7.2"
-stellar-access = "=0.7.2"
-stellar-accounts = "=0.7.2"
-stellar-contract-utils = "=0.7.2"
-stellar-governance = "=0.7.2"
-stellar-fee-abstraction = "=0.7.2"
+stellar-tokens = "=0.7.3"
+stellar-macros = "=0.7.3"
+stellar-access = "=0.7.3"
+stellar-accounts = "=0.7.3"
+stellar-contract-utils = "=0.7.3"
+stellar-governance = "=0.7.3"
+stellar-fee-abstraction = "=0.7.3"
 ```
+
+> **Security:** 0.7.3 fixes [GHSA-jpg9-m7w4-c7wc](https://github.com/OpenZeppelin/stellar-contracts/security/advisories/GHSA-jpg9-m7w4-c7wc) in `stellar-accounts`. Do not pin 0.7.2 or older. v0.8.0 is also out, but it has breaking changes, and the examples on this page and the Contract Wizard still use the 0.7 API.
 
 ## Repository Structure
 
@@ -34,11 +36,12 @@ stellar-contracts/
 └── packages/
     ├── access/       # Access control (ownable, roles)
     ├── accounts/     # Smart account framework
+    ├── confidential/ # Confidential token (v0.8.0+)
     ├── contract-utils/   # Pausable, upgradeable, math, merkle distributor
     ├── fee-abstraction/  # Fee abstraction utilities
     ├── governance/   # Governor, timelock, votes
     ├── macros/       # Stellar contract macros
-    ├── tokens/       # Fungible, NFT, RWA, vault, confidential
+    ├── tokens/       # Fungible, NFT, RWA, vault
     └── zk-email/     # zk-email verification
 ```
 
@@ -259,7 +262,7 @@ On-chain governance shipped as the `stellar-governance` crate: Governor, Timeloc
 
 ## Audits
 
-The library is audited; reports for each release (through v0.7.x) are available in the [audits/ directory](https://github.com/OpenZeppelin/stellar-contracts/tree/main/audits).
+The library is audited; reports for each release (through v0.8.0) are available in the [audits/ directory](https://github.com/OpenZeppelin/stellar-contracts/tree/main/audits).
 
 ## Resources
 

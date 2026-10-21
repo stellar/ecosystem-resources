@@ -34,8 +34,8 @@ Visit [Contract Wizard](https://wizard.openzeppelin.com/stellar) to generate a f
 ```toml
 # Cargo.toml — pin the audited crates.io releases (git deps track unaudited main)
 [dependencies]
-stellar-tokens = "=0.7.2"
-stellar-macros = "=0.7.2"
+stellar-tokens = "=0.7.3"
+stellar-macros = "=0.7.3"
 ```
 
 ### 3. Deploy with Gasless Transactions
@@ -56,6 +56,7 @@ Use [OpenZeppelin Monitor](./monitor.md) to track contract events and transactio
 ### Advanced Tokens
 - **RWA Token** (ERC-3643 style) - Real-world asset tokenization with compliance
 - **Token Vault** (SEP-56 compatible) - Yield-bearing vault shares
+- **Confidential Token** (v0.8.0+) - Private balances and amounts. See [Privacy & ZK](../privacy-zk/README.md#confidential-tokens)
 
 ### Infrastructure
 - **Smart Accounts** - Programmable wallets with policies
