@@ -7,6 +7,7 @@
 | Item | Link |
 |------|------|
 | Raven — Stellar MCP Server | [raven.stellar.org](https://raven.stellar.org) |
+| Stellar Docs MCP Server | [developers.stellar.org/mcp](https://developers.stellar.org/docs/build/building-with-ai#stellar-docs-mcp-server) |
 | Stellar AI Guide (regional monorepo) | [kaankacar/stellar-ai-guide](https://github.com/kaankacar/stellar-ai-guide) |
 | Stellar Skills Marketplace | [skills.stellar.org](https://skills.stellar.org/) |
 | Stellar Dev Skill | [stellar/stellar-dev-skill](https://github.com/stellar/stellar-dev-skill) |
@@ -39,7 +40,26 @@ claude mcp add --transport http stellar-raven "https://raven.stellar.org/mcp"
 
 > **Playground:** [raven.stellar.org/playground](https://raven.stellar.org/playground) (sign-in required) exists to *demo* what Raven can do — use it to see how it works, not as your development workflow. When building, connect the remote MCP server to your agent directly.
 
-Raven is a live hosted server — it complements (rather than replaces) the static `llms.txt` file and the installable Stellar Skills below; the three work well together.
+Raven is a live hosted server — it complements (rather than replaces) the static `llms.txt` file and the installable Stellar Skills below. If you only need the documentation, use the lighter Stellar Docs MCP server instead. All of these work well together.
+
+### Stellar Docs MCP Server
+
+The official MCP server for the Stellar documentation site. Your agent can search the docs, read full pages and OpenAPI specs, load Stellar skill guides (in clients that support MCP resources), and report pages that are wrong or out of date to the docs team. It needs no sign-in, is read-only apart from feedback, and serves the same published content as the docs site.
+
+Use it when you want answers grounded in the official docs and nothing else. Use Raven when you also want live ecosystem data.
+
+- **Server:** `https://developers.stellar.org/mcp`
+- **Docs:** [developers.stellar.org/docs/build/building-with-ai#stellar-docs-mcp-server](https://developers.stellar.org/docs/build/building-with-ai#stellar-docs-mcp-server) — connection instructions for Claude Code, Codex, VS Code, Cursor, Claude desktop, and other MCP clients
+
+**Connecting from Claude Code:**
+```bash
+claude mcp add --transport http --scope user stellar-docs "https://developers.stellar.org/mcp"
+# then run /mcp to confirm it is connected
+```
+
+`--scope user` makes the server available in every project. Leave it off to add it to the current project only. On any docs page, the page menu also offers **Copy MCP server URL**, **Connect to Cursor**, and **Connect to VS Code**.
+
+The server describes itself: once connected, your client lists the current tools and resources. Ask your agent "What tools does the Stellar Docs MCP give you?" to see the current set.
 
 ### llms.txt — Machine-Readable Stellar Docs
 
@@ -233,6 +253,7 @@ The country-agnostic AI setup, prompt templates, and Soroban debugging material 
 
 **Stellar-native AI tools:**
 - [Raven — Stellar MCP Server for AI Agents](https://raven.stellar.org)
+- [Stellar Docs MCP Server](https://developers.stellar.org/docs/build/building-with-ai#stellar-docs-mcp-server)
 - [llms.txt — Machine-Readable Stellar Docs](https://developers.stellar.org/llms.txt)
 - [Stellar Skills Marketplace](https://skills.stellar.org/)
 - [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill)

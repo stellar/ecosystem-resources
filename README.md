@@ -33,7 +33,7 @@ Install these before a hackathon. Everything here is documented at [developers.s
 | **Wallets** | Stellar Wallets Kit, Freighter, passkey smart accounts | [Wallet Integration](./wallet-integration/) |
 | **Stellar RPC** | Balances, history, events, and simulation (Horizon is legacy) | [RPC providers](https://developers.stellar.org/docs/data/apis/rpc/providers) |
 | **soroban-examples** | Official reference contracts to copy from | [stellar/soroban-examples](https://github.com/stellar/soroban-examples) |
-| **AI context** | Raven MCP, Stellar Skills, `llms.txt` | [Building with AI](./building-with-ai/) |
+| **AI context** | Raven MCP, Stellar Docs MCP, Stellar Skills, `llms.txt` | [Building with AI](./building-with-ai/) |
 
 **Integrate before you invent:** [OpenZeppelin Stellar Contracts](./openzeppelin/), [passkey smart accounts](./wallet-integration/smart-account-kit.md), [OpenZeppelin Relayer](./openzeppelin/relayer.md) for fee-sponsored transactions, and [Reflector oracles](./oracles/) for SEP-40 price feeds.
 
@@ -63,6 +63,7 @@ In addition to workshop materials, this repository includes reference guides on 
 | [Learning Resources](./learning/) | Tutorials, examples, interactive platforms |
 | [Building with AI](./building-with-ai/) | AI-powered development tools |
 | [Raven MCP](https://raven.stellar.org) | Hosted MCP server: Stellar docs + live ecosystem data for AI agents |
+| [Stellar Docs MCP](https://developers.stellar.org/docs/build/building-with-ai#stellar-docs-mcp-server) | Official, no-sign-in MCP server for searching and reading the Stellar docs |
 | [Stellar Skills Marketplace](https://skills.stellar.org/) | Browse all Stellar agent skills |
 | [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill) | AI skill for modern Stellar development |
 | [Stellar AI Guide](https://github.com/kaankacar/stellar-ai-guide) | Regional AI developer guides: free AI setup, recommended AI tools, starter prompts, per-country anchors and rails |
@@ -110,6 +111,7 @@ In addition to workshop materials, this repository includes reference guides on 
 ### AI Tools & Skills
 
 - [Raven MCP](https://raven.stellar.org) - The official hosted MCP server for the Stellar ecosystem. Exposes `search` (Stellar docs + ecosystem discovery) and `execute` (queries against live ecosystem data) to any AI agent. Connect it directly: `claude mcp add --transport http stellar-raven "https://raven.stellar.org/mcp"`. Replaces the retired Stella assistant. See [Building with AI](./building-with-ai/README.md#raven--stellar-mcp-server-for-ai-agents).
+- [Stellar Docs MCP Server](./building-with-ai/README.md#stellar-docs-mcp-server) - Official, no-sign-in MCP server for searching and reading the Stellar docs. Use it when you want answers from the official docs only: `claude mcp add --transport http --scope user stellar-docs "https://developers.stellar.org/mcp"`.
 - [llms.txt](https://developers.stellar.org/llms.txt) - Machine-readable map of the Stellar docs. Paste it into any AI tool.
 - [Stellar CLI for Agents](./agentic-payments/stellar-cli-for-agents.md) - Give your agent a wallet: balances, transfers, on-chain allowances, and human-approved drafts with the Stellar CLI.
 - [Stellar Skills Marketplace](https://skills.stellar.org/) - Official marketplace for browsing Stellar agent skills: Soroban, wallets, assets, RPC, agent payments (x402 + MPP), ZK proofs, cross-chain, plus community skills (OpenZeppelin, DeFindex, Soroswap, SODAX, Trustless Work, Stellar Registry, Scopuly, Caatinga, and more).
