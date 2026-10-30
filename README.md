@@ -30,7 +30,7 @@ Install these before a hackathon. Everything here is documented at [developers.s
 | **Quickstart** (Docker) | A local Stellar network with RPC, Horizon, and a faucet | [Quickstart](https://developers.stellar.org/docs/tools/quickstart) |
 | **Stellar Lab** | Build, sign, simulate, and submit transactions; inspect XDR | [lab.stellar.org](https://lab.stellar.org) |
 | **Client SDKs** | Build and submit transactions from your app (JavaScript, Python, Go, and more) | [Client SDKs](https://developers.stellar.org/docs/tools/sdks/client-sdks) |
-| **Wallets** | Stellar Wallets Kit, Freighter, passkey smart accounts | [Wallet Integration](./wallet-integration/) |
+| **Wallets** | Stellar Wallets Kit, Varial, passkey smart accounts | [Wallet Integration](./wallet-integration/) |
 | **Stellar RPC** | Balances, history, events, and simulation (Horizon is legacy) | [RPC providers](https://developers.stellar.org/docs/data/apis/rpc/providers) |
 | **soroban-examples** | Official reference contracts to copy from | [stellar/soroban-examples](https://github.com/stellar/soroban-examples) |
 | **AI context** | Raven MCP, Stellar Docs MCP, Stellar Skills, `llms.txt` | [Building with AI](./building-with-ai/) |
@@ -48,7 +48,7 @@ In addition to workshop materials, this repository includes reference guides on 
 | Topic | Description |
 |-------|-------------|
 | [Soroban Development](./soroban-development/) | Smart contract development with Rust SDK |
-| [Wallet Integration](./wallet-integration/) | Freighter, Stellar Wallets Kit, Smart Account Kit |
+| [Wallet Integration](./wallet-integration/) | Varial, Stellar Wallets Kit, Smart Account Kit |
 | [OpenZeppelin Tools](./openzeppelin/) | Audited contracts, Contract Wizard, Relayer, Monitor |
 | [DeFi Protocols](./defi/) | Lending, DEXs, vaults, stablecoins, and escrow |
 | [Tokens](./tokens/) | Stellar Assets vs Soroban Tokens |
@@ -71,7 +71,7 @@ In addition to workshop materials, this repository includes reference guides on 
 ### Wallet Integration
 
 - [Overview & Comparison](./wallet-integration/README.md)
-- [Freighter](./wallet-integration/freighter.md) - Browser extension wallet
+- [Varial](./wallet-integration/freighter.md) (formerly Freighter) - Browser extension wallet
 - [Stellar Wallets Kit](./wallet-integration/stellar-wallets-kit.md) - Multi-wallet SDK
 - [Smart Account Kit](./wallet-integration/smart-account-kit.md) - Passkey-based smart wallets
 

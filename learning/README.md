@@ -124,7 +124,7 @@ Simple NFT implementation using OpenZeppelin contracts.
 | Guide | URL |
 |-------|-----|
 | **Build Apps Overview** | [developers.stellar.org/docs/build/apps](https://developers.stellar.org/docs/build/apps) |
-| **Freighter Integration** | [developers.stellar.org/docs/build/guides/freighter](https://developers.stellar.org/docs/build/guides/freighter) |
+| **Varial Integration** | [developers.stellar.org/docs/build/guides/freighter](https://developers.stellar.org/docs/build/guides/freighter) |
 | **Passkey Prerequisites** | [developers.stellar.org/docs/build/apps/guestbook/passkeys-prerequisites](https://developers.stellar.org/docs/build/apps/guestbook/passkeys-prerequisites) |
 
 ## Video Content

@@ -4,13 +4,13 @@ A detailed comparison of wallet integration approaches for Stellar.
 
 ## Feature Comparison
 
-| Feature | Freighter | Stellar Wallets Kit | Smart Account Kit |
+| Feature | Varial | Stellar Wallets Kit | Smart Account Kit |
 |---------|-----------|---------------------|-------------------|
 | **Installation Required** | Browser extension or mobile app | None (library only) | None |
 | **User Authentication** | Extension popup | Wallet-specific | Passkey (biometric) |
-| **Mobile Support** | Yes (Freighter Mobile app, via WalletConnect) | Partial (LOBSTR, WalletConnect) | Yes |
+| **Mobile Support** | Yes (Varial Mobile app, via WalletConnect) | Partial (LOBSTR, WalletConnect) | Yes |
 | **Gasless Transactions** | No | No | Yes (via Relayer) |
-| **Multi-wallet Support** | Freighter only | 15+ wallets | Smart wallets only |
+| **Multi-wallet Support** | Varial only | 15+ wallets | Smart wallets only |
 | **Hardware Wallets** | Ledger | Ledger, Trezor | No |
 | **Smart Wallet Features** | No | No | Yes (multisig, policies) |
 | **Setup Complexity** | Low | Medium | Medium |
@@ -18,11 +18,11 @@ A detailed comparison of wallet integration approaches for Stellar.
 
 ## Integration Complexity
 
-### Freighter
+### Varial
 ```
 Complexity: ⭐ Low
 Lines of code: ~30
-Dependencies: 1 (@stellar/freighter-api)
+Dependencies: 1 (@stellar/varial-sdk)
 ```
 
 ### Stellar Wallets Kit
@@ -43,7 +43,7 @@ Dependencies: 1 (smart-account-kit) + Relayer setup
 
 ### New User Onboarding
 
-| Step | Freighter | Stellar Wallets Kit | Smart Account Kit |
+| Step | Varial | Stellar Wallets Kit | Smart Account Kit |
 |------|-----------|---------------------|-------------------|
 | 1 | Install extension | Install extension OR use web wallet | Click "Sign Up" |
 | 2 | Create new wallet | Create new wallet | Scan fingerprint/face |
@@ -55,7 +55,7 @@ Dependencies: 1 (smart-account-kit) + Relayer setup
 
 ### Returning User Login
 
-| Step | Freighter | Stellar Wallets Kit | Smart Account Kit |
+| Step | Varial | Stellar Wallets Kit | Smart Account Kit |
 |------|-----------|---------------------|-------------------|
 | 1 | Click "Connect" | Click "Connect" | Click "Sign In" |
 | 2 | Approve in extension | Select wallet | Scan fingerprint/face |
@@ -65,9 +65,9 @@ Dependencies: 1 (smart-account-kit) + Relayer setup
 
 ## Transaction Flow
 
-### Freighter
+### Varial
 ```
-User → Dapp → Freighter popup → User approves → Submit to network → User pays fee
+User → Dapp → Varial popup → User approves → Submit to network → User pays fee
 ```
 
 ### Stellar Wallets Kit
@@ -84,14 +84,14 @@ User → Dapp → Passkey prompt → Submit to Relayer → Relayer pays fee
 
 | Approach | User Pays Fees | Developer Pays Fees |
 |----------|---------------|---------------------|
-| Freighter | Yes | No |
+| Varial | Yes | No |
 | Stellar Wallets Kit | Yes | No |
 | Smart Account Kit | Optional | Optional (when a relayer is configured) |
 
 ## Use Case Recommendations
 
 ### DeFi Application
-**Recommended:** Stellar Wallets Kit or Freighter
+**Recommended:** Stellar Wallets Kit or Varial
 - Users likely already have wallets
 - Need hardware wallet support for security
 - Users expect to pay their own fees
@@ -103,8 +103,8 @@ User → Dapp → Passkey prompt → Submit to Relayer → Relayer pays fee
 - Gasless transactions reduce friction
 
 ### Developer Tools / Dashboard
-**Recommended:** Freighter
-- Developers have Freighter installed
+**Recommended:** Varial
+- Developers have Varial installed
 - Simple integration
 - No need for multi-wallet support
 
@@ -122,10 +122,10 @@ User → Dapp → Passkey prompt → Submit to Relayer → Relayer pays fee
 
 ## Migration Paths
 
-### From Freighter to Stellar Wallets Kit
-Easy - Stellar Wallets Kit includes Freighter support. Existing Freighter users can continue using their wallet.
+### From Varial to Stellar Wallets Kit
+Easy - Stellar Wallets Kit includes Varial support. Existing Varial users can continue using their wallet.
 
-### From Freighter to Smart Account Kit
+### From Varial to Smart Account Kit
 Requires users to create new smart wallets. Consider:
 - Running both in parallel during transition
 - Providing migration assistance
@@ -147,7 +147,7 @@ Are your users crypto-native?
   │           │
   │           └─ No → Is simplicity most important?
   │                     │
-  │                     ├─ Yes → Freighter
+  │                     ├─ Yes → Varial
   │                     │
   │                     └─ No → Stellar Wallets Kit
   │
@@ -166,6 +166,6 @@ Are your users crypto-native?
 
 | Approach | Best For | Avoid When |
 |----------|----------|------------|
-| **Freighter** | Quick prototypes, developer tools | Broad multi-wallet user base |
+| **Varial** | Quick prototypes, developer tools | Broad multi-wallet user base |
 | **Stellar Wallets Kit** | DeFi, existing crypto users | Non-crypto users, mobile-first |
 | **Smart Account Kit** | Consumer apps, best UX | Hardware wallet requirement |
