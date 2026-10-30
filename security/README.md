@@ -194,6 +194,7 @@ pub fn withdraw(e: &Env, user: Address, amount: i128) {
 - [ ] Events emitted for important actions
 - [ ] Upgrade mechanism is secure (if applicable)
 - [ ] Tested on testnet extensively
+- [ ] Built with `stellar contract build` and source verified ([Contract Verification](../verification/))
 
 ### For High-Value Contracts
 
@@ -224,3 +225,4 @@ pub fn withdraw(e: &Env, user: Address, amount: i128) {
 - [Almanax](https://www.almanax.ai)
 - [Certora Sunbeam](https://docs.certora.com/en/latest/docs/sunbeam/index.html)
 - [Soroban Security Portal](https://sorobansecurity.com)
+- [Contract Verification](../verification/) - prove a deployed contract was built from its published source

@@ -55,6 +55,7 @@ In addition to workshop materials, this repository includes reference guides on 
 | [Data Indexing](./indexers/) | Indexing providers and solutions |
 | [Oracles](./oracles/) | Price feeds and external data |
 | [Security](./security/) | Security tools and best practices |
+| [Contract Verification](./verification/) | Prove a deployed contract matches its source, and read verification results |
 | [Infrastructure](./infrastructure/) | Anchors, SEPs, disbursements, explorers, network status |
 | [Cross-Chain](./cross-chain/) | USDT0 + LayerZero OFT, Circle CCTP, Axelar |
 | [Agentic Payments](./agentic-payments/) | x402, MPP, Stellar CLI for Agents |
@@ -100,6 +101,7 @@ In addition to workshop materials, this repository includes reference guides on 
 - [Tokens](./tokens/) - Stellar Assets, SAC, custom Soroban tokens
 - [Oracles](./oracles/) - Reflector Network, DIA Oracle, RedStone, Chainlink
 - [Security](./security/) - Scout Soroban, Almanax, Certora Sunbeam, Komet, Soroban Security Portal, Audit Bank, best practices
+- [Contract Verification](./verification/) - Soroban Verifier, reading results by contract or Wasm hash, SEP-58
 - [Infrastructure](./infrastructure/) - Anchors, anchor tools, MoneyGram Ramps, SEPs, Disbursement Platform, Regional Starter Pack, explorers, network status
 - [Cross-Chain](./cross-chain/) - USDT0 over LayerZero, build your own OFT/OApp, Circle CCTP, Axelar GMP/ITS
 - [Agentic Payments](./agentic-payments/) - x402 (facilitators incl. Rail402), MPP charge and session, [Stellar CLI for Agents](./agentic-payments/stellar-cli-for-agents.md)
