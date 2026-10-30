@@ -138,7 +138,7 @@ Call `GET <facilitator-url>/supported` to check that an operator serves your net
 - **Docs:** [developers.stellar.org/docs/build/agentic-payments/x402](https://developers.stellar.org/docs/build/agentic-payments/x402)
 - **Official monorepo:** [stellar/x402-stellar](https://github.com/stellar/x402-stellar)
 - **Community demo:** [jamesbachini/x402-Stellar-Demo](https://github.com/jamesbachini/x402-Stellar-Demo)
-- **Supported wallets:** Freighter, Albedo, Hana, HOT, Klever, OneKey, [Scopuly](https://extension.scopuly.com/)
+- **Supported wallets:** Varial (extension, and Mobile through WalletConnect), Albedo, Hana, HOT, Klever, OneKey, [Scopuly](https://extension.scopuly.com/)
 
 ### Stellar CLI for Agents
 
@@ -175,7 +175,7 @@ An AI skill that gives assistants deep, current knowledge of the Stellar develop
 - Client SDKs: stellar-sdk (JavaScript), Python, Go, Rust
 - Stellar RPC (preferred) and Horizon (legacy)
 - Stellar Assets, SAC, trustlines
-- Wallets: Freighter, Stellar Wallets Kit, Smart Accounts
+- Wallets: Varial, Stellar Wallets Kit, Smart Accounts
 - Agent payments: x402 and the Machine Payments Protocol (MPP)
 - ZK proofs, security patterns, common pitfalls
 - Cross-chain: Circle CCTP, Axelar GMP/ITS, and LayerZero OApp/OFT — including USDT0, native USDT on Stellar

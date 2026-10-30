@@ -1,36 +1,38 @@
-# Freighter Wallet Integration
+# Varial Wallet Integration
 
-Freighter is SDF's official browser extension and mobile wallet for Stellar. It's the simplest way to add wallet connectivity to your dapp.
+Varial (formerly Freighter) is SDF's official browser extension and mobile wallet for Stellar. It's the simplest way to add wallet connectivity to your dapp.
 
 ## Overview
 
 - **Type:** Browser extension wallet + mobile app
-- **Platforms:** Chrome, Firefox, Brave (extension); iOS, Android (Freighter Mobile, connects to dapps via WalletConnect)
+- **Platforms:** Chrome, Firefox, Brave (extension); iOS, Android (Varial Mobile, connects to dapps via WalletConnect)
 - **Best for:** Quick integration, developer-focused apps
-- **Website:** [freighter.app](https://freighter.app)
+- **Website:** [varialwallet.com](https://varialwallet.com)
 
 ## Installation
 
 ### Install the SDK
 
 ```bash
-npm install @stellar/freighter-api
+npm install @stellar/varial-sdk
 ```
 
-### Check if Freighter is Installed
+> **Renamed:** `@stellar/varial-sdk` is the new name of `@stellar/freighter-api`. Dapps already using `@stellar/freighter-api` keep working, but new methods ship only in `@stellar/varial-sdk`.
+
+### Check if Varial is Installed
 
 ```typescript
-import { isConnected } from "@stellar/freighter-api";
+import { isConnected } from "@stellar/varial-sdk";
 
-const checkFreighter = async () => {
-  // All freighter-api calls return objects, not bare values
+const checkVarial = async () => {
+  // All varial-sdk calls return objects, not bare values
   const conn = await isConnected();
   if (conn.isConnected) {
-    console.log("Freighter is installed and connected");
+    console.log("Varial is installed and connected");
   } else {
-    console.log("Freighter is not installed");
+    console.log("Varial is not installed");
     // Optionally redirect to install page
-    window.open("https://freighter.app", "_blank");
+    window.open("https://varialwallet.com", "_blank");
   }
 };
 ```
@@ -40,10 +42,10 @@ const checkFreighter = async () => {
 ### Connect and Get Address
 
 ```typescript
-import { requestAccess } from "@stellar/freighter-api";
+import { requestAccess } from "@stellar/varial-sdk";
 
 const connectWallet = async () => {
-  // Request access to Freighter — returns the address directly
+  // Request access to Varial — returns the address directly
   const { address, error } = await requestAccess();
   if (error) {
     console.error("Failed to connect:", error);
@@ -54,12 +56,12 @@ const connectWallet = async () => {
 };
 ```
 
-> **Note:** `getPublicKey()` was removed from freighter-api. Use `requestAccess()` (prompts the user) or `getAddress()` (silent, empty string if not authorized).
+> **Note:** `getPublicKey()` was removed from the SDK. Use `requestAccess()` (prompts the user) or `getAddress()` (silent, empty string if not authorized).
 
 ### Get Network Information
 
 ```typescript
-import { getNetwork } from "@stellar/freighter-api";
+import { getNetwork } from "@stellar/varial-sdk";
 
 const checkNetwork = async () => {
   const { network, networkPassphrase } = await getNetwork();
@@ -70,7 +72,7 @@ const checkNetwork = async () => {
 ### Sign a Transaction
 
 ```typescript
-import { signTransaction } from "@stellar/freighter-api";
+import { signTransaction } from "@stellar/varial-sdk";
 import * as StellarSdk from "@stellar/stellar-sdk";
 
 const signAndSubmit = async (transaction: StellarSdk.Transaction) => {
@@ -78,7 +80,7 @@ const signAndSubmit = async (transaction: StellarSdk.Transaction) => {
     // Convert transaction to XDR
     const xdr = transaction.toXDR();
 
-    // Sign with Freighter — returns an object, not a bare XDR string
+    // Sign with Varial — returns an object, not a bare XDR string
     const { signedTxXdr, error } = await signTransaction(xdr, {
       network: "TESTNET", // or "PUBLIC"
       networkPassphrase: StellarSdk.Networks.TESTNET,
@@ -108,7 +110,7 @@ const signAndSubmit = async (transaction: StellarSdk.Transaction) => {
 
 ```tsx
 import React, { useState } from "react";
-import { isConnected, requestAccess } from "@stellar/freighter-api";
+import { isConnected, requestAccess } from "@stellar/varial-sdk";
 
 export function ConnectWalletButton() {
   const [publicKey, setPublicKey] = useState<string | null>(null);
@@ -119,8 +121,8 @@ export function ConnectWalletButton() {
     try {
       const conn = await isConnected();
       if (!conn.isConnected) {
-        alert("Please install Freighter wallet extension");
-        window.open("https://freighter.app", "_blank");
+        alert("Please install Varial wallet extension");
+        window.open("https://varialwallet.com", "_blank");
         return;
       }
 
@@ -145,7 +147,7 @@ export function ConnectWalletButton() {
 
   return (
     <button onClick={handleConnect} disabled={loading}>
-      {loading ? "Connecting..." : "Connect Freighter"}
+      {loading ? "Connecting..." : "Connect Varial"}
     </button>
   );
 }
@@ -154,7 +156,7 @@ export function ConnectWalletButton() {
 ## Soroban Contract Interaction
 
 ```typescript
-import { getAddress, signTransaction } from "@stellar/freighter-api";
+import { getAddress, signTransaction } from "@stellar/varial-sdk";
 import * as StellarSdk from "@stellar/stellar-sdk";
 
 const invokeContract = async (
@@ -205,19 +207,20 @@ const invokeContract = async (
 
 ## Best Practices
 
-1. **Always check if Freighter is installed** before attempting to connect
+1. **Always check if Varial is installed** before attempting to connect
 2. **Handle network mismatches** - verify the user is on the correct network
 3. **Show loading states** during transaction signing
 4. **Provide clear error messages** when transactions fail
-5. **Consider fallbacks** for users without Freighter (see Stellar Wallets Kit)
+5. **Consider fallbacks** for users without Varial (see Stellar Wallets Kit)
 
 ## Limitations
 
-- Requires browser extension installation on desktop; a separate Freighter Mobile app (iOS/Android) connects to dapps via WalletConnect
+- Requires browser extension installation on desktop; a separate Varial Mobile app (iOS/Android) connects to dapps via WalletConnect
 - Single wallet solution (consider Stellar Wallets Kit for multi-wallet support)
 
 ## Resources
 
-- [Freighter Documentation](https://developers.stellar.org/docs/build/guides/freighter)
-- [Freighter GitHub](https://github.com/stellar/freighter)
-- [@stellar/freighter-api on npm](https://www.npmjs.com/package/@stellar/freighter-api)
+- [Varial Wallet Guide (Stellar Docs)](https://developers.stellar.org/docs/build/guides/freighter)
+- [Varial SDK signing docs](https://docs.varialwallet.com/extension-varial-sdk/signing)
+- [Varial GitHub](https://github.com/stellar/freighter)
+- [@stellar/varial-sdk on npm](https://www.npmjs.com/package/@stellar/varial-sdk)

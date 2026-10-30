@@ -151,7 +151,16 @@ The wrapped `fetch` reads the `402`, signs a Soroban auth entry, and retries. Fo
 
 ### Wallets That Support x402
 
-A wallet needs **auth-entry signing** for x402: Freighter (browser extension), Albedo, Hana, HOT, Klever, OneKey, Scopuly. Freighter Mobile does not support x402 yet.
+A wallet needs **auth-entry signing** for x402: Varial (browser extension), Varial Mobile (through WalletConnect), Albedo, Hana, HOT, Klever, OneKey, Scopuly.
+
+Varial Mobile signs auth entries only over WalletConnect:
+
+- Connect through WalletConnect directly, or with Stellar Wallets Kit's `WalletConnectModule` (v2.3.0 or later).
+- Create a WalletConnect project ID in the [WalletConnect Dashboard](https://dashboard.walletconnect.com/).
+- Varial Mobile only connects on the network it is set to. To test on Testnet, include `stellar:testnet` in the chains your app requests (`allowedChains` in Stellar Wallets Kit).
+- Setup: [Varial's WalletConnect guide](https://docs.varialwallet.com/mobile-walletconnect/installation).
+
+The Varial browser extension needs neither WalletConnect nor a project ID.
 
 ---
 

@@ -8,19 +8,19 @@ Stellar offers multiple approaches to wallet integration, each suited for differ
 
 | Approach | Best For | User Experience | Complexity |
 |----------|----------|-----------------|------------|
-| [Freighter](./freighter.md) | Quick integration, SDF's official wallet | Browser extension or Freighter Mobile app | Low |
+| [Varial](./freighter.md) (formerly Freighter) | Quick integration, SDF's official wallet | Browser extension or Varial Mobile app | Low |
 | [Stellar Wallets Kit](./stellar-wallets-kit.md) | Multi-wallet support | Users choose their preferred wallet | Medium |
 | [Smart Account Kit](./smart-account-kit.md) | Modern dapps, best UX | Passkey-based, no extension needed | Medium |
 
 ## Quick Decision Guide
 
-**Choose Freighter if:**
+**Choose Varial if:**
 - You want the simplest integration
 - Your users are comfortable with browser extensions
 - You're building a quick prototype
 
 **Choose Stellar Wallets Kit if:**
-- You want to support multiple wallets (Freighter, LOBSTR, xBull, etc.)
+- You want to support multiple wallets (Varial, LOBSTR, xBull, etc.)
 - Your users may have different wallet preferences
 - You need hardware wallet support (Ledger, Trezor)
 
@@ -60,5 +60,5 @@ Note that the kit is still pre-1.0 (v0.4.x) with occasional breaking changes bet
 ## Additional Resources
 
 - [Official Stellar Developer Docs](https://developers.stellar.org/docs/build/apps)
-- [Freighter Wallet Guide](https://developers.stellar.org/docs/build/guides/freighter)
+- [Varial Wallet Guide](https://developers.stellar.org/docs/build/guides/freighter)
 - [OpenZeppelin Stellar Tools](https://developers.stellar.org/docs/tools/openzeppelin-contracts)
