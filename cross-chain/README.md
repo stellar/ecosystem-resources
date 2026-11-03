@@ -1,10 +1,10 @@
 # Cross-Chain on Stellar
 
-This guide covers how to move value and messages between Stellar and other chains: USDT0 over LayerZero, your own LayerZero OFT or OApp, native USDC with Circle CCTP, and Axelar GMP/ITS.
+This guide covers how to move value and messages between Stellar and other chains: USDT0 over LayerZero, your own LayerZero OFT or OApp, native USDC with Circle CCTP, Axelar GMP/ITS, and SODAX intents.
 
 ## Overview
 
-Four production paths connect Stellar to other chains today:
+Five paths connect Stellar to other chains today:
 
 | Path | What moves | Model | Stellar side | Best for |
 |------|-----------|-------|--------------|----------|
@@ -12,6 +12,7 @@ Four production paths connect Stellar to other chains today:
 | [LayerZero OFT / OApp](#build-your-own-layerzero-oft-or-oapp) | Your token or arbitrary messages | LayerZero V2 messaging | Soroban contracts (Rust) | Making your own token omnichain, cross-chain app logic |
 | [Circle CCTP](#circle-cctp-native-usdc) | Native USDC | Burn on source, mint on destination | Soroban contracts, domain `27` | Moving USDC in and out of Stellar without wrapped assets |
 | [Axelar GMP / ITS](#axelar-gmp-and-its) | Messages and tokens | Axelar network | Soroban contracts | Cross-chain contract calls, interchain tokens |
+| [SODAX](#sodax-intent-based-swaps-and-money-market) | XLM and supported Stellar assets | Intents filled by solvers, settled through a hub on Sonic | TypeScript SDK, REST API, React hooks | Cross-network swaps and lending from one Stellar transaction |
 
 ### Quick Decision Guide
 
@@ -26,10 +27,15 @@ Four production paths connect Stellar to other chains today:
 **Choose CCTP if:**
 - You need native USDC, not a wrapped version
 - You bridge from an EVM chain to a Stellar account or contract
+- You send USDC from Stellar to another CCTP chain ([Transfers from Stellar](#transfers-from-stellar))
 
 **Choose Axelar if:**
 - You need general message passing to EVM chains through Axelar
 - You want to register an existing Stellar token with Axelar's Interchain Token Service
+
+**Choose SODAX if:**
+- Your users trade XLM or Stellar assets for assets on other networks, and the reverse
+- You want a cross-network money market with XLM as collateral
 
 > **Hackathon tip:** USDT0 and CCTP are live on **mainnet**. You can not mint test USDT0 on testnet. Build and test your Stellar-side logic with any SAC token on testnet, then switch the asset address for mainnet. For the LayerZero side, use the Stellar testnet endpoint (EID `40600`).
 
@@ -257,6 +263,13 @@ Circle's Cross-Chain Transfer Protocol (CCTP) burns USDC on the source chain and
 
 Check the [Circle contracts page](https://developers.circle.com/cctp/references/stellar-contracts) before you go live.
 
+The burn takes the USDC Stellar Asset Contract (SAC) as `burn_token`:
+
+| Network | USDC SAC |
+|---------|----------|
+| Mainnet | `CCW67TSZV3SSS2HXMBQ5JFGCKJNXKZM7UQUWUZPUTHXSTZLEO7SJMI75` |
+| Testnet | `CBIELTK6YBZJU5UP2WWQEUCYKLPU6AUNZ2BQ4WWFEIE3USCIHMXQDAMA` |
+
 ### Always Use `CctpForwarder` for Transfers into Stellar
 
 CCTP messages carry a raw 32-byte address with no `G`/`C`/`M` prefix. CCTP assumes the `mintRecipient` is a **contract**. To pay a normal account, route through `CctpForwarder`:
@@ -305,8 +318,42 @@ const forwarder = contractStrkeyToBytes32("CBZL2IH7F6BIDAA3WBNXYKIXSATJGMSW7K5P5
 
 - **Precision:** When Stellar is the source, only six decimals are burned. `0.1234567` USDC burns `0.1234560`, and `0.0000007` stays in the account.
 - **API responses:** Circle's message API returns Stellar address fields as `null`. Parse the raw `message` hex if you need them.
-- **Outbound from Stellar:** Call `deposit_for_burn` or `deposit_for_burn_with_hook` on `TokenMessengerMinter`.
+- **Outbound from Stellar:** See [Transfers from Stellar](#transfers-from-stellar).
 - **Testnet USDC:** Get it from the [Circle faucet](https://faucet.circle.com) (select Stellar Testnet).
+
+### Transfers from Stellar
+
+A transfer that starts on Stellar has three steps:
+
+1. **Burn:** Call `deposit_for_burn` or `deposit_for_burn_with_hook` on `TokenMessengerMinter`.
+2. **Attest:** Fetch the message and attestation with `GET /v2/messages/27?transactionHash=<hash>`. Use the Stellar hash with no `0x` prefix.
+3. **Mint:** Call `receiveMessage` on the destination chain's `MessageTransmitterV2`. You or a relayer can do it.
+
+Key burn arguments:
+
+- `amount` and `max_fee` are in Stellar's 7-decimal USDC units.
+- `mint_recipient` is 32 bytes. Left-pad a 20-byte EVM address with zeros.
+- `destination_caller` set to 32 zero bytes lets anyone mint.
+- `min_finality_threshold` is `2000`. Fast Transfer does not apply to Stellar, so a burn from Stellar attests at `2000` even if you ask for `1000`.
+
+> **Approve first:** `TokenMessengerMinter` pulls USDC with `transfer_from`. Before the burn, `caller` must `approve` it as a spender for at least `amount`.
+
+A transaction holds only one contract call, so `approve` plus burn takes two transactions and two signatures by default. To get to one signature:
+
+- **Wrapper contract:** one contract calls `approve` and then `deposit_for_burn`. The [stellar-cctp-demo](https://github.com/ElliotFriend/stellar-cctp-demo) has an example in `contracts/stellar/cctp-wrapper`. It is testnet-only example code. Audit any wrapper before mainnet.
+- **Existing allowance:** approve once for a larger amount and a later expiration ledger. Then each burn needs one signature until the allowance runs out or expires.
+
+Who submits the mint:
+
+| Option | How | Tradeoff |
+|--------|-----|----------|
+| Mint it yourself | Your app calls `receiveMessage` on the destination chain | Needs a funded wallet there. No extra fee. |
+| Circle Forwarding Service | Put the `cctp-forward` hook in `hook_data` and keep `destination_caller` as 32 zero bytes | No destination gas. Circle takes its fee from the minted USDC. The route must be supported. |
+| Third-party relayer | A service watches for the burn and mints | Check its fees, routes, and what happens when a mint fails. |
+
+For the Forwarding Service, set `hook_data` to `0x636374702d666f72776172640000000000000000000000000000000000000000`. Quote the fee with `GET /v2/burn/USDC/fees/27/<destination domain>?forward=true`. `forwardFee` uses 6 decimals, so multiply it by 10 for `max_fee`. Do not call `deposit_for_burn_with_hook` with empty `hook_data`. The contract rejects it.
+
+The Stellar docs have a full TypeScript example (testnet to Base Sepolia). The [stellar-cctp-demo](https://github.com/ElliotFriend/stellar-cctp-demo) app runs these flows in a browser with Varial, in both directions.
 
 ---
 
@@ -316,6 +363,25 @@ const forwarder = contractStrkeyToBytes32("CBZL2IH7F6BIDAA3WBNXYKIXSATJGMSW7K5P5
 
 - **General Message Passing (GMP):** Stellar contracts send messages to contracts on Ethereum, Avalanche, Base, Polygon, and more, and receive and process messages from them. [Stellar GMP docs](https://docs.axelar.dev/dev/general-message-passing/stellar-gmp/intro)
 - **Interchain Token Service (ITS):** Create new tokens that exist on many chains, or connect an existing Stellar token to other ecosystems. [Stellar ITS docs](https://docs.axelar.dev/dev/send-tokens/stellar/intro)
+
+---
+
+## SODAX: Intent-Based Swaps and Money Market
+
+[SODAX](https://www.sodax.com) is an intent-based execution and liquidity system. It connects Stellar with 20+ other networks. A user signs one transaction on Stellar that states the outcome they want. Independent solvers quote and fill it. SODAX settles through a hub on Sonic. The protocol is non-custodial.
+
+From Stellar, apps can:
+
+- Trade XLM and supported Stellar assets for assets on other networks, and the reverse, with status tracking.
+- Supply and borrow through a cross-network money market, with XLM as collateral.
+- Move supported assets between Stellar and other networks.
+
+Stellar-specific handling:
+
+- **Trustlines:** When Stellar is the source, the SDK's allowance and approval methods create the trustline. When Stellar is the destination, `sodax.spoke.stellar.hasSufficientTrustline` and `requestTrustline` check and add it.
+- **Sponsored account activation (mainnet only):** A SODAX sponsor can pay the base reserve for a new account with 0 XLM. A trustline for a non-native asset still needs XLM in the account. Use the Sponsoring API (API key on request) or the `useStellarGate` hook in `@sodax/dapp-kit`.
+
+Integrate with the TypeScript SDK (`@sodax/sdk`), the REST API at `api.sodax.com`, the `@sodax/dapp-kit` React hooks, or the Builders MCP server for AI coding agents.
 
 ---
 
@@ -332,7 +398,7 @@ const forwarder = contractStrkeyToBytes32("CBZL2IH7F6BIDAA3WBNXYKIXSATJGMSW7K5P5
 - [USDT0 Transfers with LayerZero](https://developers.stellar.org/docs/tokens/usdt0-layerzero)
 - [USDT0 on mainnet (Stellar CLI guide)](https://developers.stellar.org/docs/tools/cli/agent-cli/guides/usdt0-on-mainnet)
 - [USDT0 on Stellar launch guide](https://developers.stellar.org/launch/usdt0)
-- [Cross-Chain USDC Transfers with CCTP](https://developers.stellar.org/docs/tokens/cross-chain-transfers)
+- [Cross-Chain USDC Transfers with CCTP](https://developers.stellar.org/docs/tokens/cross-chain-transfers) (includes transfers from Stellar)
 - [Cross-Chain tools](https://developers.stellar.org/docs/tools/infra-tools/cross-chain)
 
 **USDT0:**
@@ -350,13 +416,19 @@ const forwarder = contractStrkeyToBytes32("CBZL2IH7F6BIDAA3WBNXYKIXSATJGMSW7K5P5
 **Circle CCTP:**
 - [CCTP on Stellar](https://developers.circle.com/cctp/references/stellar)
 - [CCTP Stellar contracts](https://developers.circle.com/cctp/references/stellar-contracts)
+- [stellar-cctp-demo](https://github.com/ElliotFriend/stellar-cctp-demo)
 
 **Axelar:**
 - [Stellar GMP](https://docs.axelar.dev/dev/general-message-passing/stellar-gmp/intro)
 - [Stellar ITS](https://docs.axelar.dev/dev/send-tokens/stellar/intro)
 
+**SODAX:**
+- [SODAX quickstart](https://docs.sodax.com/quickstart)
+- [Stellar trustlines in SODAX](https://docs.sodax.com/developers/how-to/stellar_trustline)
+- [Sponsored Stellar account activation](https://docs.sodax.com/developers/how-to/stellar-sponsoring-getting-started)
+
 **AI skill:** The [Stellar Dev Skill](https://github.com/stellar/stellar-dev-skill) has a cross-chain section (CCTP, Axelar, LayerZero OFT, USDT0) your coding agent can load.
 
 ---
 
-*Last updated: October 2026*
+*Last updated: November 2026*
