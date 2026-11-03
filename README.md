@@ -56,7 +56,7 @@ In addition to workshop materials, this repository includes reference guides on 
 | [Oracles](./oracles/) | Price feeds and external data |
 | [Security](./security/) | Security tools and best practices |
 | [Infrastructure](./infrastructure/) | Anchors, SEPs, disbursements, explorers, network status |
-| [Cross-Chain](./cross-chain/) | USDT0 + LayerZero OFT, Circle CCTP, Axelar |
+| [Cross-Chain](./cross-chain/) | USDT0 + LayerZero OFT, Circle CCTP, Axelar, SODAX |
 | [Agentic Payments](./agentic-payments/) | x402, MPP, Stellar CLI for Agents |
 | [Privacy & ZK](./privacy-zk/) | Private payments, confidential tokens, ZK verifiers |
 | [Community Tools](./community-tools/) | SCF-funded dev tools: Rust helpers, resource reports, Solidity, Unity |
@@ -101,7 +101,7 @@ In addition to workshop materials, this repository includes reference guides on 
 - [Oracles](./oracles/) - Reflector Network, DIA Oracle, RedStone, Chainlink
 - [Security](./security/) - Scout Soroban, Almanax, Certora Sunbeam, Komet, Soroban Security Portal, Audit Bank, best practices
 - [Infrastructure](./infrastructure/) - Anchors, anchor tools, MoneyGram Ramps, SEPs, Disbursement Platform, Regional Starter Pack, explorers, network status
-- [Cross-Chain](./cross-chain/) - USDT0 over LayerZero, build your own OFT/OApp, Circle CCTP, Axelar GMP/ITS
+- [Cross-Chain](./cross-chain/) - USDT0 over LayerZero, build your own OFT/OApp, Circle CCTP (to and from Stellar), Axelar GMP/ITS, SODAX intents
 - [Agentic Payments](./agentic-payments/) - x402 (facilitators incl. Rail402), MPP charge and session, [Stellar CLI for Agents](./agentic-payments/stellar-cli-for-agents.md)
 - [Privacy & ZK](./privacy-zk/) - Stellar Private Payments, Confidential Tokens, RISC Zero and UltraHonk verifiers, BN254 and Poseidon, Moonlight
 - [Data Indexing](./indexers/) - Mercury, Goldsky, OBSRVR, Space and Time
