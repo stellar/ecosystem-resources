@@ -306,18 +306,16 @@ import * as StellarSdk from "@stellar/stellar-sdk";
 async function monitorTransaction(hash: string) {
   const rpc = new StellarSdk.rpc.Server("https://soroban-testnet.stellar.org");
 
-  let status = "NOT_FOUND";
-  while (status === "NOT_FOUND") {
-    const result = await rpc.getTransaction(hash);
-    status = result.status;
-    if (status === "NOT_FOUND") {
-      await new Promise(r => setTimeout(r, 1000));
-    }
-  }
+  // Poll getTransaction once a second, for up to 30 attempts
+  const result = await rpc.pollTransaction(hash, { attempts: 30 });
 
-  return status;
+  // NOT_FOUND after the last attempt means the result is unknown,
+  // not that the transaction failed
+  return result.status;
 }
 ```
+
+`pollTransaction` returns the first `SUCCESS` or `FAILED` response. It stops after a set number of attempts, so it never waits forever. If you get `NOT_FOUND`, check again before you resend: the transaction can still go into a ledger until its time bound passes. See [Submit a transaction and wait](https://developers.stellar.org/docs/build/guides/transactions/submit-transaction-wait-js) for the full handling.
 
 ## Resources
 

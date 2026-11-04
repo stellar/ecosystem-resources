@@ -90,7 +90,7 @@ What data do you need?
 
 ## Horizon Deprecation Notice
 
-> **Important:** Horizon is in maintenance mode — it is nearing end-of-life and will eventually be deprecated in favor of Stellar RPC. For new projects, use Stellar RPC for real-time data and indexing services for historical data.
+> **Important:** Horizon is in maintenance mode — it is nearing end-of-life and will eventually be deprecated in favor of Stellar RPC and [Portfolio APIs](./providers.md#portfolio-apis). For new projects, use Stellar RPC for real-time data and indexing services for historical data.
 
 Migration guide: [developers.stellar.org/docs/data/apis/migrate-from-horizon-to-rpc](https://developers.stellar.org/docs/data/apis/migrate-from-horizon-to-rpc)
 

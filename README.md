@@ -29,7 +29,7 @@ Install these before a hackathon. Everything here is documented at [developers.s
 | **Scaffold Stellar** | Contracts plus a React front end: `stellar scaffold init` | [Scaffold Stellar](https://developers.stellar.org/docs/tools/scaffold-stellar) |
 | **Quickstart** (Docker) | A local Stellar network with RPC, Horizon, and a faucet | [Quickstart](https://developers.stellar.org/docs/tools/quickstart) |
 | **Stellar Lab** | Build, sign, simulate, and submit transactions; inspect XDR | [lab.stellar.org](https://lab.stellar.org) |
-| **Client SDKs** | Build and submit transactions from your app (JavaScript, Python, Go, and more) | [Client SDKs](https://developers.stellar.org/docs/tools/sdks/client-sdks) |
+| **Client SDKs** | Build and submit transactions from your app (JavaScript, Python, Go, and more) | [Client SDKs](https://developers.stellar.org/docs/tools/sdks/client-sdks), [JS SDK helpers](https://developers.stellar.org/docs/tools/sdks/js-sdk-helpers) |
 | **Wallets** | Stellar Wallets Kit, Varial, passkey smart accounts | [Wallet Integration](./wallet-integration/) |
 | **Stellar RPC** | Balances, history, events, and simulation (Horizon is legacy) | [RPC providers](https://developers.stellar.org/docs/data/apis/rpc/providers) |
 | **soroban-examples** | Official reference contracts to copy from | [stellar/soroban-examples](https://github.com/stellar/soroban-examples) |
