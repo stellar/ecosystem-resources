@@ -30,7 +30,7 @@ Stellar-native provider offering RPC services and data APIs.
 
 ### Horizon (Maintenance Mode)
 
-**Status:** ⚠️ Maintenance mode (nearing end-of-life; will eventually be deprecated in favor of Stellar RPC)
+**Status:** ⚠️ Maintenance mode (nearing end-of-life; will eventually be deprecated in favor of Stellar RPC and Portfolio APIs)
 
 Legacy Stellar API. Use for existing integrations only.
 
