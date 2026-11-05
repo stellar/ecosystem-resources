@@ -54,6 +54,7 @@ Start from the shipped examples and adapt:
 cp examples/config/monitors/stellar_swap_dex.json config/monitors/
 cp examples/config/networks/stellar_mainnet.json config/networks/
 cp examples/config/triggers/slack_notifications.json config/triggers/
+cp examples/config/filters/stellar_filter_block_number.sh config/filters/
 ```
 
 A Stellar network config points at a Stellar RPC endpoint (e.g. `https://soroban-testnet.stellar.org` for testnet). A monitor config names the network, the contract addresses to watch, and the event/function signatures to match — Stellar events use SEP-48-style signatures such as `transfer(Address,Address,U128)`. A trigger config wires matches to notification channels (webhook, Slack, Discord, email, Telegram, or a custom script).
