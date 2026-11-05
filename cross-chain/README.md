@@ -241,7 +241,7 @@ npm install @layerzerolabs/lz-v2-stellar-sdk @layerzerolabs/oft-stellar-types \
 
 ### Pitfalls
 
-- **Lock the issuer.** Set the issuer's master weight to 0. If you do not, the issuer can mint around the SAC Manager's roles.
+- **Lock the issuer.** Remove every other signer from the issuer, then set its master weight to 0. A master weight of 0 disables only the master key. Other signers whose combined weight meets the thresholds can still issue more of the asset. If you do not lock the issuer, it can mint around the SAC Manager's roles. See [Limiting the supply of an asset](https://developers.stellar.org/docs/tokens/control-asset-access#limiting-the-supply-of-an-asset).
 - **Never send to or from the issuer.** Tokens sent to the issuer are destroyed. Test with a separate holder account.
 - **G-address recipients** need an active account (1 XLM) and a trustline when the token is a SAC. C-address recipients do not. If `lz_receive` fails for this reason, the delivery can be retried after the account is ready.
 - **`set_peer` CLI bug:** Stellar CLI v25.1.0 can silently set the peer to `None` for `Option<BytesN<32>>` arguments. Read the peer back, or use the JS SDK workaround in the [OApp guide](https://docs.layerzero.network/v2/developers/stellar/oapp/overview).
