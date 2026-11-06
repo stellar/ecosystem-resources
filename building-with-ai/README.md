@@ -138,7 +138,7 @@ Call `GET <facilitator-url>/supported` to check that an operator serves your net
 - **Docs:** [developers.stellar.org/docs/build/agentic-payments/x402](https://developers.stellar.org/docs/build/agentic-payments/x402)
 - **Official monorepo:** [stellar/x402-stellar](https://github.com/stellar/x402-stellar)
 - **Community demo:** [jamesbachini/x402-Stellar-Demo](https://github.com/jamesbachini/x402-Stellar-Demo)
-- **Supported wallets:** Varial (extension, and Mobile through WalletConnect), Albedo, Hana, HOT, Klever, OneKey, [Scopuly](https://extension.scopuly.com/)
+- **Supported wallets:** Varial (extension, and Mobile through WalletConnect), Hana, HOT, Klever, OneKey, [Scopuly](https://extension.scopuly.com/)
 
 ### Stellar CLI for Agents
 
