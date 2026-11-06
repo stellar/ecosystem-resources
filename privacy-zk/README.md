@@ -112,16 +112,25 @@ Native host functions make ZK verification affordable inside Soroban contracts.
 | Primitive | Protocol | CAP | Use |
 |-----------|----------|-----|-----|
 | **BLS12-381** | 22 | [CAP-59](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0059.md) | Pairing-friendly curve, signature aggregation, zk-SNARKs |
-| **BN254** | 25 ("X-Ray") | [CAP-74](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0074.md) | The curve most production ZK apps use. Mirrors Ethereum's EIP-196/197, so existing circuits port over. |
+| **BN254** | 25 ("X-Ray"), 26 ("Yardstick") | [CAP-74](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0074.md), [CAP-80](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0080.md) | The curve most production ZK apps use. Mirrors Ethereum's EIP-196/197, so existing circuits port over. |
 | **Poseidon / Poseidon2** | 25 ("X-Ray") | [CAP-75](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0075.md) | ZK-friendly hashing for commitments, Merkle trees, and nullifiers |
 
 Protocol 26 ("Yardstick") continued this work. See the [Yardstick upgrade guide](https://stellar.org/blog/foundation-news/stellar-yardstick-protocol-26-upgrade-guide).
 
 ### BN254
 
-Host functions: `g1_add`, `g1_mul`, and `pairing_check` (the last step when you verify a pairing-based proof). You still generate proofs off-chain (Noir, RISC Zero, Circom) and deploy a verifier contract.
+Protocol 25 host functions ([CAP-74](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0074.md)): `g1_add`, `g1_mul`, and `pairing_check` (the last step when you verify a pairing-based proof).
+
+Protocol 26 added more ([CAP-80](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0080.md)). They lower the cost of proof verification, because your verifier contract no longer computes these operations in its own code:
+
+- `g1_msm`: multi-scalar multiplication over a list of G1 points and scalars. Costs less than separate `g1_mul` and `g1_add` calls.
+- `g1_is_on_curve`: checks that a G1 point is on the BN254 curve.
+- `fr_add`, `fr_sub`, `fr_mul`, `fr_pow`, `fr_inv`: arithmetic in the BN254 scalar field (`Fr`).
+
+You still generate proofs off-chain (Noir, RISC Zero, Circom) and deploy a verifier contract.
 
 - [Soroban SDK BN254 docs](https://docs.rs/soroban-sdk/latest/soroban_sdk/_migrating/v25_bn254/index.html)
+- [Soroban SDK `Bn254` API reference](https://docs.rs/soroban-sdk/latest/soroban_sdk/crypto/bn254/struct.Bn254.html)
 
 ### Poseidon
 
