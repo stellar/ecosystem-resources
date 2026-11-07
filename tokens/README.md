@@ -116,9 +116,9 @@ Standard interface for Soroban tokens:
 ```rust
 pub trait TokenInterface {
     fn allowance(e: Env, from: Address, spender: Address) -> i128;
-    fn approve(e: Env, from: Address, spender: Address, amount: i128, expiration_ledger: u32);
+    fn approve(e: Env, from: Address, spender: Address, amount: i128, live_until_ledger: u32);
     fn balance(e: Env, id: Address) -> i128;
-    fn transfer(e: Env, from: Address, to: Address, amount: i128);
+    fn transfer(e: Env, from: Address, to: MuxedAddress, amount: i128);
     fn transfer_from(e: Env, spender: Address, from: Address, to: Address, amount: i128);
     fn burn(e: Env, from: Address, amount: i128);
     fn burn_from(e: Env, spender: Address, from: Address, amount: i128);
@@ -127,6 +127,8 @@ pub trait TokenInterface {
     fn symbol(e: Env) -> String;
 }
 ```
+
+The `to` argument of `transfer` is a `MuxedAddress`, which accepts either a plain address or an `M...` muxed account address. See [Token Interface](https://developers.stellar.org/docs/tokens/token-interface) for the full interface with auth and event details.
 
 ### Using OpenZeppelin Contracts
 
