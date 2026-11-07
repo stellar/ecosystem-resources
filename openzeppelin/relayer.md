@@ -48,6 +48,14 @@ cd openzeppelin-relayer
 cp .env.example .env
 # Edit .env with your settings
 
+# Create the signer keystore; use the same password as KEYSTORE_PASSPHRASE in .env
+cargo run --example create_key -- \
+  --password "<KEYSTORE_PASSPHRASE>" \
+  --output-dir config/keys \
+  --filename local-signer.json
+
+# Create config/config.json (minimal Stellar example under Configuration below)
+
 # Run
 docker-compose up
 ```
@@ -62,6 +70,41 @@ API_KEY=...               # Bearer key clients use to call the relayer API
 WEBHOOK_SIGNING_KEY=...   # Signs webhook payloads
 KEYSTORE_PASSPHRASE=...   # Unlocks the signer keystore
 ```
+
+The relayer repo's `config/config.example.json` does not load as is: its Stellar relayer has no `fee_payment_strategy`, and it also defines EVM and Solana relayers. A minimal `config/config.json` for one Stellar testnet relayer that pays fees in XLM:
+
+```json
+{
+  "relayers": [
+    {
+      "id": "stellar-testnet",
+      "name": "Stellar Testnet",
+      "network": "testnet",
+      "paused": false,
+      "network_type": "stellar",
+      "signer_id": "local-signer",
+      "policies": {
+        "fee_payment_strategy": "relayer"
+      }
+    }
+  ],
+  "notifications": [],
+  "signers": [
+    {
+      "id": "local-signer",
+      "type": "local",
+      "config": {
+        "path": "config/keys/local-signer.json",
+        "passphrase": { "type": "env", "value": "KEYSTORE_PASSPHRASE" }
+      }
+    }
+  ],
+  "networks": "./config/networks",
+  "plugins": []
+}
+```
+
+Stellar relayers need `fee_payment_strategy`: `relayer` pays fees in XLM, `user` lets users pay fees in tokens (sponsored transactions).
 
 Signing keys live in a keystore referenced from the signer config — not in a bare env var. Policy controls (fee caps, allowed destinations) are set per relayer under `policies` in `config.json`. See the [quickstart](https://docs.openzeppelin.com/relayer) for the full schema.
 
