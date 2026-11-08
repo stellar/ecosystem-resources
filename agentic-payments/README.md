@@ -151,7 +151,7 @@ The wrapped `fetch` reads the `402`, signs a Soroban auth entry, and retries. Fo
 
 ### Wallets That Support x402
 
-A wallet needs **auth-entry signing** for x402: Varial (browser extension), Varial Mobile (through WalletConnect), Albedo, Hana, HOT, Klever, OneKey, Scopuly.
+A wallet needs **auth-entry signing** for x402: Varial (browser extension), Varial Mobile (through WalletConnect), Hana, HOT, Klever, OneKey, Scopuly.
 
 Varial Mobile signs auth entries only over WalletConnect:
 

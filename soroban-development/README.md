@@ -165,13 +165,24 @@ pub fn transfer(e: &Env, from: Address, to: Address, amount: i128) {
 ## Events
 
 ```rust
-use soroban_sdk::{symbol_short, Env};
+use soroban_sdk::{contractevent, Address, Env};
 
-pub fn emit_transfer(e: &Env, from: &Address, to: &Address, amount: i128) {
-    let topics = (symbol_short!("transfer"), from, to);
-    e.events().publish(topics, amount);
+// Published as `["transfer", from: Address, to: Address], data = amount: i128`
+#[contractevent(data_format = "single-value")]
+pub struct Transfer {
+    #[topic]
+    pub from: Address,
+    #[topic]
+    pub to: Address,
+    pub amount: i128,
+}
+
+pub fn emit_transfer(e: &Env, from: Address, to: Address, amount: i128) {
+    Transfer { from, to, amount }.publish(e);
 }
 ```
+
+`#[contractevent]` replaces `Events::publish`, which the Rust SDK deprecated in v23. See [Publish events from a Rust contract](https://developers.stellar.org/docs/build/guides/events/publish).
 
 ## Cross-Contract Calls
 
