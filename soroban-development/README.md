@@ -164,14 +164,27 @@ pub fn transfer(e: &Env, from: Address, to: Address, amount: i128) {
 
 ## Events
 
-```rust
-use soroban_sdk::{symbol_short, Env};
+Define each event as a struct with `#[contractevent]`, then call `.publish(&env)` on it. Without a `topics` list, the first topic is the struct name. Fields marked `#[topic]` follow it as more topics.
 
-pub fn emit_transfer(e: &Env, from: &Address, to: &Address, amount: i128) {
-    let topics = (symbol_short!("transfer"), from, to);
-    e.events().publish(topics, amount);
+```rust
+use soroban_sdk::{contractevent, Address, Env};
+
+#[contractevent(data_format = "single-value")]
+pub struct Transfer {
+    #[topic]
+    from: Address,
+    #[topic]
+    to: Address,
+    amount: i128,
+}
+
+pub fn transfer(env: Env, from: Address, to: Address, amount: i128) {
+    // transfer logic omitted here
+    Transfer { from, to, amount }.publish(&env);
 }
 ```
+
+See [Publish events from a Rust contract](https://developers.stellar.org/docs/build/guides/events/publish) for more event shapes.
 
 ## Cross-Contract Calls
 
