@@ -66,7 +66,7 @@ Like all the other folks here today representing blockchains, I love to go on an
 And, the truth is: Stellar has a lot going for it.
 
 - Been around for 10+ years (longer than ethereum)
-- Fast transaction times (5-6 seconds), instant finality
+- Fast transaction times (a new ledger about every 5 seconds), instant finality
 - Low gas fees, by design
 - Existing anchor networks that make it possible to go directly from cash to DeFi in no-time!
 - A top-notch smart contract platform with smart and sensible design choices and developer ergonomics
