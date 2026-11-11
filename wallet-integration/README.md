@@ -55,7 +55,7 @@ Note that the kit is still pre-1.0 (v0.4.x) with occasional breaking changes bet
 | [NEAR Intents](https://docs.near.org/chain-abstraction/intents/overview) | Intents protocol | Users or agents state an outcome (for example, a swap) and solvers compete to fill it |
 | [Account Viewer](https://accountviewer.stellar.org) | Minimal wallet | Check an XLM balance and send simple payments. [Source](https://github.com/stellar/account-viewer-v2) is a good reference. |
 
-**Paying for your users:** The [Stellar Wallet Sponsorship Calculator](https://docs.google.com/spreadsheets/d/1LgVMFRggdjBAxSpI4nxucUmbZIsnUbMPT8RJQ_rJ5k4/edit?gid=1771515065#gid=1771515065) estimates the XLM you need to sponsor account creation, fees, and trustlines.
+**Paying for your users:** The [Stellar Wallet Sponsorship Calculator](https://docs.google.com/spreadsheets/d/1LgVMFRggdjBAxSpI4nxucUmbZIsnUbMPT8RJQ_rJ5k4/edit?gid=1771515065#gid=1771515065) estimates the XLM you need to sponsor account creation, fees, and trustlines. A smart wallet can't pay its own transaction fees. To choose how your app pays them, see [Choose a fee sponsorship approach](https://developers.stellar.org/docs/build/guides/transactions/fee-sponsorship), which compares fee-bump transactions, sponsored reserves, and relayers.
 
 ## Additional Resources
 

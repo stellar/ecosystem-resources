@@ -264,5 +264,6 @@ Sessions restore silently via `connectWallet()`; stored credentials are availabl
 - [passkey-kit GitHub](https://github.com/stellar/passkey-kit)
 - [OpenZeppelin Smart Accounts](https://github.com/OpenZeppelin/stellar-contracts)
 - [OpenZeppelin Relayer](../openzeppelin/relayer.md)
+- [Choose a fee sponsorship approach](https://developers.stellar.org/docs/build/guides/transactions/fee-sponsorship) - A smart wallet can't pay its own fees; compare relayers, fee-bump transactions, and sponsored reserves
 - [Guestbook Tutorial](https://developers.stellar.org/docs/build/apps/guestbook) - Full dapp built with Smart Account Kit and the OpenZeppelin Relayer
 - [Smart Wallets Guide](https://developers.stellar.org/docs/build/guides/contract-accounts/smart-wallets) - How Smart Account Kit and passkey-kit differ

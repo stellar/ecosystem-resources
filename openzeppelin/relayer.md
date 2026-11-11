@@ -16,6 +16,8 @@ OpenZeppelin Relayer provides infrastructure for gasless (fee-sponsored) transac
 | Users must fund account first | Instant onboarding |
 | Higher friction | Seamless UX |
 
+A relayer isn't the only way to cover a user's costs. To compare it with fee-bump transactions and sponsored reserves, see [Choose a fee sponsorship approach](https://developers.stellar.org/docs/build/guides/transactions/fee-sponsorship).
+
 ## How It Works
 
 ```
