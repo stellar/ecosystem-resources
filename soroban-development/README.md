@@ -354,6 +354,8 @@ pub fn deposit(e: &Env, user: Address, amount: i128) {
 }
 ```
 
+Reads, writes, and automatic restoration do not extend a TTL. A TTL is extended only when the contract calls `extend_ttl()` or someone submits an `ExtendFootprintTTLOp`. Automatically restored entries start at the minimum TTL, so extend them if they need to stay live longer. See [State archival](https://developers.stellar.org/docs/learn/fundamentals/contract-development/storage/state-archival).
+
 ## Resources
 
 - [Stellar Developer Docs - Smart Contracts](https://developers.stellar.org/docs/build/smart-contracts)
