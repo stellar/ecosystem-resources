@@ -172,8 +172,15 @@ const invokeContract = async (
 
   const contract = new StellarSdk.Contract(contractId);
 
+  // Bid what recent transactions paid, capped at what you're willing to spend.
+  // assembleTransaction adds the resource fee on top of this inclusion fee.
+  // Do not bid the 100-stroop minimum: it gets outbid when the network is busy.
+  const { sorobanInclusionFee } = await server.getFeeStats();
+  const MAX_FEE = 100_000; // stroops per operation (0.01 XLM): pick your own cap
+  const fee = String(Math.min(Number(sorobanInclusionFee.p90), MAX_FEE));
+
   const transaction = new StellarSdk.TransactionBuilder(account, {
-    fee: "100",
+    fee,
     networkPassphrase: StellarSdk.Networks.TESTNET,
   })
     .addOperation(contract.call(method, ...args))
