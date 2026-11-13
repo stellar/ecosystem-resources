@@ -4,7 +4,7 @@ This guide covers oracle solutions for bringing off-chain data to Stellar/Soroba
 
 ## Overview
 
-Oracles provide external data (prices, events, etc.) to smart contracts. On Stellar, the primary oracle solution is Reflector Network, with additional options like DIA, Band Protocol, RedStone, and Chainlink.
+Oracles provide external data (prices, events, etc.) to smart contracts. On Stellar, the primary oracle solution is Reflector Network, with additional options like DIA, Band Protocol, RedStone, Pyth, and Chainlink.
 
 ## Why Use an Oracle?
 
@@ -79,6 +79,25 @@ Modular push oracle focused on real-world assets, yield-bearing tokens, and stab
 **Integrations:**
 - Blend
 - Templar
+
+### Pyth
+
+Pull oracle with real-time market data published first-party by exchanges, market makers, and banks. On Stellar it is delivered through Pyth Pro.
+
+| Feature | Details |
+|---------|---------|
+| **Website** | [pyth.com](https://www.pyth.com) |
+| **Docs** | [Pyth Pro Stellar integration guide](https://docs.pyth.network/price-feeds/pro/integrate-as-consumer/stellar) |
+| **Rust crate** | [`pyth-lazer-stellar-sdk`](https://docs.rs/pyth-lazer-stellar-sdk) |
+| **Verifier (Mainnet)** | `CACZ3GBAKUPIAFRILUFO27J5RUH5GJ2VSJ46LP6GJYSKGDRTQ5MS3HCH` |
+| **Verifier (Testnet)** | `CAYFT5JE3UQTKT4Q6ZOZK4FXVYVT6RE3MFC7STA4UB6WAEGBT65MRU52` |
+
+**Features:**
+- 3,500+ feeds across crypto, equities, ETFs, FX, commodities, and fixed income
+- Pull model: your app gets signed price updates off-chain over WebSocket or REST
+- Your contract verifies each update with a cross-contract call to Pyth's verifier contract
+- On-chain verification is permissionless. The data feeds need a [subscription](https://app.pyth.com) (14-day free trial).
+- Stellar contracts audited by [Zellic](https://github.com/pyth-network/audit-reports/blob/main/2026_09_01/pyth_pro_stellar_zellic_audit_report.pdf)
 
 ### Chainlink
 
@@ -163,5 +182,6 @@ pub struct PriceData {
 - [Reflector Network](https://reflector.network)
 - [DIA Documentation](https://docs.diadata.org/)
 - [RedStone Stellar Documentation](https://docs.redstone.finance/docs/technical-reference/non-evm-chains/stellar/)
+- [Pyth Pro Stellar Integration Guide](https://docs.pyth.network/price-feeds/pro/integrate-as-consumer/stellar)
 - [Chainlink Data Feeds on Stellar](https://docs.chain.link/data-feeds/stellar)
 - [Stellar Oracle Providers](https://developers.stellar.org/docs/data/oracles/oracle-providers)

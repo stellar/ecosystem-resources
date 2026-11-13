@@ -315,7 +315,7 @@ async function monitorTransaction(hash: string) {
 }
 ```
 
-`pollTransaction` returns the first `SUCCESS` or `FAILED` response. It stops after a set number of attempts, so it never waits forever. If you get `NOT_FOUND`, check again before you resend: the transaction can still go into a ledger until its time bound passes. See [Submit a transaction and wait](https://developers.stellar.org/docs/build/guides/transactions/submit-transaction-wait-js) for the full handling.
+`pollTransaction` returns the first `SUCCESS` or `FAILED` response. It stops after a set number of attempts, so it never waits forever. If you get `NOT_FOUND`, check again before you resend: the transaction can still go into a ledger until its time bound passes. See [Submit a transaction to Stellar RPC](https://developers.stellar.org/docs/build/guides/transactions/submit-transaction-wait) for the full handling.
 
 ## Resources
 
