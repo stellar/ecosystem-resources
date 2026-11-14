@@ -40,6 +40,7 @@ The primary community-powered price oracle for Stellar, implementing SEP-40.
 - Laina
 - EquitX
 - Slender
+- XOXNO
 
 ### DIA Oracle
 
@@ -79,6 +80,7 @@ Modular push oracle focused on real-world assets, yield-bearing tokens, and stab
 **Integrations:**
 - Blend
 - Templar
+- XOXNO
 
 ### Chainlink
 
@@ -107,6 +109,9 @@ stellar contract invoke \
   --data_id 01a0b4d920000332000000000000000000000000000000000000000000000000 \
   --decimals 18
 ```
+
+**Integrations:**
+- XOXNO
 
 ## Using Oracles in Contracts
 

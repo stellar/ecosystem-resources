@@ -221,5 +221,6 @@ impl LPToken {
 
 - [Stellar Assets Documentation](https://developers.stellar.org/docs/learn/fundamentals/stellar-data-structures/assets)
 - [SEP-41: Token Interface](https://developers.stellar.org/docs/tokens/token-interface)
+- [Asset Issuance Stack](https://developers.stellar.org/docs/tokens/asset-issuance-stack) - Issuer checklist of architecture, compliance, custody, and integration decisions to make before you launch an asset
 - [OpenZeppelin Stellar Contracts](https://github.com/OpenZeppelin/stellar-contracts)
 - [Native vs Soroban Tokens (CheesecakeLabs)](https://cheesecakelabs.com/blog/native-tokens-vs-soroban-tokens/)

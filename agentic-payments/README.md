@@ -64,7 +64,7 @@ The receiving account (`payTo` / `recipient`) also needs a USDC trustline.
 | **Built on Stellar** (OpenZeppelin Relayer + x402 plugin) | Testnet + Mainnet | `https://channels.openzeppelin.com/x402/testnet` and `https://channels.openzeppelin.com/x402` | Yes: [testnet key](https://channels.openzeppelin.com/testnet/gen) (no login), [mainnet key](https://channels.openzeppelin.com/gen) (GitHub login) | Free, sponsored fees, ~5 s settlement. Most production-ready option. |
 | **Coinbase x402 facilitator** | Testnet only | `https://www.x402.org/facilitator` | No | Sponsored fees |
 | **Self-hosted** | Any | Your own | Your choice | [OpenZeppelin x402 facilitator plugin](https://github.com/OpenZeppelin/relayer-plugin-x402-facilitator) |
-| **Rail402** (community) | Testnet hosted, self-host for others | `https://testnet.rail402.dev` | No | Apache-2.0. Sponsored fees. Supports `exact` and `upto` schemes. Adds a Bazaar discovery catalog, an MCP server, and a CLI. See [docs.rail402.dev](https://docs.rail402.dev). |
+| **Rail402** (community) | Testnet + Mainnet | See [docs.rail402.dev](https://docs.rail402.dev) | Mainnet only | Not audited ([security report](https://docs.rail402.dev/security/report)). Sponsored fees. `exact` scheme. Bazaar discovery catalog at `/discovery/search`. |
 | **Vellar** (community) | Testnet only | See [docs.vellar.xyz](https://docs.vellar.xyz) | | Not audited. Adds a discovery catalog agents can query. |
 
 A facilitator sees the payment before the network does. Picking one is a trust decision. Call `GET <facilitator-url>/supported` to check that it serves your network.
@@ -140,6 +140,28 @@ console.log(await res.text());
 ```
 
 The wrapped `fetch` reads the `402`, signs a Soroban auth entry, and retries. For manual control, use `x402Client` and `x402HTTPClient` (see the [x402 quickstart](https://developers.stellar.org/docs/build/agentic-payments/x402/quickstart-guide)).
+
+### Cap Each Payment
+
+Add `spendControls` to the client config. It refuses any payment above the cap before anything is signed:
+
+```js
+const fetchWithPayment = wrapFetchWithPaymentFromConfig(fetch, {
+  schemes: [{ network: "stellar:testnet", client: new ExactStellarScheme(signer) }],
+  spendControls: { maxAmountPerPayment: "$0.05" },
+});
+```
+
+### Discovery (Bazaar)
+
+A facilitator that implements the x402 [Bazaar extension](https://docs.x402.org/extensions/bazaar) catalogs paid endpoints. Agents can search it.
+
+- **Seller:** describe the route with `declareDiscoveryExtension` and register `bazaarResourceServerExtension` (both from `@x402/extensions/bazaar`). No registration is needed. The facilitator *may* catalog the resource after a payment settles. Some refuse non-public hosts such as `localhost`.
+- **Agent:** wrap the facilitator client with `withBazaar`, then call `discovery.extensions.bazaar.search({ query, network, type: "http" })`. The catalog is also at `GET /discovery/resources` and `GET /discovery/search`.
+- **Check support:** the facilitator's `/supported` response lists `"bazaar"` in its top-level `extensions`.
+- **Trust:** listings come from sellers. Check the price, network, and `payTo` before you pay.
+
+Full seller and agent code: [x402 Seller and Agent Guide](https://developers.stellar.org/docs/build/agentic-payments/x402/seller-and-agent-guide).
 
 ### x402 Headers
 
@@ -271,7 +293,8 @@ Import from `@stellar/mpp/channel/server` and `@stellar/mpp/channel/client`. The
 - **Paid responses are not replayable.** Each retry pays again. Capture the body on the first call.
 - **Read the body with `res.text()`** unless you know it is JSON. The x402 demo endpoint returns HTML.
 - **Node version:** Use Node 22 or later for `@x402/stellar`.
-- **No spend policy layer exists yet for x402.** Bound the agent with a small balance or an on-chain allowance. See [Stellar CLI for Agents](./stellar-cli-for-agents.md#keep-the-agent-on-a-leash).
+- **Set a spend cap.** Use `spendControls` in the x402 client (see [Cap Each Payment](#cap-each-payment)). Also give the agent a separate low-balance account. See [Stellar CLI for Agents](./stellar-cli-for-agents.md#keep-the-agent-on-a-leash).
+- **Mainnet needs an RPC URL.** The stock x402 client has no default mainnet RPC and throws. Pass one: `new ExactStellarScheme(signer, { url: "<mainnet RPC URL>" })`. Pick one from the [RPC providers](https://developers.stellar.org/docs/data/apis/rpc/providers) list.
 
 ## Hackathon Project Ideas
 
@@ -286,6 +309,7 @@ Import from `@stellar/mpp/channel/server` and `@stellar/mpp/channel/client`. The
 - [Agentic Payments overview](https://developers.stellar.org/docs/build/agentic-payments)
 - [x402 on Stellar](https://developers.stellar.org/docs/build/agentic-payments/x402)
 - [x402 quickstart](https://developers.stellar.org/docs/build/agentic-payments/x402/quickstart-guide)
+- [x402 Seller and Agent Guide](https://developers.stellar.org/docs/build/agentic-payments/x402/seller-and-agent-guide)
 - [Built on Stellar facilitator](https://developers.stellar.org/docs/build/agentic-payments/x402/built-on-stellar)
 - [MPP on Stellar](https://developers.stellar.org/docs/build/agentic-payments/mpp)
 - [MPP charge guide](https://developers.stellar.org/docs/build/agentic-payments/mpp/charge-guide)
@@ -301,4 +325,4 @@ Import from `@stellar/mpp/channel/server` and `@stellar/mpp/channel/client`. The
 
 ---
 
-*Last updated: October 2026*
+*Last updated: November 2026*
