@@ -128,7 +128,7 @@ pub trait TokenInterface {
 }
 ```
 
-The `to` argument of `transfer` is a `MuxedAddress`, which accepts either a plain address or an `M...` muxed account address. See [Token Interface](https://developers.stellar.org/docs/tokens/token-interface) for the full interface with auth and event details.
+The `to` argument of `transfer` is a `MuxedAddress`, which accepts a plain address, an `M...` muxed account address, or, as of Protocol 30, a `W...` muxed contract address. See [Token Interface](https://developers.stellar.org/docs/tokens/token-interface) for the full interface with auth and event details.
 
 ### Using OpenZeppelin Contracts
 
