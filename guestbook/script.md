@@ -371,7 +371,9 @@ The `fundContract` helper function requires the following arguments:
 
 - `address`: User wallet address
 
-This function is used to fund user wallets, since Friendbot can't fund C-addresses.
+This function is used to fund user wallets on Testnet.
+
+> **Note (2026):** Friendbot can fund a `C...` contract address directly on Testnet and Futurenet. In the current guestbook tutorial, Smart Account Kit funds new wallets on Testnet for you. See [Passkeys Prerequisites](https://developers.stellar.org/docs/build/apps/guestbook/passkeys-prerequisites#funding-new-wallets) and [Friendbot](https://developers.stellar.org/docs/networks#friendbot).
 
 [NEXT SLIDE]
 
