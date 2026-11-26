@@ -66,6 +66,7 @@ The receiving account (`payTo` / `recipient`) also needs a USDC trustline.
 | **Self-hosted** | Any | Your own | Your choice | [OpenZeppelin x402 facilitator plugin](https://github.com/OpenZeppelin/relayer-plugin-x402-facilitator) |
 | **Rail402** (community) | Testnet + Mainnet | See [docs.rail402.dev](https://docs.rail402.dev) | Mainnet only | Not audited ([security report](https://docs.rail402.dev/security/report)). Sponsored fees. `exact` scheme. Bazaar discovery catalog at `/discovery/search`. |
 | **Vellar** (community) | Testnet only | See [docs.vellar.xyz](https://docs.vellar.xyz) | | Not audited. Adds a discovery catalog agents can query. |
+| **AgentSmith** (community) | Testnet + Mainnet | `https://testnet.agentsmith.xyz/facilitator` and `https://mainnet.agentsmith.xyz/facilitator` | No (testnet) / Resource Server key (mainnet) | Sponsors XLM fees on both networks. Supports `exact` and experimental `upto` schemes. Mainnet requires a Resource Server API key, which the mainnet `/supported` check also needs. See [agentsmith.xyz/docs.html](https://agentsmith.xyz/docs.html). |
 
 A facilitator sees the payment before the network does. Picking one is a trust decision. Call `GET <facilitator-url>/supported` to check that it serves your network.
 
